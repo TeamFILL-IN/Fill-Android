@@ -30,7 +30,7 @@ object Versions {
 
     const val flipperVersion = "0.126.0"
     const val soloaderVersion = "0.10.3"
-    const val leakCanaryVersion = "0.10.3"
+    const val leakCanaryVersion = "2.6"
 
     val javaVersion = JavaVersion.VERSION_11
     const val jvmVersion = "11"
