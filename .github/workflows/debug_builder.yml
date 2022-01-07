@@ -46,7 +46,7 @@ jobs:
           file_path: 'app/build/outputs/apk/debug/app-debug.apk'
           file_name: 'FILLIN.apk'
           file_type: 'apk'
-          initial_comment: '찰칵 📸 FILL-IN이 슬랙으로 들어오는 장면을 찍어보겠습니다"
+          initial_comment: '찰칵 📸 FILL-IN이 슬랙으로 들어오는 장면을 찍어보겠습니다'
 
       - name: On Failed, Notify in Slack
         if: ${{ failure() }}
