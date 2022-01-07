@@ -6,6 +6,7 @@ object Versions {
     const val appCompatVersion = "1.4.0"
     const val materialDesignVersion = "1.4.0"
     const val constraintLayoutVersion = "2.1.0"
+    const val appStartUpVersion = "1.1.0"
     const val legacySupportVersion = "1.0.0"
     const val hiltVersion = "2.38.1"
     const val fragmentKtxVersion = "1.3.4"
@@ -27,8 +28,9 @@ object Versions {
     const val espressoVersion = "3.3.0"
     const val androidTestVersion = "1.1.2"
 
-    const val flipperVersion = "0.96.1"
-    const val soloaderVersion = "0.10.1"
+    const val flipperVersion = "0.126.0"
+    const val soloaderVersion = "0.10.3"
+    const val leakCanaryVersion = "0.10.3"
 
     val javaVersion = JavaVersion.VERSION_11
     const val jvmVersion = "11"

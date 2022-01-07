@@ -54,6 +54,7 @@ dependencies {
     implementation(AndroidXDependencies.coreKtx)
     implementation(AndroidXDependencies.appCompat)
     implementation(AndroidXDependencies.constraintLayout)
+    implementation(AndroidXDependencies.startup)
     implementation(AndroidXDependencies.hilt)
     kapt(KaptDependencies.hiltCompiler)
     implementation(AndroidXDependencies.fragment)
@@ -77,6 +78,15 @@ dependencies {
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
+
+    // Flipper
+    debugImplementation(ThirdPartyDependencies.flipper)
+    debugImplementation(ThirdPartyDependencies.flipperNetwork) {
+        exclude("com.squareup.okhttp3", "okhttp")
+    }
+    debugImplementation(ThirdPartyDependencies.flipperLeakCanary)
+    debugImplementation(ThirdPartyDependencies.leakCanary)
+    debugImplementation(ThirdPartyDependencies.soloader)
 
     // Test Dependency
     testImplementation(TestDependencies.jUnit)

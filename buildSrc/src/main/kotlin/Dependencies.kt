@@ -7,6 +7,7 @@ object AndroidXDependencies {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
+    const val startup = "androidx.startup:startup-runtime:${Versions.appStartUpVersion}"
     const val hilt = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
     const val fragment = "androidx.fragment:fragment-ktx:${Versions.fragmentKtxVersion}"
     const val legacy = "androidx.legacy:legacy-support-v4:${Versions.legacySupportVersion}"
@@ -48,6 +49,9 @@ object ThirdPartyDependencies {
     const val soloader = "com.facebook.soloader:soloader:${Versions.soloaderVersion}"
     const val flipperNetwork =
         "com.facebook.flipper:flipper-network-plugin:${Versions.flipperVersion}"
+    const val flipperLeakCanary =
+        "com.facebook.flipper:flipper-leakcanary-plugin:${Versions.flipperVersion}"
+    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanaryVersion}"
     const val ossLicense =
         "com.google.android.gms:play-services-oss-licenses:${Versions.ossVersion}"
 }
