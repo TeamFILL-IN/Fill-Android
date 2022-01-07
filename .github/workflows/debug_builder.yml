@@ -1,7 +1,7 @@
-name: FILLIN PR Checker
+name: FILLIN Push Builder
 
 on:
-  pull_request:
+  push:
     branches: [ develop, master ]
 
 defaults:
@@ -11,7 +11,7 @@ defaults:
 
 jobs:
   build:
-    name: PR Checker
+    name: APK Builder When Push
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -39,15 +39,14 @@ jobs:
 
       - name: On Success
         if: ${{ success() }}
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_COLOR: '#53A551'
-          SLACK_ICON: https://user-images.githubusercontent.com/54518925/148585882-ee5c6dc5-6789-4b90-9fd0-f7382275e974.jpeg?size=48
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_TITLE: 'FILLIN/PR Check S.U.C.C.E.S.S 🎉🎉🎉'
-          MSG_MINIMAL: true
-          SLACK_USERNAME: FILLIN AND-BOT
-          SLACK_MESSAGE: 'P R 성 공!!! 🎉🎉🎉'
+        uses: MeilCli/slack-upload-file@v1
+        with:
+          slack_token: ${{ secrets.SLACK_BOT_TOKEN}}
+          channels: ${{ secrets.SLACK_CHANNEL_ID }}
+          file_path: 'app/build/outputs/apk/debug/app-debug.apk'
+          file_name: 'FILLIN.apk'
+          file_type: 'apk'
+          initial_comment: '찰칵 📸 FILL-IN이 슬랙으로 들어오는 장면을 찍어보겠습니다"
 
       - name: On Failed, Notify in Slack
         if: ${{ failure() }}
@@ -59,4 +58,4 @@ jobs:
           SLACK_TITLE: 'FILLIN/Android Debug build Fail❌'
           MSG_MINIMAL: true
           SLACK_USERNAME: FILLIN AND-BOT
-          SLACK_MESSAGE: '에러를 확인해주세요'
+          SLACK_MESSAGE: 'APK 생성 중 에러가 발생했습니다. 에러를 확인해주세요'
