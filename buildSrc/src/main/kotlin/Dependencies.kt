@@ -50,7 +50,7 @@ object ThirdPartyDependencies {
     const val flipperNetwork =
         "com.facebook.flipper:flipper-network-plugin:${Versions.flipperVersion}"
     const val flipperLeakCanary =
-        "com.facebook.flipper:flipper-leakcanary-plugin:${Versions.flipperVersion}"
+        "com.facebook.flipper:flipper-leakcanary2-plugin:${Versions.flipperVersion}"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanaryVersion}"
     const val ossLicense =
         "com.google.android.gms:play-services-oss-licenses:${Versions.ossVersion}"
