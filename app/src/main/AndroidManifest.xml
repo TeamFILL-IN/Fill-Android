@@ -17,7 +17,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.teamfillin.fillin.config.initializer"
+                android:name="com.teamfillin.fillin.config.initializer.TimberInitializer"
                 android:value="androidx.startup" />
         </provider>
     </application>
