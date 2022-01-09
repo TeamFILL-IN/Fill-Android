@@ -9,3 +9,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "FillInAndroid"
 include ':app'
+include ':core'
