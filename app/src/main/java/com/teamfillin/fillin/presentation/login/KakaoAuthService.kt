@@ -1,6 +1,7 @@
 package com.teamfillin.fillin.presentation.login
 
 import android.content.Context
+import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.qualifiers.ActivityContext
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,20 +18,26 @@ class KakaoAuthService @Inject constructor(
         get() = client.isKakaoTalkLoginAvailable(context)
     private val _loginState: MutableStateFlow<LoginState> = MutableStateFlow(LoginState.Init)
     val loginState: StateFlow<LoginState> = _loginState.asStateFlow()
+    private val kakaoAuthCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+        error?.let(::handleLoginError)
+        token?.let(::handleLoginSuccess)
+    }
 
 
     fun loginByKakaoTalk() {
-        client.loginWithKakaoTalk(context) { token, error ->
-            error?.let { _loginState.value = LoginState.Failure(it) }
-            token?.let { _loginState.value = LoginState.Success(it.accessToken) }
-        }
+        client.loginWithKakaoTalk(context, callback = kakaoAuthCallback)
     }
 
     fun loginByKakaoAccount() {
-        client.loginWithKakaoAccount(context) { token, error ->
-            error?.let { _loginState.value = LoginState.Failure(it) }
-            token?.let { _loginState.value = LoginState.Success(it.accessToken) }
-        }
+        client.loginWithKakaoAccount(context, callback = kakaoAuthCallback)
+    }
+
+    private fun handleLoginError(throwable: Throwable) {
+        _loginState.value = LoginState.Failure(throwable)
+    }
+
+    private fun handleLoginSuccess(oAuthToken: OAuthToken) {
+        _loginState.value = LoginState.Success(oAuthToken.accessToken)
     }
 
     fun logout() {
