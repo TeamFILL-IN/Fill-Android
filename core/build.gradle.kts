@@ -57,6 +57,9 @@ dependencies {
     implementation(ThirdPartyDependencies.glide)
     kapt(KaptDependencies.glide)
     implementation(ThirdPartyDependencies.gson)
+    implementation(platform(ThirdPartyDependencies.okHttpBom))
+    implementation(ThirdPartyDependencies.okHttp)
+    implementation(ThirdPartyDependencies.retrofit)
 
     // Test Dependency
     testImplementation(TestDependencies.jUnit)
