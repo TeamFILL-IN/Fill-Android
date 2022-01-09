@@ -21,7 +21,20 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        getByName("debug") {
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+            storeFile = File("${project.rootDir.absolutePath}/keystore/debug.keystore")
+            storePassword = "android"
+        }
+    }
+
     buildTypes {
+        getByName("debug") {
+            buildConfigField("String", "KAKAO_AUTH", "\"aiL3kzN5WebwLyDo7pharxCgrsw=\"")
+        }
+
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(

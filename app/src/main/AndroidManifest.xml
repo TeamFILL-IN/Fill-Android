@@ -21,6 +21,9 @@
             <meta-data
                 android:name="com.teamfillin.fillin.config.initializer.TimberInitializer"
                 android:value="androidx.startup" />
+            <meta-data
+                android:name="com.teamfillin.fillin.config.initializer.KakaoAuthInitializer"
+                android:value="androidx.startup" />
         </provider>
         <activity
             android:name=".presentation.HomeActivity"
