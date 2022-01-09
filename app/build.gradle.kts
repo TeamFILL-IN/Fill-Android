@@ -75,6 +75,7 @@ dependencies {
     implementation(ThirdPartyDependencies.retrofitGsonConverter)
     implementation(ThirdPartyDependencies.timber)
     implementation(ThirdPartyDependencies.ossLicense)
+    implementation(ThirdPartyDependencies.kakaoLogin)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
