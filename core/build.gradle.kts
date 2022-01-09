@@ -50,6 +50,9 @@ dependencies {
     implementation(AndroidXDependencies.coroutines)
     implementation(AndroidXDependencies.fragment)
 
+    // Material Design
+    implementation(MaterialDesignDependencies.materialDesign)
+
     // Third-Party
     implementation(ThirdPartyDependencies.glide)
     kapt(KaptDependencies.glide)
