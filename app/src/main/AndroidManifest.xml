@@ -25,6 +25,7 @@
                 android:name="com.teamfillin.fillin.config.initializer.KakaoAuthInitializer"
                 android:value="androidx.startup" />
         </provider>
+
         <activity
             android:name=".presentation.HomeActivity"
             android:exported="true">
@@ -32,6 +33,20 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakaoaiL3kzN5WebwLyDo7pharxCgrsw=" />
             </intent-filter>
         </activity>
     </application>
