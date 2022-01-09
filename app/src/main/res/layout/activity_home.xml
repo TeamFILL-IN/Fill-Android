@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fillin_black"
+    tools:context=".HomeActivity">
+
+
+
+            <TextView
+                android:id="@+id/intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="미나님,좋은 아침입니다."
+                android:textColor="@color/grey_2"
+                android:layout_marginLeft="20dp"
+                style="@style/Body2"
+                android:includeFontPadding ="false"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/ment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="서랍 속, 잠자는 필름을 \n깨워볼까요?"
+                android:textColor="@color/fillin_white"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="6dp"
+                android:includeFontPadding ="false"
+                style="@style/Display1"
+                app:layout_constraintTop_toBottomOf="@+id/intro"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
