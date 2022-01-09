@@ -1,28 +1,24 @@
-package com.teamfillin.fillin.presentation
+package com.teamfillin.fillin.presentation.login
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.snackbar.Snackbar
-import com.teamfillin.fillin.databinding.ActivityHomeBinding
-import com.teamfillin.fillin.presentation.login.KakaoAuthService
+import com.teamfillin.fillin.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     @Inject
     lateinit var kakaoAuthService: KakaoAuthService
 
-    private lateinit var binding: ActivityHomeBinding
+    private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.txtHello.setOnClickListener {

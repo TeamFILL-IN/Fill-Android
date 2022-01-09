@@ -27,7 +27,7 @@
         </provider>
 
         <activity
-            android:name=".presentation.HomeActivity"
+            android:name=".presentation.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
