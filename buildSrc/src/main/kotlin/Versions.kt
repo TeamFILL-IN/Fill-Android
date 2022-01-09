@@ -23,6 +23,7 @@ object Versions {
     const val okHttpVersion = "4.9.1"
     const val gsonVersion = "2.8.6"
     const val timberVersion = "5.0.1"
+    const val kakaoVersion = "2.8.4"
 
     const val junitVersion = "4.13.2"
     const val espressoVersion = "3.3.0"

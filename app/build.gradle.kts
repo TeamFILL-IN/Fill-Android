@@ -22,7 +22,20 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        getByName("debug") {
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+            storeFile = File("${project.rootDir.absolutePath}/keystore/debug.keystore")
+            storePassword = "android"
+        }
+    }
+
     buildTypes {
+        getByName("debug") {
+            buildConfigField("String", "KAKAO_AUTH", "\"a7ddbcd24d7fff22320cc13a1e534104\"")
+        }
+
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
@@ -79,6 +92,7 @@ dependencies {
     implementation(ThirdPartyDependencies.retrofitGsonConverter)
     implementation(ThirdPartyDependencies.timber)
     implementation(ThirdPartyDependencies.ossLicense)
+    implementation(ThirdPartyDependencies.kakaoLogin)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
