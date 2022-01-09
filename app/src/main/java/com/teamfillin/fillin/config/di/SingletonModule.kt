@@ -15,6 +15,11 @@ import javax.inject.Singleton
 object SingletonModule {
     @Provides
     @Singleton
-    fun provideResolutionMetrics(@ApplicationContext context: Context) =
-        ResolutionMetrics(context as Application)
+    @ApplicationContext
+    fun provideApplication(application: Application) = application
+
+    @Provides
+    @Singleton
+    fun provideResolutionMetrics(@ApplicationContext context: Application) =
+        ResolutionMetrics(context)
 }

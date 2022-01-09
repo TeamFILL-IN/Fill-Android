@@ -8,11 +8,11 @@ import javax.inject.Inject
 @HiltAndroidApp
 class App : Application() {
     @Inject
-    lateinit var resolutionMetrics: ResolutionMetrics
+    lateinit var metrics: ResolutionMetrics
     override fun onCreate() {
         super.onCreate()
         FlipperInitializer.init(this)
-        App.resolutionMetrics = this.resolutionMetrics
+        App.resolutionMetrics = metrics
     }
 
     companion object {
