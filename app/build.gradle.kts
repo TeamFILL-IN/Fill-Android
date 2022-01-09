@@ -5,6 +5,7 @@ plugins {
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("com.google.android.gms.oss-licenses-plugin")
+    id("kotlin-android")
 }
 
 android {
@@ -56,6 +57,9 @@ dependencies {
     implementation(AndroidXDependencies.constraintLayout)
     implementation(AndroidXDependencies.startup)
     implementation(AndroidXDependencies.hilt)
+    implementation("androidx.appcompat:appcompat:1.4.0")
+    implementation("com.google.android.material:material:1.4.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.2")
     kapt(KaptDependencies.hiltCompiler)
     implementation(AndroidXDependencies.fragment)
     implementation(AndroidXDependencies.legacy)

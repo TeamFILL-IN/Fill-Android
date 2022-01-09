@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MyPageActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/toolbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_back" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/icn_logo" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_title" />
+
+    <TextView
+        android:id="@+id/tv_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="@string/nickname"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/iv_profile"
+        app:layout_constraintTop_toTopOf="@id/iv_profile" />
+
+    <ImageView
+        android:id="@+id/iv_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:src="@drawable/icn_edit"
+        app:layout_constraintBottom_toBottomOf="@id/tv_nickname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_nickname" />
+
+    <ImageView
+        android:id="@+id/iv_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/icn_camera"
+        app:layout_constraintStart_toStartOf="@id/tv_nickname"
+        app:layout_constraintTop_toBottomOf="@id/tv_nickname" />
+
+    <TextView
+        android:id="@+id/tv_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:text="@string/camera_name"
+        android:textColor="@color/profile_grey"
+        app:layout_constraintBottom_toBottomOf="@id/iv_camera"
+        app:layout_constraintStart_toEndOf="@id/iv_camera"
+        app:layout_constraintTop_toTopOf="@id/iv_camera" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_report"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="18dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/shape_mypage"
+        android:drawableRight="@drawable/icn_arrow"
+        android:gravity="left"
+        android:paddingVertical="18dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:text="나만 아는 필름과 현상소를\n필린에 알려주세요!"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_camera" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/my_photos"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_report" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
