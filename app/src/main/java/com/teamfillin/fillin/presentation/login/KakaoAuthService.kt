@@ -21,20 +21,14 @@ class KakaoAuthService @Inject constructor(
 
     fun loginByKakaoTalk() {
         client.loginWithKakaoTalk(context) { token, error ->
-            error?.let {
-                _loginState.value = LoginState.Failure(it)
-                return@loginWithKakaoTalk
-            }
+            error?.let { _loginState.value = LoginState.Failure(it) }
             token?.let { _loginState.value = LoginState.Success(it.accessToken) }
         }
     }
 
     fun loginByKakaoAccount() {
         client.loginWithKakaoAccount(context) { token, error ->
-            error?.let {
-                _loginState.value = LoginState.Failure(it)
-                return@loginWithKakaoAccount
-            }
+            error?.let { _loginState.value = LoginState.Failure(it) }
             token?.let { _loginState.value = LoginState.Success(it.accessToken) }
         }
     }

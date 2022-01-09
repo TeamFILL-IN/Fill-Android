@@ -32,7 +32,7 @@ android {
 
     buildTypes {
         getByName("debug") {
-            buildConfigField("String", "KAKAO_AUTH", "\"aiL3kzN5WebwLyDo7pharxCgrsw=\"")
+            buildConfigField("String", "KAKAO_AUTH", "\"a7ddbcd24d7fff22320cc13a1e534104\"")
         }
 
         getByName("release") {
