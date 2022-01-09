@@ -60,6 +60,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+
     // Kotlin
     implementation(KotlinDependencies.kotlin)
 
