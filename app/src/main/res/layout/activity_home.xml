@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/intro"
+        android:id="@+id/tv_intro"
         style="@style/Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ment"
+        android:id="@+id/tv_ment"
         style="@style/Display1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,15 +32,16 @@
         android:text="서랍 속, 잠자는 필름을 \n깨워볼까요?"
         android:textColor="@color/fillin_white"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/intro" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_intro" />
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:gravity="center"
         android:background="@drawable/linearlayout"
-        app:layout_constraintTop_toBottomOf="@+id/ment">
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ment">
 
         <ImageButton
             android:id="@+id/btn_addphoto"
@@ -53,6 +54,7 @@
             android:id="@+id/btn_filmroll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:backgroundTint="@color/black"
             android:src="@drawable/ic_filmroll" />
 
@@ -60,6 +62,7 @@
             android:id="@+id/btn_studiomap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:backgroundTint="@color/black"
             android:src="@drawable/ic_stduiomap" />
 
@@ -67,9 +70,46 @@
             android:id="@+id/btn_mypage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:backgroundTint="@color/black"
-            android:src="@drawable/ic_mypage"
-           />
+            android:src="@drawable/ic_mypage" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_aroundyou"
+        style="@style/EngHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="24dp"
+        android:text="AROUND YOU"
+        android:textColor="@color/fillin_white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/mapview"
+        android:layout_width="370dp"
+        android:layout_height="178dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="18dp"
+        android:background="@color/white"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_aroundyou">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dark_grey_3"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/mapview">
 
     </LinearLayout>
 
