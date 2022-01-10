@@ -3,8 +3,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/'}
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
 rootProject.name = "FillInAndroid"
 include ':app'
+include ':core'

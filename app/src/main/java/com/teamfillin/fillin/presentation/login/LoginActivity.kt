@@ -1,0 +1,40 @@
+package com.teamfillin.fillin.presentation.login
+
+import android.os.Bundle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import com.teamfillin.fillin.R
+import com.teamfillin.fillin.core.base.BindingActivity
+import com.teamfillin.fillin.databinding.ActivityLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
+
+@AndroidEntryPoint
+class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
+    @Inject
+    lateinit var kakaoAuthService: KakaoAuthService
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding.txtHello.setOnClickListener {
+            if (kakaoAuthService.isKakaoTalkLoginAvailable) {
+                kakaoAuthService.loginByKakaoTalk()
+            } else {
+                kakaoAuthService.loginByKakaoAccount()
+            }
+        }
+
+        lifecycleScope.launch {
+            kakaoAuthService.loginState
+                .flowWithLifecycle(lifecycle)
+                .collect {
+                    when (it) {
+                        is KakaoAuthService.LoginState.Success -> Timber.d("Kakao Login Success ${it.token}")
+                        is KakaoAuthService.LoginState.Failure -> Timber.d("Kakao Login Failed ${it.error}")
+                        else -> Timber.d("Kakao INIT")
+                    }
+                }
+        }
+    }
+}
