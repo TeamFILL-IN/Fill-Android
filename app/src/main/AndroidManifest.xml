@@ -12,8 +12,14 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.FillInAndroid">
         <activity
-            android:name=".MyPageActivity"
-            android:exported="false" />
+            android:name=".presentation.MyPageActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name="androidx.startup.InitializationProvider"
@@ -28,11 +34,7 @@
         <activity
             android:name=".presentation.HomeActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

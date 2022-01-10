@@ -4,4 +4,6 @@
     <string name="camera_name">Fuji film X 1200</string>
     <string name="new_film_tell">나만 아는 필름과 현상소를\n필린에 알려주세요! </string>
     <string name="my_photos">MY PHOTOS</string>
+    <string name="film_name">Film</string>
+    <string name="studio_name">Studio</string>
 </resources>
