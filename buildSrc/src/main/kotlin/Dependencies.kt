@@ -56,6 +56,8 @@ object ThirdPartyDependencies {
     const val ossLicense =
         "com.google.android.gms:play-services-oss-licenses:${Versions.ossVersion}"
     const val kakaoLogin = "com.kakao.sdk:v2-user:${Versions.kakaoVersion}"
+    const val naverMap = "com.naver.maps:map-sdk:${Versions.naverVersion}"
+    const val mapLocation = "com.google.android.gms:play-services-location:${Versions.locationVersion}"
 }
 
 object ClassPathPlugins {

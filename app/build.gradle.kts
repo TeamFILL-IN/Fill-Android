@@ -91,6 +91,8 @@ dependencies {
     implementation(ThirdPartyDependencies.timber)
     implementation(ThirdPartyDependencies.ossLicense)
     implementation(ThirdPartyDependencies.kakaoLogin)
+    implementation(ThirdPartyDependencies.naverMap)
+    implementation(ThirdPartyDependencies.mapLocation)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)

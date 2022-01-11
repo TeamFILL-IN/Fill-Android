@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FillInAndroid</string>
+
+    <string name="map_search">추억을 현상할 현상소를 검색해보세요</string>
 </resources>
