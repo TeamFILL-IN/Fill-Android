@@ -1,22 +1,21 @@
 package com.teamfillin.fillin.presentation.map
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.util.FusedLocationSource
+import com.teamfillin.fillin.R
+import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.databinding.ActivityStudioMapBinding
 
 
-class StudioMapActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityStudioMapBinding
+class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.activity_studio_map) {
+
     private lateinit var locationSource: FusedLocationSource
     private var naverMap: NaverMap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityStudioMapBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         binding.mapMain.onCreate(savedInstanceState)
         locationSource =
@@ -28,14 +27,15 @@ class StudioMapActivity : AppCompatActivity() {
     }
 
     private fun toolbarEvent() {
-        setSupportActionBar(binding.toolbar)
-        val ab = supportActionBar!!
-        ab.setDisplayHomeAsUpEnabled(true)
-        ab.setDisplayShowTitleEnabled(false)
+        setSupportActionBar(binding.tbTitle)
+        supportActionBar?.run {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowTitleEnabled(false)
+        }
     }
 
     private fun searchClickEvent() {
-        binding.layoutSearch.setOnClickListener {
+        binding.clSearch.setOnClickListener {
 
         }
     }
