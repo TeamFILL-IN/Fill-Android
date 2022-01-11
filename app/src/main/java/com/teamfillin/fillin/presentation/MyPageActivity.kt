@@ -3,6 +3,7 @@ package com.teamfillin.fillin.presentation
 
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 import com.teamfillin.fillin.MyPagePhotoRecyclerViewAdapter
 import com.teamfillin.fillin.Photos
 import com.teamfillin.fillin.R
@@ -16,8 +17,10 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         initializelist()
         initPhotoRecyclerView()
+        setProfile()
     }
 
     private fun initializelist(){
@@ -37,5 +40,12 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
         binding.rvMyPage.adapter=adapter
         val gridLayoutManager=GridLayoutManager(this,3)
         binding.rvMyPage.layoutManager=gridLayoutManager
+    }
+
+    private fun setProfile(){
+        Glide.with(this)
+            .load(R.drawable.profile)
+            .circleCrop()
+            .into(binding.ivProfile)
     }
 }
