@@ -4,6 +4,7 @@
     package="com.teamfillin.fillin">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".App"
@@ -55,6 +56,11 @@
                     android:scheme="kakaoa7ddbcd24d7fff22320cc13a1e534104" />
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.map.StudioMapActivity"
+            android:exported="true" />
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="5nlfu3idz8" />
     </application>
 
 </manifest>

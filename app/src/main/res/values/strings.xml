@@ -6,4 +6,6 @@
     <string name="my_photos">MY PHOTOS</string>
     <string name="film_name">Film</string>
     <string name="studio_name">Studio</string>
+
+    <string name="map_search">추억을 현상할 현상소를 검색해보세요</string>
 </resources>
