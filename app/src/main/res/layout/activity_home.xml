@@ -139,5 +139,47 @@
         tools:itemCount="8"
         tools:listitem="@layout/item_new_photos_list" />
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/cl_popup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup"
+    android:visibility="visible"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/rcv_new_photos">
+<TextView
+    android:id="@+id/tv_notice"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
+    android:paddingLeft="20dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/home_popup"
+    android:includeFontPadding="false"
+    app:layout_constraintLeft_toLeftOf="parent"
+    android:layout_marginLeft="10dp"
+    style="@style/Subhead2"
+    android:textColor="@color/black"
+    tools:ignore="MissingConstraints" />
 
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#dc4f1c"
+        android:includeFontPadding="false"
+        android:src="@drawable/ic_close"
+        android:textColor="@color/black"
+        android:layout_marginBottom="2dp"
+
+        app:layout_constraintLeft_toRightOf="@+id/tv_notice"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,18 +24,18 @@
             </intent-filter>
         </activity>
 
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="${applicationId}.androidx-startup"
-            android:exported="false"
-            tools:node="merge">
-            <meta-data
-                android:name="com.teamfillin.fillin.config.initializer.TimberInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="com.teamfillin.fillin.config.initializer.KakaoAuthInitializer"
-                android:value="androidx.startup" />
-        </provider>
+<!--        <provider-->
+<!--            android:name="androidx.startup.InitializationProvider"-->
+<!--            android:authorities="${applicationId}.androidx-startup"-->
+<!--            android:exported="false"-->
+<!--            tools:node="merge">-->
+<!--            <meta-data-->
+<!--                android:name="com.teamfillin.fillin.config.initializer.TimberInitializer"-->
+<!--                android:value="androidx.startup" />-->
+<!--            <meta-data-->
+<!--                android:name="com.teamfillin.fillin.config.initializer.KakaoAuthInitializer"-->
+<!--                android:value="androidx.startup" />-->
+<!--        </provider>-->
 
 <!--        <activity-->
 <!--            android:name=".presentation.login.LoginActivity"-->
@@ -62,9 +62,9 @@
 <!--        </activity>-->
 <!--        <activity android:name=".presentation.map.StudioMapActivity"-->
 <!--            android:exported="true" />-->
-<!--        <meta-data-->
-<!--            android:name="com.naver.maps.map.CLIENT_ID"-->
-<!--            android:value="5nlfu3idz8" />-->
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="5nlfu3idz8" />
     </application>
 
 </manifest>
