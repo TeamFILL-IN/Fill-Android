@@ -1,5 +1,7 @@
 # Fill-Android
-필름 현상소, 필름 정보제공 서비스 </br>
+> SOPT 29th APPJAM - TEAM FILL-IN 📸✨ 2022.01.02 ~ 2021.01.22   
+
+필름 현상소, 필름 정보제공 서비스   
 당신의 추억으로 FILL-IN</br></br>
 <img width="90%" src="https://user-images.githubusercontent.com/56147398/148933940-1c02f148-6d3b-45c8-a3de-cfd9213ac6db.jpeg"/>
 
@@ -31,4 +33,9 @@
 - presentation -> 뷰 관련 작업
 - di -> 의존성 주입 관련 모듈
 - data -> 서버, 데이터 관련 작업
-- core -> util 확장함수 모듈
+- core -> util 확장함수 모듈   
+
+## 컨벤션 🎞
+- Coding Convention: <https://www.notion.so/66jxndoe/Coding-Convention-0c07e7e3d55740e291a490c84062e33f>
+- Branch 전략: <https://www.notion.so/66jxndoe/Branch-4ac90596ba404905962ca2ba839fcbc2>
+- Github Convention: <https://www.notion.so/66jxndoe/GitHub-Convention-7880943da7534f5e94a023ebfe043c57>
