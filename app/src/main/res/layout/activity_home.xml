@@ -138,4 +138,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_newphotos"
         tools:itemCount="8"
         tools:listitem="@layout/item_new_photos_list" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

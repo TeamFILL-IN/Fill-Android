@@ -9,6 +9,7 @@ import com.teamfillin.fillin.databinding.ItemNewPhotosListBinding
 class NewPhotosAdapter : RecyclerView.Adapter<NewPhotosAdapter.NewPhotosViewHolder>() {
 
     val photolist = mutableListOf<NewPhotosData>()
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

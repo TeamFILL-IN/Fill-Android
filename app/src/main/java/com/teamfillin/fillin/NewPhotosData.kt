@@ -1,5 +1,5 @@
 package com.teamfillin.fillin
 
 data class NewPhotosData(
-    var image: String
+    var image: Int
 )
