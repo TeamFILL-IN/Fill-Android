@@ -15,8 +15,10 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.FillInAndroid">
         <activity
-            android:name=".presentation.AddPhotoActivity"
-            android:exported="false" />
+            android:name=".presentation.MyPageActivity"
+            android:exported="true">
+
+        </activity>
 
         <provider
             android:name="androidx.startup.InitializationProvider"
@@ -54,10 +56,8 @@
                     android:scheme="kakaoa7ddbcd24d7fff22320cc13a1e534104" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.map.StudioMapActivity"
+        <activity android:name=".presentation.map.StudioMapActivity"
             android:exported="true" />
-
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="5nlfu3idz8" />
