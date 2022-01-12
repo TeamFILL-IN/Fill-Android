@@ -27,7 +27,6 @@ class MyPagePhotoRecyclerViewAdapter :
     override fun getItemCount() = photoList.size
 
     fun replaceList(newList:List<Photos>){
-
         photoList=newList.toList()
         notifyDataSetChanged()
     }
