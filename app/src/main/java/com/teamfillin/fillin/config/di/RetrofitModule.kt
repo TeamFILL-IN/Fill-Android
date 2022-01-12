@@ -7,14 +7,16 @@ import com.teamfillin.fillin.data.interceptor.AuthInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonModule::class)
+@InstallIn(SingletonComponent::class)
 object RetrofitModule {
     @Provides
     @Singleton
@@ -27,6 +29,11 @@ object RetrofitModule {
         authInterceptor: Interceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
+            )
             .addInterceptor(authInterceptor)
             .apply { FlipperInitializer.addFlipperNetworkPlguin(this).build() }
             .build()

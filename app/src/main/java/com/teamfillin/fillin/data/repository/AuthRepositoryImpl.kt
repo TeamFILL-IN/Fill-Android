@@ -5,6 +5,7 @@ import com.teamfillin.fillin.data.response.ResponseAuth
 import com.teamfillin.fillin.data.service.AuthService
 import com.teamfillin.fillin.domain.repository.AuthRepository
 import retrofit2.await
+import timber.log.Timber
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -22,6 +23,7 @@ class AuthRepositoryImpl @Inject constructor(
             if (it.data is ResponseAuth.SignUp) dataStore.nickname = it.data.nickName
             return Result.success(true)
         }, {
+            Timber.e(it)
             return Result.failure(it)
         })
     }

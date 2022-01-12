@@ -1,10 +1,12 @@
 package com.teamfillin.fillin.presentation.login
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
+import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -15,6 +17,8 @@ import javax.inject.Inject
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     @Inject
     lateinit var kakaoAuthService: KakaoAuthService
+    private val viewModel by viewModels<LoginViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.txtHello.setOnClickListener {
@@ -30,9 +34,20 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 .flowWithLifecycle(lifecycle)
                 .collect {
                     when (it) {
-                        is KakaoAuthService.LoginState.Success -> Timber.d("Kakao Login Success ${it.token}")
+                        is KakaoAuthService.LoginState.Success -> {
+                            Timber.d("Kakao Login Success ${it.token}")
+                            viewModel.login(it.token)
+                        }
                         is KakaoAuthService.LoginState.Failure -> Timber.d("Kakao Login Failed ${it.error}")
                         else -> Timber.d("Kakao INIT")
+                    }
+                }
+            viewModel.loginResult
+                .flowWithLifecycle(lifecycle)
+                .collect {
+                    when (it) {
+                        is LoginViewModel.InHouseLoginState.Success -> toast("로그인 성공")
+                        is LoginViewModel.InHouseLoginState.Failure -> toast(it.message)
                     }
                 }
         }
