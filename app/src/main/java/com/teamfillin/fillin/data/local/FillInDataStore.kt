@@ -31,4 +31,8 @@ class FillInDataStore @Inject constructor(
     var refreshToken: String
         set(value) = dataStore.edit { putString("REFRESH_TOKEN", value) }
         get() = dataStore.getString("REFRESH_TOKEN", "") ?: ""
+
+    var nickname: String
+        set(value) = dataStore.edit { putString("NICKNAME", value) }
+        get() = dataStore.getString("NICKNAME", "") ?: ""
 }
