@@ -22,7 +22,6 @@ object RetrofitModule {
     @Singleton
     fun provideAuthInterceptor(authInterceptor: AuthInterceptor): Interceptor = authInterceptor
 
-
     @Provides
     @Singleton
     fun provideOkHttpInterceptor(
@@ -54,5 +53,5 @@ object RetrofitModule {
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 
-    private const val BASE_URL = "https://fill-in-13efb.web.app/api/"
+    const val BASE_URL = "https://fill-in-13efb.web.app/api/"
 }
