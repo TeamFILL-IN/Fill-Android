@@ -51,11 +51,4 @@ class AuthInterceptor @Inject constructor(
         !originalRequest.url.encodedPath.contains("token") &&
                 originalRequest.url.encodedPath.contains("auth")
 
-    private fun Interceptor.Chain.proceedDeletingTokenOnError(request: Request): Response {
-        val response = proceed(request)
-        if (response.code == 401) {
-            localStorage.userToken = ""
-        }
-        return response
-    }
 }
