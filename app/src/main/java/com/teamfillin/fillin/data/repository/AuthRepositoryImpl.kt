@@ -14,7 +14,7 @@ class AuthRepositoryImpl @Inject constructor(
 ) : AuthRepository {
     override suspend fun login(token: String): Result<Boolean> {
         runCatching {
-            service.login(hashMapOf("token" to token, "social" to "kakao")).await()
+            service.login(token).await()
         }.fold({
             with(dataStore) {
                 userToken = it.data.accessToken

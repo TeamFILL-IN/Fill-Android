@@ -4,14 +4,15 @@ import com.teamfillin.fillin.data.response.BaseResponse
 import com.teamfillin.fillin.data.response.ResponseAuth
 import com.teamfillin.fillin.data.response.ResponseRefresh
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface AuthService {
+    @FormUrlEncoded
     @POST("auth")
-    fun login(@Body request: HashMap<String, String>): Call<BaseResponse<ResponseAuth>>
+    fun login(
+        @Field("token") token: String,
+        @Field("social") social: String = "kakao"
+    ): Call<BaseResponse<ResponseAuth>>
 
     @GET("auth/token")
     fun refresh(
