@@ -34,17 +34,18 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 .flowWithLifecycle(lifecycle)
                 .collect {
                     when (it) {
-                        is KakaoAuthService.LoginState.Success -> {
-                            Timber.d("Kakao Login Success ${it.token}")
-                            viewModel.login(it.token)
-                        }
+                        is KakaoAuthService.LoginState.Success -> viewModel.login(it.token)
                         is KakaoAuthService.LoginState.Failure -> Timber.d("Kakao Login Failed ${it.error}")
                         else -> Timber.d("Kakao INIT")
                     }
                 }
+        }
+
+        lifecycleScope.launch {
             viewModel.loginResult
                 .flowWithLifecycle(lifecycle)
                 .collect {
+                    Timber.d("Nunu inHouseLogin $it")
                     when (it) {
                         is LoginViewModel.InHouseLoginState.Success -> toast("로그인 성공")
                         is LoginViewModel.InHouseLoginState.Failure -> toast(it.message)
