@@ -8,7 +8,9 @@ import com.facebook.flipper.plugins.leakcanary2.FlipperLeakListener
 import com.facebook.flipper.plugins.leakcanary2.LeakCanary2FlipperPlugin
 import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
+import com.facebook.flipper.plugins.sharedpreferences.SharedPreferencesFlipperPlugin
 import com.facebook.soloader.SoLoader
+import com.teamfillin.fillin.data.local.FILE_NAME
 import leakcanary.LeakCanary
 import okhttp3.OkHttpClient
 
@@ -24,6 +26,7 @@ object FlipperInitializer {
         client.addPlugin(InspectorFlipperPlugin(app, DescriptorMapping.withDefaults()))
         client.addPlugin(InspectorFlipperPlugin(app, DescriptorMapping.withDefaults()))
         client.addPlugin(flipperNetworkPlugin)
+        client.addPlugin(SharedPreferencesFlipperPlugin(app, FILE_NAME))
         client.addPlugin(LeakCanary2FlipperPlugin())
         client.start()
     }
