@@ -3,4 +3,6 @@
 
     <string name="map_search">추억을 현상할 현상소를 검색해보세요</string>
     <string name="home_popup">나만 아는 현상소를 필린에 알려주세요!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -18,6 +18,7 @@ class HomeActivity : AppCompatActivity() {
         initAdapter()
         popup()
         setContentView(binding.root)
+
     }
 
 
@@ -50,9 +51,17 @@ class HomeActivity : AppCompatActivity() {
                     clPopup.setVisibility(View.GONE);
 
             }
+            ///
             tvNotice.setOnClickListener{
-                Toast.makeText(this@HomeActivity, "현상소 제보 Page이동", Toast.LENGTH_SHORT).show()
+                var dialog = PhotoDialogFragment()
+                dialog.show(supportFragmentManager, "dialogfragmnet")
             }
         }
     }
 }
+
+
+//<원래코드>
+//tvNotice.setOnClickListener{
+//    Toast.makeText(this@HomeActivity, "현상소 제보 Page이동", Toast.LENGTH_SHORT).show()
+//}
