@@ -17,7 +17,6 @@
         <activity
             android:name=".presentation.MyPageActivity"
             android:exported="true">
-
         </activity>
 
         <provider
@@ -36,11 +35,7 @@
         <activity
             android:name=".presentation.login.LoginActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
@@ -58,6 +53,16 @@
         </activity>
         <activity android:name=".presentation.map.StudioMapActivity"
             android:exported="true" />
+        <activity
+            android:name=".presentation.AddPhotoActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="5nlfu3idz8" />
