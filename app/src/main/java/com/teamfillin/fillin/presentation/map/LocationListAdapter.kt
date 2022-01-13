@@ -2,12 +2,16 @@ package com.teamfillin.fillin.presentation.map
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teamfillin.fillin.data.ResponseLocationInfo
 import com.teamfillin.fillin.databinding.ItemLocationInfoBinding
 
-class LocationListAdapter : RecyclerView.Adapter<LocationListAdapter.LocationListViewHolder>() {
-    private val locationList = mutableListOf<ResponseLocationInfo>()
+class LocationListAdapter :
+    ListAdapter<ResponseLocationInfo, LocationListAdapter.LocationListViewHolder>(
+        DIFFUTIL
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationListViewHolder {
         val binding =
@@ -16,22 +20,32 @@ class LocationListAdapter : RecyclerView.Adapter<LocationListAdapter.LocationLis
     }
 
     override fun onBindViewHolder(holder: LocationListViewHolder, position: Int) {
-        holder.onBind(locationList[position], position)
+        holder.onBind(getItem(position))
     }
 
-    fun setItem(newItems: List<ResponseLocationInfo>) {
-        locationList.clear()
-        locationList.addAll(newItems.toList())
-        notifyDataSetChanged()
-    }
-
-    override fun getItemCount(): Int = locationList.size
-
-    inner class LocationListViewHolder(
+    class LocationListViewHolder(
         private val binding: ItemLocationInfoBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(locationInfo: ResponseLocationInfo, position: Int) {
+        fun onBind(locationInfo: ResponseLocationInfo) {
             binding.location = locationInfo
+        }
+    }
+
+    companion object {
+        val DIFFUTIL = object : DiffUtil.ItemCallback<ResponseLocationInfo>() {
+            override fun areItemsTheSame(
+                oldItem: ResponseLocationInfo,
+                newItem: ResponseLocationInfo
+            ): Boolean {
+                return oldItem.location == newItem.location
+            }
+
+            override fun areContentsTheSame(
+                oldItem: ResponseLocationInfo,
+                newItem: ResponseLocationInfo
+            ): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 }
