@@ -2,10 +2,10 @@ package com.teamfillin.fillin.presentation.map
 
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
+import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.data.ResponseLocationInfo
@@ -31,17 +31,9 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
     }
 
     private fun editTextIconEvent() {
-        binding.editSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                editTextBlankCheck()
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-            }
-        })
+        binding.editSearch.doAfterTextChanged {
+            editTextBlankCheck()
+        }
     }
 
     private fun setLocationListAdapter() {
@@ -53,7 +45,7 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
 
     private fun addLocationList() {
         binding.viewDivision.visibility = View.VISIBLE
-        locationAdapter.setItem(
+        locationAdapter.submitList(
             listOf(
                 ResponseLocationInfo(
                     name = "솝트 사진관",
@@ -80,11 +72,7 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
     }
 
     private fun editTextBlankCheck() {
-        if (binding.editSearch.text.toString().replace("", "").equals("")) {
-            binding.ivClear.visibility = View.GONE
-        } else {
-            binding.ivClear.visibility = View.VISIBLE
-        }
+        binding.ivClear.isVisible = !binding.editSearch.text.isNullOrEmpty()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
