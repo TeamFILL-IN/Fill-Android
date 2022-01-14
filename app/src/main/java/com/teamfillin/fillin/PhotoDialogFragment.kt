@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import com.teamfillin.fillin.core.fragment.stringOf
 import com.teamfillin.fillin.databinding.FragmentPhotoDialogBinding
 
 class PhotoDialogFragment : DialogFragment() {
@@ -27,10 +29,20 @@ class PhotoDialogFragment : DialogFragment() {
         binding.btnClose.setOnClickListener {
             dismiss()
         }
-
+        binding.heart.setOnClickListener {
+            if (binding.heart.isSelected == false) {
+                binding.heart.isSelected = true
+                binding.number.text = (binding.number.text.toString().toInt() + 1).toString()
+            }
+            else {
+                binding.heart.isSelected = false
+                binding.number.text = (binding.number.text.toString().toInt() - 1).toString()
+            }
+        }
         return _binding?.root
     }
 
+    //휴대폰 크기 맞춰 자동 조절 다이얼로그
     override fun onResume() {
         super.onResume()
         dialog?.window?.setLayout(
