@@ -18,6 +18,10 @@
         <activity
             android:name=".HomeActivity"
             android:exported="false"/>
+        <activity
+            android:name=".presentation.MyPageActivity"
+            android:exported="true">
+        </activity>
          <provider
          android:name="androidx.startup.InitializationProvider"
          android:authorities="${applicationId}.androidx-startup"

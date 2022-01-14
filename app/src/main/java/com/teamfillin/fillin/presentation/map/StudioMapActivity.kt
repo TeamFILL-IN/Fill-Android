@@ -1,6 +1,10 @@
 package com.teamfillin.fillin.presentation.map
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.util.FusedLocationSource
@@ -23,7 +27,6 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         binding.mapMain.getMapAsync(NaverMapProvider(locationSource, naverMap, binding))
         toolbarEvent()
         searchClickEvent()
-
     }
 
     private fun toolbarEvent() {
@@ -36,7 +39,8 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
 
     private fun searchClickEvent() {
         binding.clSearch.setOnClickListener {
-
+            val intent = Intent(this, MapSearchActivity::class.java)
+            mapSearchActivityLauncher.launch(intent)
         }
     }
 
@@ -79,6 +83,24 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
             }
             binding.btnLocation.map = naverMap
         }
+    }
+
+    private val mapSearchActivityLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == Activity.RESULT_OK) {
+            //
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onStart() {

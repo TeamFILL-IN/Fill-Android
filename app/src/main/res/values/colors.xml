@@ -11,6 +11,7 @@
     <color name="fillin_black">#010101</color>
     <color name="fillin_white">#fdfaf9</color>
     <color name="grey_2">#8b8b8b</color>
+
     <color name="dark_grey_3">#1c1b1b</color>
     <color name="grey_4">#555555</color>
     <color name="dark_grey_2">#232222</color>
@@ -20,7 +21,9 @@
     <color name="blue">#0078d4</color>
     <color name="grey_3">#6f6f6f</color>
     <color name="dark_grey_1">#474645</color>
+
     <color name="white">#ffffff</color>
+
     <color name="fillin_red_btn_press">#d56c46</color>
     <color name="light_grey_2">#e1dedd</color>
 </resources>

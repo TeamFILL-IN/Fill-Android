@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@color/fillin_black"
-            android:src="@drawable/ic_clear" />
+            android:src="@drawable/ic_dialog_clear" />
 
     </LinearLayout>
 

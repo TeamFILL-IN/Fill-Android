@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">FillInAndroid</string>
+    <string name="nickname">찰칵찰칵 필린이</string>
+    <string name="camera_name">Fuji film X 1200</string>
+    <string name="new_film_tell">나만 아는 필름과 현상소를\n필린에 알려주세요! </string>
+    <string name="my_photos">MY PHOTOS</string>
+    <string name="film_name">Film</string>
+    <string name="studio_name">Studio</string>
 
     <string name="map_search">추억을 현상할 현상소를 검색해보세요</string>
     <string name="home_popup">나만 아는 현상소를 필린에 알려주세요!</string>
