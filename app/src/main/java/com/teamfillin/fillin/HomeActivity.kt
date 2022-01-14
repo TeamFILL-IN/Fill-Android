@@ -51,17 +51,10 @@ class HomeActivity : AppCompatActivity() {
                     clPopup.setVisibility(View.GONE);
 
             }
-            ///
-            tvNotice.setOnClickListener{
-                var dialog = PhotoDialogFragment()
-                dialog.show(supportFragmentManager, "dialogfragmnet")
-            }
+                tvNotice.setOnClickListener {
+                    Toast.makeText(this@HomeActivity, "현상소 제보 Page이동", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 }
 
-
-//<원래코드>
-//tvNotice.setOnClickListener{
-//    Toast.makeText(this@HomeActivity, "현상소 제보 Page이동", Toast.LENGTH_SHORT).show()
-//}
