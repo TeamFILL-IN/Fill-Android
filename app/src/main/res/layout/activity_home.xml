@@ -39,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_intro" />
 
         <LinearLayout
-            android:id="@+id/linear"
+            android:id="@+id/li_deco"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -90,7 +90,7 @@
             android:text="AROUND YOU"
             android:textColor="@color/fillin_white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear" />
+            app:layout_constraintTop_toBottomOf="@+id/li_deco" />
 
         <LinearLayout
             android:id="@+id/mapview"
@@ -108,7 +108,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear2"
+            android:id="@+id/li_bottomdeco"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="12dp"
@@ -128,7 +128,7 @@
             android:text="NEW PHOTOS"
             android:textColor="@color/fillin_white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear2" />
+            app:layout_constraintTop_toBottomOf="@+id/li_bottomdeco" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_new_photos"
@@ -174,7 +174,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="2dp"
-                android:backgroundTint="#dc4f1c"
+                android:backgroundTint="@color/fillin_red"
                 android:includeFontPadding="false"
                 android:src="@drawable/ic_close"
                 android:textColor="@color/black"
