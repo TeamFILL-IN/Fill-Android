@@ -1,185 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/fillin_black"
     tools:context=".HomeActivity">
 
+    <data></data>
 
-    <TextView
-        android:id="@+id/tv_intro"
-        style="@style/Body2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="20dp"
-        android:includeFontPadding="false"
-        android:text="미나님,좋은 아침입니다."
-        android:textColor="@color/grey_2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_ment"
-        style="@style/Display1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="6dp"
-        android:includeFontPadding="false"
-        android:text="서랍 속, 잠자는 필름을 \n깨워볼까요?"
-        android:textColor="@color/fillin_white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_intro" />
-
-    <LinearLayout
-        android:id="@+id/linear"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/layout_line"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ment">
+        android:layout_height="match_parent"
+        android:background="@color/fillin_black">
 
-        <ImageButton
-            android:id="@+id/btn_addphoto"
+
+        <TextView
+            android:id="@+id/tv_intro"
+            style="@style/Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            app:srcCompat="@drawable/ic_addphoto" />
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="20dp"
+            android:includeFontPadding="false"
+            android:text="미나님,좋은 아침입니다."
+            android:textColor="@color/grey_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/btn_filmroll"
+        <TextView
+            android:id="@+id/tv_ment"
+            style="@style/Display1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/black"
-            app:srcCompat="@drawable/ic_filmroll" />
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="6dp"
+            android:includeFontPadding="false"
+            android:text="서랍 속, 잠자는 필름을 \n깨워볼까요?"
+            android:textColor="@color/fillin_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_intro" />
 
-        <ImageButton
-            android:id="@+id/btn_studiomap"
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/layout_line"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ment">
+
+            <ImageButton
+                android:id="@+id/btn_addphoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                app:srcCompat="@drawable/ic_home_addphoto" />
+
+            <ImageButton
+                android:id="@+id/btn_filmroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/black"
+                app:srcCompat="@drawable/ic_filmroll" />
+
+            <ImageButton
+                android:id="@+id/btn_studiomap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/black"
+                app:srcCompat="@drawable/ic_stduiomap" />
+
+            <ImageButton
+                android:id="@+id/btn_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/black"
+                app:srcCompat="@drawable/ic_mypage" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_aroundyou"
+            style="@style/EngHead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/black"
-            app:srcCompat="@drawable/ic_stduiomap" />
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="24dp"
+            android:text="AROUND YOU"
+            android:textColor="@color/fillin_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear" />
 
-        <ImageButton
-            android:id="@+id/btn_mypage"
+        <LinearLayout
+            android:id="@+id/mapview"
+            android:layout_width="370dp"
+            android:layout_height="178dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="18dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_aroundyou">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/dark_grey_3"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/mapview">
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_newphotos"
+            style="@style/EngHead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/black"
-            app:srcCompat="@drawable/ic_mypage" />
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="24dp"
+            android:text="NEW PHOTOS"
+            android:textColor="@color/fillin_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear2" />
 
-    </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_new_photos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_newphotos"
+            tools:itemCount="8"
+            tools:listitem="@layout/item_new_photos_list" />
 
-    <TextView
-        android:id="@+id/tv_aroundyou"
-        style="@style/EngHead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="24dp"
-        android:text="AROUND YOU"
-        android:textColor="@color/fillin_white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popup"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_new_photos">
 
-    <LinearLayout
-        android:id="@+id/mapview"
-        android:layout_width="370dp"
-        android:layout_height="178dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginRight="18dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_aroundyou">
+            <TextView
+                android:id="@+id/tv_notice"
+                style="@style/Subhead2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/home_popup"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cl_popup" />
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="2dp"
+                android:backgroundTint="#dc4f1c"
+                android:includeFontPadding="false"
+                android:src="@drawable/ic_close"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_notice"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linear2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/dark_grey_3"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/mapview">
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_newphotos"
-        style="@style/EngHead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="24dp"
-        android:text="NEW PHOTOS"
-        android:textColor="@color/fillin_white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear2" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_new_photos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_newphotos"
-        tools:itemCount="8"
-        tools:listitem="@layout/item_new_photos_list" />
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/cl_popup"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/popup"
-    android:visibility="visible"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/rcv_new_photos">
-<TextView
-    android:id="@+id/tv_notice"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp"
-    android:paddingLeft="20dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/home_popup"
-    android:includeFontPadding="false"
-    app:layout_constraintLeft_toLeftOf="parent"
-    android:layout_marginLeft="10dp"
-    style="@style/Subhead2"
-    android:textColor="@color/black"
-    tools:ignore="MissingConstraints" />
-
-    <ImageButton
-        android:id="@+id/btn_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="#dc4f1c"
-        android:includeFontPadding="false"
-        android:src="@drawable/ic_close"
-        android:textColor="@color/black"
-        android:layout_marginBottom="2dp"
-
-        app:layout_constraintLeft_toRightOf="@+id/tv_notice"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

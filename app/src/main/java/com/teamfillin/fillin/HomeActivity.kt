@@ -1,60 +1,66 @@
 package com.teamfillin.fillin
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
-import androidx.databinding.DataBindingUtil.setContentView
+import android.widget.LinearLayout.HORIZONTAL
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.teamfillin.fillin.core.base.BindingActivity
+import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
-import kotlinx.coroutines.newFixedThreadPoolContext
 
-class HomeActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityHomeBinding
+class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home) {
     private lateinit var newPhotosAdapter: NewPhotosAdapter
+    var newPhotosData = listOf<NewPhotosData>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        initAdapter()
+        initDatas()
+        initNewPhotoRecyclerView()
         popup()
         setContentView(binding.root)
-
     }
 
 
-    private fun initAdapter() {
-        newPhotosAdapter = NewPhotosAdapter()
+    private fun initDatas() {
+        val exphotos = R.drawable.and_photo_rectangle
+        newPhotosData = listOf(
 
-        binding.rcvNewPhotos.adapter = newPhotosAdapter
-
-        val exphoto = R.drawable.and_photo_rectangle
-
-        newPhotosAdapter.photolist.addAll(
-            listOf(
-                NewPhotosData(exphoto),
-                NewPhotosData(exphoto),
-                NewPhotosData(exphoto),
-                NewPhotosData(exphoto),
-                NewPhotosData(exphoto),
-                NewPhotosData(exphoto),
-                NewPhotosData(exphoto),
-                NewPhotosData(exphoto)
-            )
+            NewPhotosData(exphotos),
+            NewPhotosData(exphotos),
+            NewPhotosData(exphotos),
+            NewPhotosData(exphotos),
+            NewPhotosData(exphotos),
+            NewPhotosData(exphotos),
+            NewPhotosData(exphotos),
+            NewPhotosData(exphotos)
         )
-        newPhotosAdapter.notifyDataSetChanged()
+
     }
 
-    fun popup() {
-        binding.apply{
+    @SuppressLint("WrongConstant")
+    private fun initNewPhotoRecyclerView() {
+        newPhotosAdapter = NewPhotosAdapter()
+        newPhotosAdapter.replaceList(newPhotosData)
+        binding.rvNewPhotos.adapter = newPhotosAdapter
+        val linearlayoutManager = LinearLayoutManager(this, HORIZONTAL, false)
+        binding.rvNewPhotos.layoutManager = linearlayoutManager
+    }
+
+    private fun popup() {
+        binding.apply {
             btnClose.setOnClickListener {
-                if (clPopup.getVisibility() == View.VISIBLE)
-                    clPopup.setVisibility(View.GONE);
+                if (clPopup.isVisible)
+                    clPopup.isVisible = false
 
             }
-                tvNotice.setOnClickListener {
-                    Toast.makeText(this@HomeActivity, "현상소 제보 Page이동", Toast.LENGTH_SHORT).show()
-                }
+            tvNotice.setOnClickListener {
+                toast("현상소 제보 Page이동")
+                var dialog = PhotoDialogFragment()
+                dialog.show(supportFragmentManager, "dialogfragmnet")
+            }
         }
     }
 }
+
 

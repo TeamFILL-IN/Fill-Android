@@ -17,7 +17,7 @@
 
         <activity
             android:name=".HomeActivity"
-            android:exported="false" />
+            android:exported="true" />
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"

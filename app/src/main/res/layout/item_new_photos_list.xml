@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="9dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginStart="9dp">
 
     <ImageView
         android:id="@+id/iv_new_photo"
@@ -11,6 +11,6 @@
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/and_photo_rectangle"/>
+        app:srcCompat="@drawable/and_photo_rectangle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
