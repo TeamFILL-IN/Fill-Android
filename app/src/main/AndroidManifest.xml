@@ -17,45 +17,46 @@
 
         <activity
             android:name=".HomeActivity"
-            android:exported="false"/>
+            android:exported="false" />
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="com.teamfillin.fillin.config.initializer.TimberInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="com.teamfillin.fillin.config.initializer.KakaoAuthInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
         <activity
-            android:name=".presentation.MyPageActivity"
+            android:name=".presentation.login.LoginActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-         <provider
-         android:name="androidx.startup.InitializationProvider"
-         android:authorities="${applicationId}.androidx-startup"
-         android:exported="false"
-         tools:node="merge">
-         <meta-data
-         android:name="com.teamfillin.fillin.config.initializer.TimberInitializer"
-         android:value="androidx.startup" />
-         <meta-data
-         android:name="com.teamfillin.fillin.config.initializer.KakaoAuthInitializer"
-         android:value="androidx.startup" />
-         </provider>
-         <activity
-         android:name=".presentation.login.LoginActivity"
-         android:exported="true">
-         <intent-filter>
-         <action android:name="android.intent.action.MAIN" />
-         <category android:name="android.intent.category.LAUNCHER" />
-         </intent-filter>
-         </activity>
-         <activity
-         android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
-         android:exported="true">
-         <intent-filter>
-         <action android:name="android.intent.action.VIEW" />
-         <category android:name="android.intent.category.DEFAULT" />
-         <category android:name="android.intent.category.BROWSABLE" />
-         <data
-         android:host="oauth"
-         android:scheme="kakaoa7ddbcd24d7fff22320cc13a1e534104" />
-         </intent-filter>
-         </activity>
-         <activity android:name=".presentation.map.StudioMapActivity"
-         android:exported="true" />
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakaoa7ddbcd24d7fff22320cc13a1e534104" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".presentation.map.StudioMapActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="5nlfu3idz8" />
