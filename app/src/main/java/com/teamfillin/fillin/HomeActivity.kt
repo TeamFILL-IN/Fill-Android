@@ -24,16 +24,18 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
 
     private fun initDatas() {
         val exphotos = R.drawable.and_photo_rectangle
+        val nextbutton = R.drawable.nextbutton
         newPhotosData = listOf(
 
-            NewPhotosData(exphotos),
-            NewPhotosData(exphotos),
-            NewPhotosData(exphotos),
-            NewPhotosData(exphotos),
-            NewPhotosData(exphotos),
-            NewPhotosData(exphotos),
-            NewPhotosData(exphotos),
-            NewPhotosData(exphotos)
+            NewPhotosData(exphotos, multi_type1),
+            NewPhotosData(exphotos, multi_type1),
+            NewPhotosData(exphotos, multi_type1),
+            NewPhotosData(exphotos, multi_type1),
+            NewPhotosData(exphotos, multi_type1),
+            NewPhotosData(exphotos, multi_type1),
+            NewPhotosData(exphotos, multi_type1),
+            NewPhotosData(exphotos, multi_type1),
+            NewPhotosData(nextbutton, multi_type2)
         )
 
     }
