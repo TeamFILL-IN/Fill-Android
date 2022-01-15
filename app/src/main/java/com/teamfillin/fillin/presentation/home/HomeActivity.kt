@@ -1,10 +1,9 @@
-package com.teamfillin.fillin
+package com.teamfillin.fillin.com.teamfillin.fillin.presentation.home
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.LinearLayout.HORIZONTAL
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
+import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
@@ -23,42 +22,37 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
 
 
     private fun initDatas() {
-        val exphotos = R.drawable.and_photo_rectangle
-        val nextbutton = R.drawable.nextbutton
+
         newPhotosData = listOf(
 
-            NewPhotosData(exphotos, multi_type1),
-            NewPhotosData(exphotos, multi_type1),
-            NewPhotosData(exphotos, multi_type1),
-            NewPhotosData(exphotos, multi_type1),
-            NewPhotosData(exphotos, multi_type1),
-            NewPhotosData(exphotos, multi_type1),
-            NewPhotosData(exphotos, multi_type1),
-            NewPhotosData(exphotos, multi_type1),
-            NewPhotosData(nextbutton, multi_type2)
+            NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
+            NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
+            NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
+            NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
+            NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
+            NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
+            NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
+            NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
+            NewPhotosData(R.drawable.and_photo_rectangle, NEXT_BUTTON_TYPE)
         )
 
     }
 
-    @SuppressLint("WrongConstant")
+
     private fun initNewPhotoRecyclerView() {
         newPhotosAdapter = NewPhotosAdapter()
         newPhotosAdapter.replaceList(newPhotosData)
         binding.rvNewPhotos.adapter = newPhotosAdapter
-        val linearlayoutManager = LinearLayoutManager(this, HORIZONTAL, false)
-        binding.rvNewPhotos.layoutManager = linearlayoutManager
     }
 
     private fun popup() {
         binding.apply {
             btnClose.setOnClickListener {
-                if (clPopup.isVisible)
-                    clPopup.isVisible = false
-
+                clPopup.isVisible = !clPopup.isVisible
             }
             tvNotice.setOnClickListener {
                 toast("현상소 제보 Page이동")
-                var dialog = PhotoDialogFragment()
+                val dialog = PhotoDialogFragment()
                 dialog.show(supportFragmentManager, "dialogfragmnet")
             }
         }

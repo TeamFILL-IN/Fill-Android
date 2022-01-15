@@ -16,7 +16,7 @@
         android:theme="@style/Theme.FillInAndroid">
 
         <activity
-            android:name=".HomeActivity"
+            android:name=".com.teamfillin.fillin.presentation.home.HomeActivity"
             android:exported="true" />
         <provider
             android:name="androidx.startup.InitializationProvider"

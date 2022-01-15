@@ -1,4 +1,4 @@
-package com.teamfillin.fillin
+package com.teamfillin.fillin.com.teamfillin.fillin.presentation.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -21,19 +21,19 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         viewType: Int
     ): RecyclerView.ViewHolder {
         return when (viewType) {
-            multi_type1 -> {
+            NEW_PHOTOS_TYPE -> {
                 val binding = ItemNewPhotosListBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent, false
                 )
-                MultiViewHolder1(binding)
+                NewPhotosViewHolder(binding)
             }
             else -> {
                 val binding = ItemNextButtonBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent, false
                 )
-                MultiViewHolder2(binding)
+                NextButtonViewHolder(binding)
             }
         }
 
@@ -41,12 +41,12 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (photolist[position].type) {
-            multi_type1 -> {
-                (holder as MultiViewHolder1).bind(photolist[position])
+            NEW_PHOTOS_TYPE -> {
+                (holder as NewPhotosViewHolder).bind(photolist[position])
                 holder.setIsRecyclable(false)
             }
             else -> {
-                (holder as MultiViewHolder2).bind(photolist[position])
+                (holder as NextButtonViewHolder).bind(photolist[position])
                 holder.setIsRecyclable(false)
             }
         }
@@ -59,7 +59,7 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
 
-    inner class MultiViewHolder1(private val binding: ItemNewPhotosListBinding) :
+    inner class NewPhotosViewHolder(private val binding: ItemNewPhotosListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: NewPhotosData) {
             Glide.with(binding.root)
@@ -68,7 +68,7 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    inner class MultiViewHolder2(private val binding: ItemNextButtonBinding) :
+    inner class NextButtonViewHolder(private val binding: ItemNextButtonBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: NewPhotosData) {
             Glide.with(binding.root)

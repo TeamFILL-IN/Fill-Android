@@ -1,14 +1,11 @@
-package com.teamfillin.fillin
+package com.teamfillin.fillin.presentation.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import com.teamfillin.fillin.core.fragment.stringOf
 import com.teamfillin.fillin.databinding.FragmentPhotoDialogBinding
 
 class PhotoDialogFragment : DialogFragment() {
