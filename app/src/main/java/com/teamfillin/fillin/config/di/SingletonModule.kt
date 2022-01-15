@@ -2,6 +2,7 @@ package com.teamfillin.fillin.config.di
 
 import android.app.Application
 import android.content.Context
+import com.teamfillin.fillin.data.local.FillInDataStore
 import com.teamfillin.fillin.design.ResolutionMetrics
 import dagger.Module
 import dagger.Provides
@@ -22,4 +23,8 @@ object SingletonModule {
     @Singleton
     fun provideResolutionMetrics(@ApplicationContext context: Application) =
         ResolutionMetrics(context)
+
+    @Provides
+    @Singleton
+    fun provideFillInDataStore(@ApplicationContext context: Context) = FillInDataStore(context)
 }
