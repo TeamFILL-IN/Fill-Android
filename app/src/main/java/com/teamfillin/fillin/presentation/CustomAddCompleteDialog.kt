@@ -1,0 +1,39 @@
+package com.teamfillin.fillin.presentation
+
+import android.app.Dialog
+import android.content.Context
+import android.content.DialogInterface
+import android.view.WindowManager
+import android.widget.ImageButton
+import com.teamfillin.fillin.R
+
+class CustomAddCompleteDialog(context: Context) {
+
+    private val dialog= Dialog(context)
+    private lateinit var onClickListener: OnDialogClickListener
+
+    fun setOnClickListener(listener:OnDialogClickListener){
+        onClickListener=listener
+    }
+
+    fun showDialog(){
+        dialog.setContentView(R.layout.dialog_addphoto_complete)
+        dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.setCancelable(true)
+        dialog.show()
+
+        val btnExit=dialog.findViewById<ImageButton>(R.id.btn_exit)
+
+
+        btnExit.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
+
+    interface OnDialogClickListener{
+        fun onClicked(){
+
+        }
+    }
+}

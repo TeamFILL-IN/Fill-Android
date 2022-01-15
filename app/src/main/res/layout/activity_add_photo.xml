@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.AddPhotoActivity">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,6 +20,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
+                android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -38,7 +38,6 @@
             android:id="@+id/sv_add_photo"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="60dp"
             app:layout_constraintBottom_toTopOf="@id/cl_bottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +81,7 @@
                     android:includeFontPadding="false"
                     android:paddingVertical="13dp"
                     android:paddingStart="18dp"
+                    android:textColor="@color/white"
                     android:textColorHint="@color/gray_1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +95,7 @@
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="30dp"
                     android:text="@string/studio_name"
-                    android:textColor="@color/fillin_white"
+                    android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_film" />
@@ -112,9 +112,12 @@
                     android:includeFontPadding="false"
                     android:paddingVertical="13dp"
                     android:paddingStart="18dp"
+                    android:textColor="@color/fillin_white"
                     android:textColorHint="@color/gray_1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginBottom="60dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_studio" />
 
 
@@ -132,21 +135,26 @@
             app:layout_constraintTop_toBottomOf="@id/sv_add_photo">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_add_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_btn_fillinred"
                 android:fontFamily="@font/futura_std_bold"
                 android:lineSpacingExtra="14sp"
-                android:text="Add Photo"
+                android:text="@string/add_photo"
+                android:textAllCaps="false"
                 android:textColor="@color/fillin_black"
                 android:textSize="20sp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:paddingTop="13dp"
+                android:paddingBottom="13dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

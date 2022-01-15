@@ -5,12 +5,13 @@
     android:layout_height="wrap_content"
     android:background="@color/fillin_black">
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/btn_exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:src="@drawable/ic_icn_close"
+        android:background="@drawable/ic_icn_close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,7 +48,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="41dp"
-        android:marginVertical="41dp"
         android:src="@drawable/ic_img_photo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
