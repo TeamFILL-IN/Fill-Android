@@ -17,7 +17,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         initDatas()
         initNewPhotoRecyclerView()
         popup()
-        setContentView(binding.root)
     }
 
 

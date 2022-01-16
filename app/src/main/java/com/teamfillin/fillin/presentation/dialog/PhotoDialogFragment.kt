@@ -45,6 +45,4 @@ class PhotoDialogFragment : DialogFragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

@@ -59,7 +59,7 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
 
-    inner class NewPhotosViewHolder(private val binding: ItemNewPhotosListBinding) :
+    class NewPhotosViewHolder(private val binding: ItemNewPhotosListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: NewPhotosData) {
             Glide.with(binding.root)
@@ -68,7 +68,7 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    inner class NextButtonViewHolder(private val binding: ItemNextButtonBinding) :
+    class NextButtonViewHolder(private val binding: ItemNextButtonBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: NewPhotosData) {
             Glide.with(binding.root)
