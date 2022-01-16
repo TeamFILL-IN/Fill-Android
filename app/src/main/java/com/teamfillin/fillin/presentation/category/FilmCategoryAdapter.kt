@@ -1,17 +1,18 @@
 package com.teamfillin.fillin.presentation.category
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.teamfillin.fillin.R
 import com.teamfillin.fillin.data.CategoryInfo
-import com.teamfillin.fillin.data.ResponseLocationInfo
 import com.teamfillin.fillin.databinding.ItemCategoryInfoBinding
-import com.teamfillin.fillin.databinding.ItemLocationInfoBinding
 import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter
 import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter.Companion.DIFFUTIL
-import com.teamfillin.fillin.presentation.map.LocationListAdapter
+
 
 class FilmCategoryAdapter :
     ListAdapter<CategoryInfo, FilmCategoryAdapter.FilmListViewHolder>(
@@ -29,7 +30,23 @@ class FilmCategoryAdapter :
 
     override fun onBindViewHolder(holder: FilmListViewHolder, position: Int) {
         holder.onBind(getItem(position))
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
     }
+
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
+    }
+
+    // (3) 외부에서 클릭 시 이벤트 설정
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
+
+    // (4) setItemClickListener로 설정한 함수 실행
+    private lateinit var itemClickListener: OnItemClickListener
+
 
     class FilmListViewHolder(
         private val binding: ItemCategoryInfoBinding
@@ -57,7 +74,3 @@ class FilmCategoryAdapter :
         }
     }
 }
-
-
-
-

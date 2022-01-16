@@ -4,7 +4,9 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.core.view.get
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.ListAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.teamfillin.fillin.R
@@ -12,6 +14,7 @@ import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEW_PHOTOS_
 import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEXT_BUTTON_TYPE
 import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NewPhotosData
 import com.teamfillin.fillin.core.base.BindingActivity
+import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.data.CategoryInfo
 import com.teamfillin.fillin.data.ResponseLocationInfo
 import com.teamfillin.fillin.databinding.ActivityFilmRollCategoryBinding
@@ -24,6 +27,7 @@ class FilmRollCategoryActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        click()
         setFilmCategoryAdapter()
     }
 
@@ -32,6 +36,16 @@ class FilmRollCategoryActivity :
         val customDecoration = CustomDecoration(2f, 10f, Color.GRAY)
         binding.rvCategory.addItemDecoration(customDecoration)
         addFilmCategoryList()
+    }
+
+    private fun click() {
+        filmCategoryAdapter.setItemClickListener(object : FilmCategoryAdapter.OnItemClickListener {
+            override fun onClick(v: View, position: Int) {
+                // 데이터 넘겨주기
+                binding.rvCategory[position].setBackgroundResource(R.color.dark_grey_2)
+                toast("${filmCategoryAdapter.currentList[position].film}")
+            }
+        })
     }
 
 
