@@ -6,6 +6,7 @@
         <item name="colorPrimaryVariant">@color/fillin_black</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
+        <item name="android:includeFontPadding">false</item>
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
