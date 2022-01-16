@@ -66,7 +66,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     private class NaverMapProvider(
         private val trackingLocationSource: LocationSource,
         private var activityNaverMap: NaverMap? = null,
-        private var binding: ActivityStudioMapBinding,
+        private var binding: ActivityStudioMapBinding
     ) : OnMapReadyCallback {
         val behavior = BottomSheetBehavior.from(binding.clBottomSheet)
 
