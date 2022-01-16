@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fillin_black">
+
+    <LinearLayout
+        android:id="@+id/ll_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="17dp"
+            android:src="@drawable/ic_basic_profile" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="19dp"
+            android:text="브이하는 곰돌이"
+            android:includeFontPadding="false"
+            android:textColor="@color/grey_2" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/fillin_black"
+            android:src="@drawable/ic_dialog_clear" />
+
+    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/ll_up"
+        app:layout_constraintBottom_toTopOf="@+id/ll_bottom">
+
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:scaleType="center"
+            android:src="@drawable/and_photoframe"
+            app:layout_constraintLeft_toLeftOf="@id/cl_image"
+            app:layout_constraintRight_toRightOf="@id/cl_image"
+            app:layout_constraintTop_toBottomOf="@id/cl_image"
+            app:layout_constraintTop_toTopOf="@id/cl_image" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_filmroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="17dp"
+            android:src="@drawable/ic_filmroll_small" />
+
+        <TextView
+            android:id="@+id/tv_filmname"
+            android:fontFamily="@font/futura_std_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#a5a5a5"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="19dp"
+            android:text="Kodak colorplus 200 36mm" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btn_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/fillin_black"
+            android:src="@drawable/unlike"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".com.teamfillin.fillin.presentation.home.HomeActivity">
+
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/fillin_black">
+
+
+        <TextView
+            android:id="@+id/tv_intro"
+            style="@style/Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="20dp"
+            android:includeFontPadding="false"
+            android:text="미나님,좋은 아침입니다."
+            android:textColor="@color/grey_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_ment"
+            style="@style/Display1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="6dp"
+            android:includeFontPadding="false"
+            android:text="서랍 속, 잠자는 필름을 \n깨워볼까요?"
+            android:textColor="@color/fillin_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_intro" />
+
+        <LinearLayout
+            android:id="@+id/li_deco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/layout_line"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ment">
+
+            <ImageButton
+                android:id="@+id/btn_addphoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                app:srcCompat="@drawable/ic_home_addphoto" />
+
+            <ImageButton
+                android:id="@+id/btn_filmroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/black"
+                app:srcCompat="@drawable/ic_filmroll" />
+
+            <ImageButton
+                android:id="@+id/btn_studiomap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/black"
+                app:srcCompat="@drawable/ic_stduiomap" />
+
+            <ImageButton
+                android:id="@+id/btn_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/black"
+                app:srcCompat="@drawable/ic_mypage" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_aroundyou"
+            style="@style/EngHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="24dp"
+            android:text="AROUND YOU"
+            android:textColor="@color/fillin_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/li_deco" />
+
+        <LinearLayout
+            android:id="@+id/mapview"
+            android:layout_width="370dp"
+            android:layout_height="178dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="18dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_aroundyou">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/li_bottomdeco"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/dark_grey_3"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/mapview">
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_newphotos"
+            style="@style/EngHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="24dp"
+            android:text="NEW PHOTOS"
+            android:textColor="@color/fillin_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/li_bottomdeco" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_new_photos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_newphotos"
+            tools:itemCount="8"
+            tools:listitem="@layout/item_new_photos_list" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popup"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_new_photos">
+
+            <TextView
+                android:id="@+id/tv_notice"
+                style="@style/Subhead2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/home_popup"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cl_popup" />
+
+            <ImageButton
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="2dp"
+                android:backgroundTint="@color/fillin_red"
+                android:includeFontPadding="false"
+                android:src="@drawable/ic_close"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_notice"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
