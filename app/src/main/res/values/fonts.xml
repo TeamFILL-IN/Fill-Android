@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Display4">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:lineSpacingExtra">12sp</item>
+    </style>
+    <style name="Display3">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+    </style>
+    <style name="Display2">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+    </style>
+    <style name="Display1">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+    </style>
+    <style name="EngBighead">
+        <item name="android:fontFamily">@font/futura_std</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineSpacingExtra">14sp</item>
+    </style>
+    <style name="Headline">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+    </style>
+    <style name="Subhead3">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+    <style name="EngHead">
+        <item name="android:fontFamily">@font/futura_std_book</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+    <style name="Body3">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+    <style name="Subhead2">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+    <style name="EngDisplay2Book">
+        <item name="android:fontFamily">@font/futura_std_book</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+    <style name="Body2">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+    </style>
+    <style name="EngDisplay1">
+        <item name="android:fontFamily">@font/futura_std</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+    </style>
+    <style name="Subhead1">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+    <style name="EngBody">
+        <item name="android:fontFamily">@font/futura_std_book</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+    </style>
+    <style name="Body1">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+    </style>
+</resources>
