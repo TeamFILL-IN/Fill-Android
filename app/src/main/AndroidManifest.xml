@@ -41,7 +41,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
@@ -62,7 +61,6 @@
         <activity
             android:name=".presentation.AddPhotoActivity"
             android:exported="true">
-
         </activity>
 
         <activity android:name=".presentation.map.MapSearchActivity"

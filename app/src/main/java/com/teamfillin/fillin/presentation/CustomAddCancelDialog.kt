@@ -3,30 +3,32 @@ package com.teamfillin.fillin.presentation
 import android.app.Dialog
 import android.content.Context
 import android.view.WindowManager
-import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatButton
 import com.teamfillin.fillin.R
 
 class CustomAddCancelDialog(context: Context) {
 
-    private val dialog= Dialog(context)
+    private val dialog = Dialog(context)
     private lateinit var onClickListener: OnDialogClickListener
 
-    fun setOnClickListener(listener:OnDialogClickListener){
-        onClickListener=listener
+    fun setOnClickListener(listener: OnDialogClickListener) {
+        onClickListener = listener
     }
 
-    fun showDialog(){
+    fun showDialog() {
         dialog.setContentView(R.layout.dialog_addphoto_cancel)
-        dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+        dialog.window!!.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
         dialog.setCanceledOnTouchOutside(true)
         dialog.setCancelable(true)
         dialog.show()
 
-        val btnCancel=dialog.findViewById<AppCompatButton>(R.id.btn_cancel)
-        val btnContinue=dialog.findViewById<AppCompatButton>(R.id.btn_continue)
+        val btnCancel = dialog.findViewById<AppCompatButton>(R.id.btn_cancel)
+        val btnContinue = dialog.findViewById<AppCompatButton>(R.id.btn_continue)
 
-        btnCancel.setOnClickListener{
+        btnCancel.setOnClickListener {
             //onClickListener.onClicked()
             dialog.dismiss()
         }
@@ -36,7 +38,7 @@ class CustomAddCancelDialog(context: Context) {
         }
     }
 
-    interface OnDialogClickListener{
+    fun interface OnDialogClickListener {
         fun onClicked()
     }
 }
