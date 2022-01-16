@@ -2,14 +2,17 @@
 <font-family xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <font
-        android:font="@font/noto_sans_kr_regular"
-        android:fontWeight="400"
-        app:font="@font/noto_sans_kr_regular"
-        app:fontWeight="400"/>
-    <font
-        android:font="@font/noto_sans_kr_bold"
+        android:fontStyle="normal"
         android:fontWeight="700"
+        android:font="@font/noto_sans_kr_bold"
         app:font="@font/noto_sans_kr_bold"
+        app:fontStyle="normal"
         app:fontWeight="700"/>
-
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/noto_sans_kr_regular"
+        app:font="@font/noto_sans_kr_regular"
+        app:fontStyle="normal"
+        app:fontWeight="400"/>
 </font-family>
