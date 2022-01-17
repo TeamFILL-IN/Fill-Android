@@ -180,8 +180,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="18dp"
+            android:layout_marginTop="18dp"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cl_category"
+            app:spanCount="2"
             tools:listitem="@layout/item_film_roll">
 
         </androidx.recyclerview.widget.RecyclerView>
