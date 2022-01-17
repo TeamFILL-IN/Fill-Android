@@ -1,4 +1,4 @@
-package com.teamfillin.fillin
+package com.teamfillin.fillin.presentation.filmroll
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

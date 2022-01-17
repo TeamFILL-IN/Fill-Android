@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_grey_3"
-    tools:context=".FilmRollActivity">
+    tools:context=".presentation.filmroll.FilmRollActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_toolbar"

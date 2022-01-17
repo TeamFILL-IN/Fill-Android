@@ -15,7 +15,7 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.FillInAndroid">
         <activity
-            android:name=".FilmRollActivity"
+            android:name=".presentation.filmroll.FilmRollActivity"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
