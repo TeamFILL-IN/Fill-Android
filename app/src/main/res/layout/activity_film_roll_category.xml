@@ -49,27 +49,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/fillin_black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabBackground="@drawable/selector_tab_indicator"
+                app:tabIndicator="@android:color/transparent"
                 app:tabMode="fixed"
-                app:tabTextColor="@color/fillin_white"
+                app:tabRippleColor="@android:color/transparent"
                 app:tabSelectedTextColor="@color/fillin_red"
-                app:tabIndicatorColor="@color/fillin_red"
-                app:layout_constraintTop_toTopOf="parent">
+                app:tabTextColor="@color/fillin_white">
+
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="컬러"/>
+                    android:text="컬러" />
+
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="흑백"/>
+                    android:text="흑백" />
+
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="특수"/>
+                    android:text="특수" />
+
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="일회용"/>
+                    android:text="일회용" />
             </com.google.android.material.tabs.TabLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
