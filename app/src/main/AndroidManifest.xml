@@ -76,6 +76,9 @@
             android:name=".presentation.map.MapSearchActivity"
             android:exported="true" />
 
+        <activity android:name=".presentation.filmroll.FilmRollCategoryActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="5nlfu3idz8" />
