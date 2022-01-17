@@ -16,13 +16,7 @@
         android:theme="@style/Theme.FillInAndroid">
         <activity
             android:name=".presentation.filmroll.FilmRollActivity"
-            android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".presentation.category.FilmRollCategoryActivity"
             android:exported="false"/>
@@ -31,7 +25,13 @@
             android:exported="false" />
         <activity
             android:name=".com.teamfillin.fillin.presentation.home.HomeActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name="androidx.startup.InitializationProvider"
