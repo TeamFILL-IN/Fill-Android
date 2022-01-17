@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="추억을 현상할 현상소를 검색해보세요"
-                android:textColor="@color/gray_1"
+                android:textColor="@color/grey_1"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

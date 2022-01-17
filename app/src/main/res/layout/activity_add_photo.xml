@@ -83,7 +83,7 @@
                     android:paddingVertical="13dp"
                     android:paddingStart="18dp"
                     android:textColor="@color/white"
-                    android:textColorHint="@color/gray_1"
+                    android:textColorHint="@color/grey_1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_film" />
@@ -114,13 +114,12 @@
                     android:paddingVertical="13dp"
                     android:paddingStart="18dp"
                     android:textColor="@color/fillin_white"
-                    android:textColorHint="@color/gray_1"
+                    android:textColorHint="@color/grey_1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginBottom="60dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_studio" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
