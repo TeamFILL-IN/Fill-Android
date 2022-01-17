@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:background="@null"
+                android:fontFamily="@font/noto_sans_kr_regular"
                 android:hint="추억을 현상할 현상소를 검색해보세요"
                 android:textColor="@color/fillin_white"
                 android:textColorHint="@color/grey_1"

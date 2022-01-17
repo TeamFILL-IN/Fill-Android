@@ -1,5 +1,7 @@
 package com.teamfillin.fillin.presentation.map
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
@@ -78,6 +80,8 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
+                val intent = Intent()
+                setResult(Activity.RESULT_OK, intent)
                 finish()
                 return true
             }
