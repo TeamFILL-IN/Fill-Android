@@ -24,7 +24,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     private fun initDatas() {
 
         newPhotosData = listOf(
-            NewPhotosData(R.drawable.and_photo_rectangle, NEXT_BUTTON_TYPE),
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
@@ -33,7 +32,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
-            NewPhotosData(R.drawable.and_photo_rectangle, NEXT_BUTTON_TYPE)
+            NewPhotosData(R.layout.item_next_button, NEXT_BUTTON_TYPE)
         )
 
     }
