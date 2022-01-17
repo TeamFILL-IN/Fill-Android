@@ -3,10 +3,10 @@ package com.teamfillin.fillin.presentation
 import android.app.Dialog
 import android.content.Context
 import android.view.WindowManager
-import android.widget.ImageButton
+import androidx.appcompat.widget.AppCompatButton
 import com.teamfillin.fillin.R
 
-class CustomAddCompleteDialog(context: Context) {
+class AddCancelDialog(context: Context) {
 
     private val dialog = Dialog(context)
     private lateinit var onClickListener: OnDialogClickListener
@@ -16,7 +16,7 @@ class CustomAddCompleteDialog(context: Context) {
     }
 
     fun showDialog() {
-        dialog.setContentView(R.layout.dialog_addphoto_complete)
+        dialog.setContentView(R.layout.dialog_addphoto_cancel)
         dialog.window!!.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
@@ -25,9 +25,15 @@ class CustomAddCompleteDialog(context: Context) {
         dialog.setCancelable(true)
         dialog.show()
 
-        val btnExit = dialog.findViewById<ImageButton>(R.id.btn_exit)
+        val btnCancel = dialog.findViewById<AppCompatButton>(R.id.btn_cancel)
+        val btnContinue = dialog.findViewById<AppCompatButton>(R.id.btn_continue)
 
-        btnExit.setOnClickListener {
+        btnCancel.setOnClickListener {
+            //onClickListener.onClicked()
+            dialog.dismiss()
+        }
+
+        btnContinue.setOnClickListener {
             dialog.dismiss()
         }
     }

@@ -10,18 +10,16 @@ class AddPhotoActivity : BindingActivity<ActivityAddPhotoBinding>(R.layout.activ
         super.onCreate(savedInstanceState)
 
         binding.btnAddPhoto.setOnClickListener {
-            val addPhotoDialog = CustomAddCompleteDialog(this)
+            val addPhotoDialog = AddCompleteDialog(this)
             addPhotoDialog.showDialog()
         }
 
         binding.btnBack.setOnClickListener {
-            val addCancelDialog = CustomAddCancelDialog(this)
+            val addCancelDialog = AddCancelDialog(this)
             addCancelDialog.showDialog()
             addCancelDialog.setOnClickListener {
                 //TODO 액티비티 나가기 (develop에 모든 activity merge되면 작업)
             }
         }
-
-
     }
 }
