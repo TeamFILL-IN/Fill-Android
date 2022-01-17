@@ -6,6 +6,7 @@ import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.context.toast
+import com.teamfillin.fillin.presentation.home.NewPhotosData
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
 
 class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home) {
@@ -23,7 +24,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     private fun initDatas() {
 
         newPhotosData = listOf(
-
+            NewPhotosData(R.drawable.and_photo_rectangle, NEXT_BUTTON_TYPE),
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),

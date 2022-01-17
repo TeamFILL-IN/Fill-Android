@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.teamfillin.fillin.databinding.ItemNewPhotosListBinding
 import com.teamfillin.fillin.databinding.ItemNextButtonBinding
+import com.teamfillin.fillin.presentation.home.NewPhotosData
 
 class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -45,7 +46,7 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 (holder as NewPhotosViewHolder).bind(photolist[position])
                 holder.setIsRecyclable(false)
             }
-            else -> {
+            NEXT_BUTTON_TYPE -> {
                 (holder as NextButtonViewHolder).bind(photolist[position])
                 holder.setIsRecyclable(false)
             }
