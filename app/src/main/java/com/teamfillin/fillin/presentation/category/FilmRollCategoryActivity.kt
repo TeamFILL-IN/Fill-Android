@@ -1,5 +1,6 @@
 package com.teamfillin.fillin.presentation.category
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
@@ -18,8 +19,10 @@ import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.data.CategoryInfo
 import com.teamfillin.fillin.data.ResponseLocationInfo
 import com.teamfillin.fillin.databinding.ActivityFilmRollCategoryBinding
+import com.teamfillin.fillin.presentation.AddPhotoActivity
 import com.teamfillin.fillin.presentation.map.CustomDecoration
 import com.teamfillin.fillin.presentation.map.LocationListAdapter
+import com.teamfillin.fillin.presentation.map.MapSearchActivity
 
 class FilmRollCategoryActivity :
     BindingActivity<ActivityFilmRollCategoryBinding>(R.layout.activity_film_roll_category) {
@@ -39,13 +42,9 @@ class FilmRollCategoryActivity :
     }
 
     private fun click() {
-        filmCategoryAdapter.setItemClickListener(object : FilmCategoryAdapter.OnItemClickListener {
-            override fun onClick(v: View, position: Int) {
-                // 데이터 넘겨주기
-                binding.rvCategory[position].setBackgroundResource(R.color.dark_grey_2)
-                toast("${filmCategoryAdapter.currentList[position].film}")
-            }
-        })
+        filmCategoryAdapter.setItemClickListener { v, position -> // 데이터 넘겨주기
+            binding.rvCategory[position].setBackgroundResource(R.color.dark_grey_2)
+        }
     }
 
 

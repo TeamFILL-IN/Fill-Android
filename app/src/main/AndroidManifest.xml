@@ -16,25 +16,26 @@
         android:theme="@style/Theme.FillInAndroid">
         <activity
             android:name=".presentation.filmroll.FilmRollActivity"
-            android:exported="false"/>
+            android:exported="true" />
         <activity
             android:name=".presentation.filmroll.FilmCategoryImageActivity"
-            android:exported="true">
+            android:exported="true"/>
+        <activity
+            android:name=".presentation.category.FilmRollCategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.MyPageActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".com.teamfillin.fillin.presentation.home.HomeActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.category.FilmRollCategoryActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".presentation.MyPageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".com.teamfillin.fillin.presentation.home.HomeActivity"
-            android:exported="false" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
@@ -74,8 +75,7 @@
         </activity>
         <activity
             android:name=".presentation.AddPhotoActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".presentation.map.StudioMapActivity"
             android:exported="true" />
@@ -83,7 +83,8 @@
             android:name=".presentation.map.MapSearchActivity"
             android:exported="true" />
 
-        <activity android:name=".presentation.filmroll.FilmRollCategoryActivity"
+        <activity
+            android:name=".presentation.filmroll.FilmRollCategoryActivity"
             android:exported="true" />
 
         <meta-data

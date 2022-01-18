@@ -1,5 +1,6 @@
 package com.teamfillin.fillin.presentation.filmroll
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,9 +13,12 @@ import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEXT_BUTTON
 import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NewPhotosAdapter
 import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NewPhotosData
 import com.teamfillin.fillin.core.base.BindingActivity
+import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.CategoryInfo
 import com.teamfillin.fillin.databinding.ActivityFilmRollBinding
+import com.teamfillin.fillin.presentation.AddPhotoActivity
 import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter
+import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
 import com.teamfillin.fillin.presentation.map.CustomDecoration
 
 class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activity_film_roll) {
@@ -25,6 +29,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
         super.onCreate(savedInstanceState)
         setFilmRollAdapter()
         setCurationAdapter()
+        clickListener()
     }
 
     private fun setCurationAdapter() {
@@ -95,6 +100,15 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
             )
         )
     }
-
+    private fun clickListener(){
+        binding.fabAddPhoto.setOnClickListener{
+            val intent = Intent(this, AddPhotoActivity::class.java)
+            startActivity(intent)
+        }
+        binding.tvFilmchoice.setOnSingleClickListener {
+            val intent = Intent(this, FilmRollCategoryActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
 }

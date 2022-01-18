@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.databinding.ItemNewPhotosListBinding
 import com.teamfillin.fillin.databinding.ItemNextButtonBinding
 
@@ -74,6 +75,9 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             Glide.with(binding.root)
                 .load(data.image)
                 .into(binding.ivNextButton)
+            binding.ivNextButton.setOnSingleClickListener {
+
+            }
         }
     }
 }
