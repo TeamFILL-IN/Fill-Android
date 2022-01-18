@@ -78,6 +78,7 @@ dependencies {
     implementation(AndroidXDependencies.coroutines)
     implementation(AndroidXDependencies.lifeCycleKtx)
     implementation(AndroidXDependencies.lifecycleJava8)
+    implementation(AndroidXDependencies.splashScreen)
 
     // Third-Party
     implementation(ThirdPartyDependencies.glide)

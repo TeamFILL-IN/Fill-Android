@@ -15,6 +15,7 @@ object Versions {
     const val lifecycleVersion = "2.4.0"
     const val ossPluginVersion = "0.10.4"
     const val ossVersion = "17.0.0"
+    const val splashVersion = "1.0.0-beta01"
 
     const val gradleVersion = "7.0.4"
 

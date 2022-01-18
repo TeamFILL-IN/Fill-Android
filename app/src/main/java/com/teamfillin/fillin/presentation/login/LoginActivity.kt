@@ -2,6 +2,7 @@ package com.teamfillin.fillin.presentation.login
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.teamfillin.fillin.R
@@ -20,6 +21,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private val viewModel by viewModels<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         binding.txtHello.setOnClickListener {
             if (kakaoAuthService.isKakaoTalkLoginAvailable) {

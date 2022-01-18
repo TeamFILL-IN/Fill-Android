@@ -16,7 +16,7 @@
         android:theme="@style/Theme.FillInAndroid">
 
         <activity
-            android:name=".com.teamfillin.fillin.presentation.home.HomeActivity"
+            android:name=".presentation.home.HomeActivity"
             android:exported="true" />
         <provider
             android:name="androidx.startup.InitializationProvider"
@@ -33,7 +33,8 @@
 
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.App.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -55,12 +56,11 @@
         </activity>
         <activity
             android:name=".presentation.AddPhotoActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.map.StudioMapActivity"
             android:exported="true" />
-      <activity
+        <activity
             android:name=".presentation.map.MapSearchActivity"
             android:exported="true" />
         
