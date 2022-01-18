@@ -32,7 +32,6 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
         addCurationList()
     }
 
-
     private fun addCurationList() {
         curationAdapter.submitList(
             listOf(
@@ -68,6 +67,15 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
             listOf(
                 FilmrollInfo(
                     R.drawable.and_photo_rectangle
+                ),
+                FilmrollInfo(
+                    R.drawable.ic_card_curation
+                ),
+                FilmrollInfo(
+                    R.drawable.and_photo_rectangle
+                ),
+                FilmrollInfo(
+                    R.drawable.ic_card_curation
                 ),
                 FilmrollInfo(
                     R.drawable.ic_card_curation

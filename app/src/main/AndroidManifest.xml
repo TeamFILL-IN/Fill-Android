@@ -16,12 +16,15 @@
         android:theme="@style/Theme.FillInAndroid">
         <activity
             android:name=".presentation.filmroll.FilmRollActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".presentation.filmroll.FilmCategoryImageActivity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.category.FilmRollCategoryActivity"
@@ -81,9 +84,6 @@
             android:exported="true" />
 
         <activity android:name=".presentation.filmroll.FilmRollCategoryActivity"
-            android:exported="true" />
-
-        <activity android:name=".presentation.filmroll.FilmCategoryImageActivity"
             android:exported="true" />
 
         <meta-data
