@@ -14,30 +14,79 @@ import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NewPhotosDa
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.data.CategoryInfo
 import com.teamfillin.fillin.databinding.ActivityFilmRollBinding
+import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter
 import com.teamfillin.fillin.presentation.map.CustomDecoration
 
 class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activity_film_roll) {
-    private lateinit var filmrollAdapter: FilmRollAdapter
+    private var filmrollAdapter = FilmRollAdapter()
+    private var curationAdapter = CurationAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFilmRollAdapter()
-        initNewPhotoRecyclerView()
+        setCurationAdapter()
     }
 
-    private fun setFilmRollAdapter(filmRollAdapter: FilmRollAdapter) {
-        val test=listOf(FilmrollInfo(R.drawable.ic_card_curation)
-            ,FilmrollInfo(R.drawable.and_card_img)
-            ,FilmrollInfo(R.drawable.and_card_img)
+    private fun setCurationAdapter() {
+        binding.rvCuration.adapter = curationAdapter
+        addCurationList()
+    }
+
+
+    private fun addCurationList() {
+        curationAdapter.submitList(
+            listOf(
+                CurationInfo(
+                    R.drawable.ic_card_curation
+                ),
+                CurationInfo(
+                    R.drawable.and_photo_rectangle
+                ),
+                CurationInfo(
+                    R.drawable.and_photo_rectangle
+                ),
+                CurationInfo(
+                    R.drawable.and_photo_rectangle
+                ),
+                CurationInfo(
+                    R.drawable.and_photo_rectangle
+                ),
+                CurationInfo(
+                    R.drawable.and_photo_rectangle
+                )
+            )
         )
-        binding.rvFilmroll.apply {
-            layoutManager= LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL,false)
-            adapter = filmRollAdapter
-        }
-        filmRollAdapter.submitList(test)
-
     }
 
+    private fun setFilmRollAdapter() {
+        binding.rvFilmroll.adapter = filmrollAdapter
+        addFilmRollList()
+    }
+
+    private fun addFilmRollList() {
+        filmrollAdapter.submitList(
+            listOf(
+                FilmrollInfo(
+                    R.drawable.and_photo_rectangle
+                ),
+                FilmrollInfo(
+                    R.drawable.ic_card_curation
+                ),
+                FilmrollInfo(
+                    R.drawable.and_photo_rectangle
+                ),
+                FilmrollInfo(
+                    R.drawable.ic_card_curation
+                ),
+                FilmrollInfo(
+                    R.drawable.ic_card_curation
+                ),
+                FilmrollInfo(
+                    R.drawable.and_photo_rectangle
+                )
+            )
+        )
+    }
 
 
 }

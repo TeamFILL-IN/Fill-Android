@@ -2,17 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="9dp">
+    android:layout_height="100dp"
+    android:paddingHorizontal="4dp">
 
     <ImageView
         android:id="@+id/iv_new_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scaleType="centerInside"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="centerInside"
         app:srcCompat="@drawable/and_photo_rectangle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
