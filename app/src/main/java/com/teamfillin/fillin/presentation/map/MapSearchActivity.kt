@@ -60,12 +60,9 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
                 runCatching {
                     service.getSearchInfo(binding.editSearch.text.toString()).await()
                 }.onSuccess {
-                    if (it.data.studio.isEmpty()) {
-                        binding.rvLocationInfo.visibility = View.GONE
-                        binding.clNoResult.visibility = View.VISIBLE
-                    } else {
-                        binding.rvLocationInfo.visibility = View.VISIBLE
-                        binding.clNoResult.visibility = View.GONE
+                    binding.rvLocationInfo.isVisible = it.data.studio.isNotEmpty()
+                    binding.clNoResult.isVisible = it.data.studio.isEmpty()
+                    if (it.data.studio.isNotEmpty()) {
                         locationAdapter.submitList(it.data.studio)
                     }
                 }.onFailure(Timber::e)
