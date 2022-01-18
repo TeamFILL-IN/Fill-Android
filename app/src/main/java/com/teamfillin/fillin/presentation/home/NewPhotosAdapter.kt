@@ -1,5 +1,6 @@
 package com.teamfillin.fillin.com.teamfillin.fillin.presentation.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
@@ -10,6 +11,7 @@ import com.teamfillin.fillin.databinding.ItemNewPhotosListBinding
 import com.teamfillin.fillin.databinding.ItemNextButtonBinding
 import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
+import com.teamfillin.fillin.presentation.home.NewPhotosData
 
 class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

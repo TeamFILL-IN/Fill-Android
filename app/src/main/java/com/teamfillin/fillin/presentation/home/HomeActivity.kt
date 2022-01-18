@@ -1,5 +1,6 @@
 package com.teamfillin.fillin.com.teamfillin.fillin.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.isVisible
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
@@ -13,6 +14,7 @@ import com.teamfillin.fillin.presentation.MyPageActivity
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 import com.teamfillin.fillin.presentation.map.MapSearchActivity
 import com.teamfillin.fillin.presentation.map.StudioMapActivity
+import com.teamfillin.fillin.presentation.home.NewPhotosData
 
 class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home) {
     private lateinit var newPhotosAdapter: NewPhotosAdapter
