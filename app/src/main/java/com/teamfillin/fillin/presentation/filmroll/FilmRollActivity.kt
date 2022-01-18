@@ -101,13 +101,16 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
         )
     }
     private fun clickListener(){
-        binding.fabAddPhoto.setOnClickListener{
+        binding.fabAddPhoto.setOnSingleClickListener{
             val intent = Intent(this, AddPhotoActivity::class.java)
             startActivity(intent)
         }
         binding.tvFilmchoice.setOnSingleClickListener {
             val intent = Intent(this, FilmRollCategoryActivity::class.java)
             startActivity(intent)
+        }
+        binding.btnBack.setOnSingleClickListener {
+            finish()
         }
     }
 

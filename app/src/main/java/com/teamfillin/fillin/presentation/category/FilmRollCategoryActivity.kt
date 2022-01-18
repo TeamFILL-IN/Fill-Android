@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
@@ -16,10 +17,12 @@ import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEXT_BUTTON
 import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NewPhotosData
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.context.toast
+import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.CategoryInfo
 import com.teamfillin.fillin.data.ResponseLocationInfo
 import com.teamfillin.fillin.databinding.ActivityFilmRollCategoryBinding
 import com.teamfillin.fillin.presentation.AddPhotoActivity
+import com.teamfillin.fillin.presentation.filmroll.FilmCategoryImageActivity
 import com.teamfillin.fillin.presentation.map.CustomDecoration
 import com.teamfillin.fillin.presentation.map.LocationListAdapter
 import com.teamfillin.fillin.presentation.map.MapSearchActivity
@@ -42,40 +45,49 @@ class FilmRollCategoryActivity :
     }
 
     private fun click() {
-        filmCategoryAdapter.setItemClickListener { v, position -> // 데이터 넘겨주기
+        filmCategoryAdapter.setItemClickListener { v, position ->
+            // ToDO 서버연결 시 버튼 클릭 시 데이터 가지고 FilmCategoryImage액티비티 이동
             binding.rvCategory[position].setBackgroundResource(R.color.dark_grey_2)
+
+            binding.rvCategory[position].setOnSingleClickListener {
+                val intent = Intent(this, FilmCategoryImageActivity::class.java)
+                startActivity(intent)
+            }
+            binding.btnBack.setOnSingleClickListener {
+                finish()
+            }
         }
     }
 
 
-    private fun addFilmCategoryList() {
-        filmCategoryAdapter.submitList(
-            listOf(
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
+        private fun addFilmCategoryList() {
+            filmCategoryAdapter.submitList(
+                listOf(
+                    CategoryInfo(
+                        film = "Kodak color plus 200 abcdefg1234567"
+                    ),
+                    CategoryInfo(
+                        film = "Kodak color plus 200 abcdefg1234567"
+                    ),
+                    CategoryInfo(
+                        film = "Kodak color plus 200 abcdefg1234567"
+                    ),
+                    CategoryInfo(
+                        film = "Kodak color plus 200 abcdefg1234567"
+                    ),
+                    CategoryInfo(
+                        film = "Kodak color plus 200 abcdefg1234567"
+                    ),
+                    CategoryInfo(
+                        film = "Kodak color plus 200 abcdefg1234567"
+                    ),
+                    CategoryInfo(
+                        film = "Kodak color plus 200 abcdefg1234567"
+                    ),
+                    CategoryInfo(
+                        film = "Kodak color plus 200 abcdefg1234567"
+                    )
                 )
             )
-        )
+        }
     }
-}

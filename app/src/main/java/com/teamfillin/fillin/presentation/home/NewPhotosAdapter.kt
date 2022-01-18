@@ -1,12 +1,16 @@
 package com.teamfillin.fillin.com.teamfillin.fillin.presentation.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.databinding.ItemNewPhotosListBinding
 import com.teamfillin.fillin.databinding.ItemNextButtonBinding
+import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
+import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 
 class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -53,7 +57,6 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-
     fun replaceList(newList: List<NewPhotosData>) {
         photolist = newList.toList()
         notifyDataSetChanged()
@@ -76,7 +79,8 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 .load(data.image)
                 .into(binding.ivNextButton)
             binding.ivNextButton.setOnSingleClickListener {
-
+                val intent = Intent(itemView.context, FilmRollActivity::class.java)
+                itemView.context.startActivity(intent)
             }
         }
     }

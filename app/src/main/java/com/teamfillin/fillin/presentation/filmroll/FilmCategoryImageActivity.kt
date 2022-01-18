@@ -7,6 +7,7 @@ import androidx.core.view.get
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.context.toast
+import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.CategoryInfo
 import com.teamfillin.fillin.databinding.ActivityCategoryImageBinding
 import com.teamfillin.fillin.databinding.ActivityFilmRollCategoryBinding
@@ -36,6 +37,9 @@ class FilmCategoryImageActivity :
 
             }
         })
+        binding.btnBack.setOnSingleClickListener {
+            finish()
+        }
     }
 
 
