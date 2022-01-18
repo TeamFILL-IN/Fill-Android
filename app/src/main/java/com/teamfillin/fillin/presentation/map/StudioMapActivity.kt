@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
@@ -14,22 +16,34 @@ import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
-import com.teamfillin.fillin.data.ResponsePhotoReviewInfo
+import com.teamfillin.fillin.data.response.ResponsePhotoReviewInfo
+import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.databinding.ActivityStudioMapBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import retrofit2.await
+import timber.log.Timber
+import javax.inject.Inject
 
-class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.activity_studio_map) {
-
+@AndroidEntryPoint
+class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.activity_studio_map),
+    OnMapReadyCallback {
+    @Inject
+    lateinit var service: StudioService
+    private lateinit var behavior: BottomSheetBehavior<NestedScrollView>
     private lateinit var locationSource: FusedLocationSource
-    private var naverMap: NaverMap? = null
+    private var activityNaverMap: NaverMap? = null
     private val photoReviewAdapter = PhotoReviewListAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding.mapMain.onCreate(savedInstanceState)
+        behavior = BottomSheetBehavior.from(binding.clBottomSheet)
         locationSource =
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
-        binding.mapMain.getMapAsync(NaverMapProvider(locationSource, naverMap, binding))
+        binding.mapMain.getMapAsync(this)
+        behavior.state = BottomSheetBehavior.STATE_HIDDEN
         toolbarEvent()
         searchClickEvent()
         bottomSheetEvent()
@@ -57,54 +71,51 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     ) {
         if (locationSource.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
             if (!locationSource.isActivated) {
-                naverMap?.locationTrackingMode = LocationTrackingMode.None
-            } else naverMap?.locationTrackingMode = LocationTrackingMode.Follow
+                activityNaverMap?.locationTrackingMode = LocationTrackingMode.None
+            } else activityNaverMap?.locationTrackingMode = LocationTrackingMode.Follow
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    private class NaverMapProvider(
-        private val trackingLocationSource: LocationSource,
-        private var activityNaverMap: NaverMap? = null,
-        private var binding: ActivityStudioMapBinding
-    ) : OnMapReadyCallback {
-        val behavior = BottomSheetBehavior.from(binding.clBottomSheet)
-
-        override fun onMapReady(naverMap: NaverMap) {
-            activityNaverMap = naverMap.apply {
-                mapType = NaverMap.MapType.Navi
-                setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, false)
-                setLayerGroupEnabled(NaverMap.LAYER_GROUP_BUILDING, true)
-                isNightModeEnabled = true
-                locationSource = trackingLocationSource
-                locationTrackingMode = LocationTrackingMode.Follow
-                addOnLocationChangeListener { location ->
-                    cameraPosition =
-                        CameraPosition(LatLng(location.latitude, location.longitude), 16.0)
-                }
-                uiSettings.run {
-                    isCompassEnabled = false
-                    isScaleBarEnabled = false
-                    isZoomControlEnabled = false
-                    isLocationButtonEnabled = false
-                }
+    override fun onMapReady(naverMap: NaverMap) {
+        activityNaverMap = naverMap.apply {
+            mapType = NaverMap.MapType.Navi
+            setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, false)
+            setLayerGroupEnabled(NaverMap.LAYER_GROUP_BUILDING, true)
+            isNightModeEnabled = true
+            locationTrackingMode = LocationTrackingMode.Follow
+            addOnLocationChangeListener { location ->
+                cameraPosition =
+                    CameraPosition(LatLng(location.latitude, location.longitude), 16.0)
             }
-            binding.btnLocation.map = naverMap
-            behavior.state = BottomSheetBehavior.STATE_HIDDEN
-            markerLocationEvent()
+            minZoom = 6.0
+            maxZoom = 18.0
+            uiSettings.run {
+                isCompassEnabled = false
+                isScaleBarEnabled = false
+                isZoomControlEnabled = false
+                isLocationButtonEnabled = false
+            }
         }
 
-        private fun markerLocationEvent() {
-            val marker = Marker()
-            marker.position = LatLng(37.5666805, 126.9784147)
-            marker.icon = OverlayImage.fromResource(R.drawable.ic_place_big)
-            binding.clBottomSheet.visibility = View.VISIBLE
+        binding.clBottomSheet.visibility = View.VISIBLE
+        markerLocationEvent()
+        binding.btnLocation.map = naverMap
+    }
 
-            marker.setOnClickListener {
-                behavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                true
-            }
-            marker.map = activityNaverMap
+    private fun markerLocationEvent() {
+        lifecycleScope.launch {
+            runCatching {
+                service.getWholeStudio().await()
+            }.onSuccess {
+                it.data.studio.forEach {
+                    Marker().apply {
+                        position = LatLng(it.lati, it.long)
+                        icon = OverlayImage.fromResource(R.drawable.ic_place_big)
+                        this.map = activityNaverMap
+                    }
+                }
+            }.onFailure(Timber::e)
         }
     }
 

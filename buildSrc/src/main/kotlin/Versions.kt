@@ -15,6 +15,7 @@ object Versions {
     const val lifecycleVersion = "2.4.0"
     const val ossPluginVersion = "0.10.4"
     const val ossVersion = "17.0.0"
+    const val splashVersion = "1.0.0-beta01"
 
     const val gradleVersion = "7.0.4"
 
@@ -31,7 +32,7 @@ object Versions {
     const val espressoVersion = "3.3.0"
     const val androidTestVersion = "1.1.2"
 
-    const val flipperVersion = "0.126.0"
+    const val flipperVersion = "0.127.0"
     const val soloaderVersion = "0.10.3"
     const val leakCanaryVersion = "2.6"
 

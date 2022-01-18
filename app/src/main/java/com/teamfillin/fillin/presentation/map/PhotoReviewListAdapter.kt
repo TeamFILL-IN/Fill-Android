@@ -3,8 +3,7 @@ package com.teamfillin.fillin.presentation.map
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.teamfillin.fillin.data.ResponseLocationInfo
-import com.teamfillin.fillin.data.ResponsePhotoReviewInfo
+import com.teamfillin.fillin.data.response.ResponsePhotoReviewInfo
 import com.teamfillin.fillin.databinding.ItemPhotoReviewBinding
 
 class PhotoReviewListAdapter :

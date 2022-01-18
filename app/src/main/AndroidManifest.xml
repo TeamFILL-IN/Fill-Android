@@ -14,25 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.FillInAndroid">
-        <activity
-            android:name=".presentation.filmroll.FilmRollActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".presentation.category.FilmRollCategoryActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".presentation.MyPageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".com.teamfillin.fillin.presentation.home.HomeActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+        <activity
+            android:name=".presentation.home.HomeActivity"
+            android:exported="true" />
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
@@ -48,10 +33,10 @@
 
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.App.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -71,21 +56,14 @@
         </activity>
         <activity
             android:name=".presentation.AddPhotoActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.map.StudioMapActivity"
             android:exported="true" />
         <activity
             android:name=".presentation.map.MapSearchActivity"
             android:exported="true" />
-
-        <activity android:name=".presentation.filmroll.FilmRollCategoryActivity"
-            android:exported="true" />
-
-        <activity android:name=".presentation.filmroll.FilmCategoryImageActivity"
-            android:exported="true" />
-
+        
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="5nlfu3idz8" />

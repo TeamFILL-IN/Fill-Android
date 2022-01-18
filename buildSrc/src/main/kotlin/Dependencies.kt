@@ -17,6 +17,7 @@ object AndroidXDependencies {
     const val lifeCycleKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
     const val lifecycleJava8 =
         "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleVersion}"
+    const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashVersion}"
 }
 
 object TestDependencies {
@@ -57,7 +58,8 @@ object ThirdPartyDependencies {
         "com.google.android.gms:play-services-oss-licenses:${Versions.ossVersion}"
     const val kakaoLogin = "com.kakao.sdk:v2-user:${Versions.kakaoVersion}"
     const val naverMap = "com.naver.maps:map-sdk:${Versions.naverVersion}"
-    const val mapLocation = "com.google.android.gms:play-services-location:${Versions.locationVersion}"
+    const val mapLocation =
+        "com.google.android.gms:play-services-location:${Versions.locationVersion}"
 }
 
 object ClassPathPlugins {
