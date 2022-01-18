@@ -1,9 +1,13 @@
-package com.teamfillin.fillin.com.teamfillin.fillin.presentation.home
+package com.teamfillin.fillin.presentation.home
 
 import android.os.Bundle
 import androidx.core.view.isVisible
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.R
+import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEW_PHOTOS_TYPE
+import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEXT_BUTTON_TYPE
+import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NewPhotosAdapter
+import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NewPhotosData
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
@@ -19,11 +23,8 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         popup()
     }
 
-
     private fun initDatas() {
-
         newPhotosData = listOf(
-
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
@@ -34,7 +35,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             NewPhotosData(R.drawable.and_photo_rectangle, NEW_PHOTOS_TYPE),
             NewPhotosData(R.drawable.and_photo_rectangle, NEXT_BUTTON_TYPE)
         )
-
     }
 
 
