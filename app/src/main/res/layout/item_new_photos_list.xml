@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="9dp">
+    android:padding="9dp">
 
     <ImageView
         android:id="@+id/iv_new_photo"
@@ -12,6 +12,7 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerInside"
         app:srcCompat="@drawable/and_photo_rectangle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

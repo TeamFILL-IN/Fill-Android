@@ -35,7 +35,7 @@ class FilmCategoryAdapter :
         }
     }
 
-    interface OnItemClickListener {
+    fun interface OnItemClickListener {
         fun onClick(v: View, position: Int)
     }
 
