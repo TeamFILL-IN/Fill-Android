@@ -1,6 +1,5 @@
 package com.teamfillin.fillin.com.teamfillin.fillin.presentation.home
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.isVisible
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment

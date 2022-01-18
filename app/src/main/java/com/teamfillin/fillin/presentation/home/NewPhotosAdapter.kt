@@ -1,6 +1,5 @@
 package com.teamfillin.fillin.com.teamfillin.fillin.presentation.home
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
@@ -56,6 +55,7 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
         }
     }
+
 
     fun replaceList(newList: List<NewPhotosData>) {
         photolist = newList.toList()
