@@ -10,7 +10,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
-import com.teamfillin.fillin.data.ResponseLocationInfo
+import com.teamfillin.fillin.data.response.ResponseLocationInfo
 import com.teamfillin.fillin.databinding.ActivityMapSearchBinding
 
 class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.activity_map_search) {

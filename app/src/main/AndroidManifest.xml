@@ -57,6 +57,9 @@
             android:name=".presentation.map.StudioMapActivity"
             android:exported="true" />
 
+        <activity android:name=".presentation.map.MapSearchActivity"
+            />
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="5nlfu3idz8" />
