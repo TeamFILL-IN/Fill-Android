@@ -16,4 +16,6 @@
     <string name="bottom_sheet_photo_review">PHOTO REVIEW</string>
     <string name="home_popup">나만 아는 현상소를 필린에 알려주세요!</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="map_search_no_result">검색 결과가 없습니다.</string>
+    <string name="map_search_no_result_text">검색어를 바르게 입력했는지 확인해보거나,\n주소로 다시 검색해보세요.</string>
 </resources>
