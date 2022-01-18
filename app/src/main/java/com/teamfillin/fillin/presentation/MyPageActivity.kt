@@ -1,15 +1,31 @@
 package com.teamfillin.fillin.presentation
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.teamfillin.fillin.MyPagePhotoRecyclerViewAdapter
 import com.teamfillin.fillin.Photos
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
+import com.teamfillin.fillin.data.response.BaseResponse
+import com.teamfillin.fillin.data.response.ResponseUserInfo
+import com.teamfillin.fillin.data.service.UserService
 import com.teamfillin.fillin.databinding.ActivityMyPageBinding
+import dagger.hilt.android.AndroidEntryPoint
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_my_page) {
+    @Inject
+    lateinit var userService: UserService
+
+
     private lateinit var adapter: MyPagePhotoRecyclerViewAdapter
     var photoDatas = listOf<Photos>()
 
@@ -19,6 +35,30 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
         initializelist()
         initPhotoRecyclerView()
         setProfile()
+        showUserInfo()
+    }
+
+    private fun showUserInfo(){
+        val call: Call<BaseResponse<ResponseUserInfo>> = userService.getUserInfo()
+
+        call.enqueue(object: Callback<BaseResponse<ResponseUserInfo>>{
+            override fun onResponse(
+                call: Call<BaseResponse<ResponseUserInfo>>,
+                response: Response<BaseResponse<ResponseUserInfo>>
+            ) {
+                if(response.isSuccessful){
+                    val userData=response.body()?.data
+                    Log.d("유저정보","${userData?.user?.id}")
+                } else{
+                    Toast.makeText(this@MyPageActivity,"유저정보 조회실패",Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: Call<BaseResponse<ResponseUserInfo>>, t: Throwable) {
+                Log.e("NetworkTest","error:$t")
+            }
+
+        })
+
     }
 
     private fun initializelist() {
@@ -31,7 +71,6 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
             Photos(R.drawable.and_photo_rectangle)
         )
     }
-
 
     private fun initPhotoRecyclerView() {
         adapter = MyPagePhotoRecyclerViewAdapter()

@@ -37,8 +37,8 @@
 
         <ImageView
             android:id="@+id/iv_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="18dp"
             android:layout_marginTop="14dp"
             android:src="@drawable/profile"
@@ -97,42 +97,16 @@
             android:background="@drawable/shape_mypage"
             android:drawableRight="@drawable/icn_arrow"
             android:fontFamily="@font/noto_sans_kr_regular"
+            android:textColor="@color/fillin_black"
+            android:lineSpacingExtra="6sp"
             android:gravity="left"
             android:paddingVertical="18dp"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
+            android:text="@string/new_film_tell"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_camera" />
-
-        <TextView
-            android:id="@+id/tv_btn_first"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="18dp"
-            android:elevation="12dp"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:includeFontPadding="false"
-            android:text="나만 아는 필름과 현상소를"
-            android:textColor="@color/fillin_black"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@id/btn_report"
-            app:layout_constraintTop_toTopOf="@id/btn_report" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
-            android:elevation="12dp"
-            android:fontFamily="@font/noto_sans_kr_bold"
-            android:includeFontPadding="false"
-            android:text="필린에 알려주세요!"
-            android:textColor="@color/fillin_black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/btn_report"
-            app:layout_constraintStart_toStartOf="@id/tv_btn_first"
-            app:layout_constraintTop_toBottomOf="@id/tv_btn_first" />
 
         <TextView
             android:id="@+id/tv_photos"

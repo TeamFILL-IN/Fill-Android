@@ -35,10 +35,7 @@
             android:name=".presentation.login.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.App.SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
@@ -57,6 +54,15 @@
         <activity
             android:name=".presentation.AddPhotoActivity"
             android:exported="true" />
+        <activity
+            android:name=".presentation.MyPageActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".presentation.map.StudioMapActivity"
             android:exported="true" />
