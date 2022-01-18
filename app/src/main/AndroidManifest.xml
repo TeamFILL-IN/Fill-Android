@@ -17,7 +17,12 @@
 
         <activity
             android:name=".presentation.home.HomeActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
@@ -62,6 +67,18 @@
             android:exported="true" />
         <activity
             android:name=".presentation.map.MapSearchActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.filmroll.FilmRollActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.filmroll.FilmCategoryImageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.category.FilmRollCategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.MyPageActivity"
             android:exported="true" />
         
         <meta-data

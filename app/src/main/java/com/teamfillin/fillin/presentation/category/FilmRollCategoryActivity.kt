@@ -18,7 +18,7 @@ import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.CategoryInfo
-import com.teamfillin.fillin.data.ResponseLocationInfo
+
 import com.teamfillin.fillin.databinding.ActivityFilmRollCategoryBinding
 import com.teamfillin.fillin.presentation.AddPhotoActivity
 import com.teamfillin.fillin.presentation.filmroll.FilmCategoryImageActivity
