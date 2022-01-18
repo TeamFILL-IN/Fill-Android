@@ -56,7 +56,7 @@ class FilmCategoryImageActivity :
                     image = R.drawable.and_card_img
                 ),
                 FilmImageInfo(
-                    image = R.drawable.and_card_img
+                    image = R.drawable.and_card_long_img
                 ), FilmImageInfo(
                     image = R.drawable.and_card_img
                 ), FilmImageInfo(
@@ -64,9 +64,9 @@ class FilmCategoryImageActivity :
                 ), FilmImageInfo(
                     image = R.drawable.and_card_img
                 ), FilmImageInfo(
-                    image = R.drawable.and_card_img
+                    image = R.drawable.and_card_long_img
                 ), FilmImageInfo(
-                    image = R.drawable.and_card_img
+                    image = R.drawable.and_card_long_img
                 )
             )
         )
