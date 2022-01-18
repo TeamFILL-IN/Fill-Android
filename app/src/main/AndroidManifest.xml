@@ -17,8 +17,11 @@
 
         <activity
             android:name=".presentation.home.HomeActivity"
-            android:exported="true"
-            />
+            android:exported="true" />
+        <activity
+            android:name=".presentation.onboarding.OnboardingActivity"
+            android:exported="false" />
+
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
@@ -64,7 +67,7 @@
         <activity
             android:name=".presentation.map.MapSearchActivity"
             android:exported="true" />
-        
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="5nlfu3idz8" />
