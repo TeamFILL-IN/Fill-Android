@@ -53,7 +53,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                         is LoginViewModel.InHouseLoginState.Success -> {
                             toast("로그인 성공")
                             startActivity(HomeActivity.getIntent(this@LoginActivity))
-                            finish()
                         }
                         is LoginViewModel.InHouseLoginState.Failure -> toast(it.message)
                     }
