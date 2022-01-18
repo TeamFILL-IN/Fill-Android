@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.teamfillin.fillin.data.ResponseLocationInfo
+import com.teamfillin.fillin.data.response.ResponseLocationInfo
 import com.teamfillin.fillin.databinding.ItemLocationInfoBinding
 
 class LocationListAdapter :
