@@ -1,5 +1,6 @@
 package com.teamfillin.fillin.presentation.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.view.isVisible
@@ -8,6 +9,7 @@ import com.teamfillin.fillin.R
 import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEW_PHOTOS_TYPE
 import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEXT_BUTTON_TYPE
 import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NewPhotosAdapter
+import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NewPhotosData
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
@@ -26,7 +28,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initDatas()
-        clickListener()
         initNewPhotoRecyclerView()
         popup()
     }
@@ -81,6 +82,14 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
                 val dialog = PhotoDialogFragment()
                 dialog.show(supportFragmentManager, "dialogfragmnet")
             }
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        fun getIntent(context: Context) = Intent(context, HomeActivity::class.java).apply {
+            flags =
+                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         }
     }
 }

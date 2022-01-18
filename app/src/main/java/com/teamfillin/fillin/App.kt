@@ -1,6 +1,8 @@
 package com.teamfillin.fillin
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import com.teamfillin.fillin.design.ResolutionMetrics
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
@@ -11,6 +13,7 @@ class App : Application() {
     lateinit var metrics: ResolutionMetrics
     override fun onCreate() {
         super.onCreate()
+        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
         FlipperInitializer.init(this)
         App.resolutionMetrics = metrics
     }
