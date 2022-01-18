@@ -48,7 +48,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             viewModel.loginResult
                 .flowWithLifecycle(lifecycle)
                 .collect {
-                    Timber.d("Nunu inHouseLogin $it")
                     when (it) {
                         is LoginViewModel.InHouseLoginState.Success -> {
                             toast("로그인 성공")
