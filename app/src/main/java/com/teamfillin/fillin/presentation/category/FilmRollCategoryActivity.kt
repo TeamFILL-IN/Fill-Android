@@ -47,9 +47,9 @@ class FilmRollCategoryActivity :
     private fun click() {
         filmCategoryAdapter.setItemClickListener { v, position ->
             // ToDO 서버연결 시 버튼 클릭 시 데이터 가지고 FilmCategoryImage액티비티 이동
-            binding.rvCategory[position].setBackgroundResource(R.color.dark_grey_2)
 
             binding.rvCategory[position].setOnSingleClickListener {
+                binding.rvCategory[position].setBackgroundResource(R.color.dark_grey_2)
                 val intent = Intent(this, FilmCategoryImageActivity::class.java)
                 startActivity(intent)
             }
