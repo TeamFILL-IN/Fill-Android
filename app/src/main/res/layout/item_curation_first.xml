@@ -6,7 +6,7 @@
     android:padding="5dp">
 
     <ImageView
-        android:id="@+id/iv_curation"
+        android:id="@+id/iv_curationfirst"
         android:layout_width="wrap_content"
         android:layout_height="120dp"
         android:overScrollMode="never"
@@ -15,15 +15,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/and_card_img" />
-    <ImageButton
-        android:id="@+id/btn_like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="3dp"
-        android:backgroundTint="@android:color/transparent"
-        android:src="@drawable/likebutton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:srcCompat="@drawable/ic_card_curation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

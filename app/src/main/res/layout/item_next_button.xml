@@ -13,7 +13,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_next" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/ic_next"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_next_button"
+        app:layout_constraintEnd_toEndOf="@+id/iv_next_button"
+        app:layout_constraintStart_toStartOf="@+id/iv_next_button"
+        app:layout_constraintTop_toTopOf="@+id/iv_next_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

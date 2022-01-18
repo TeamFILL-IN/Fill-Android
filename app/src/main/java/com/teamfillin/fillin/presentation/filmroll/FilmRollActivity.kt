@@ -40,23 +40,27 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
         curationAdapter.submitList(
             listOf(
                 CurationInfo(
-                    R.drawable.ic_card_curation
+                    R.drawable.ic_card_curation, CURATION_INFO_TYPE
                 ),
                 CurationInfo(
-                    R.drawable.and_photo_rectangle
+                    R.drawable.and_card_img, CURATION_TYPE
                 ),
                 CurationInfo(
-                    R.drawable.and_photo_rectangle
+                    R.drawable.and_card_img, CURATION_TYPE
                 ),
                 CurationInfo(
-                    R.drawable.and_photo_rectangle
+                    R.drawable.and_card_img, CURATION_TYPE
                 ),
                 CurationInfo(
-                    R.drawable.and_photo_rectangle
+                    R.drawable.and_card_img, CURATION_TYPE
                 ),
                 CurationInfo(
-                    R.drawable.and_photo_rectangle
+                    R.drawable.and_card_img, CURATION_TYPE
+                ),
+                CurationInfo(
+                    R.drawable.and_card_img, CURATION_TYPE
                 )
+
             )
         )
     }

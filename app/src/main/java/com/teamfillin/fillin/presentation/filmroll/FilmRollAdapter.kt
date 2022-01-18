@@ -1,11 +1,13 @@
 package com.teamfillin.fillin.presentation.filmroll
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.databinding.ItemFilmRollBinding
 
 class FilmRollAdapter() :
@@ -17,7 +19,9 @@ class FilmRollAdapter() :
             Glide.with(binding.root)
                 .load(film.image)
                 .into(binding.ivItemFilmroll)
-
+            binding.btnLike.setOnSingleClickListener {
+                binding.btnLike.isSelected = !binding.btnLike.isSelected
+            }
         }
     }
 

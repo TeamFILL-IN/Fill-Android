@@ -80,7 +80,7 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             Glide.with(binding.root)
                 .load(data.image)
                 .into(binding.ivNextButton)
-            binding.ivNextButton.setOnSingleClickListener {
+            binding.btnNext.setOnSingleClickListener {
                 val intent = Intent(itemView.context, FilmRollActivity::class.java)
                 itemView.context.startActivity(intent)
             }

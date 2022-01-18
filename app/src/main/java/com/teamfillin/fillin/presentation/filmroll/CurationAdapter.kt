@@ -6,34 +6,72 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEW_PHOTOS_TYPE
+import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NewPhotosAdapter
+import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.databinding.ItemCurationBinding
+import com.teamfillin.fillin.databinding.ItemCurationFirstBinding
+import com.teamfillin.fillin.databinding.ItemNewPhotosListBinding
+import com.teamfillin.fillin.databinding.ItemNextButtonBinding
 
-class CurationAdapter():
-    ListAdapter<CurationInfo, CurationAdapter.CurationViewHolder>(CurationDiffUtil()) {
+class CurationAdapter() :
+    ListAdapter<CurationInfo, RecyclerView.ViewHolder>(CurationDiffUtil()) {
 
-    class CurationViewHolder(private val binding: ItemCurationBinding) :
+
+    class CurationInfoViewHolder(private val binding: ItemCurationFirstBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(film: CurationInfo) {
+            Glide.with(binding.root)
+                .load(film.image)
+                .into(binding.ivCurationfirst)
+        }
+    }
+
+    class CurationImageViewHolder(private val binding: ItemCurationBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(film: CurationInfo) {
             Glide.with(binding.root)
                 .load(film.image)
                 .into(binding.ivCuration)
-
+            binding.btnLike.setOnSingleClickListener {
+                binding.btnLike.isSelected = !binding.btnLike.isSelected
+            }
         }
     }
+
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CurationViewHolder {
-        val binding = ItemCurationBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent, false
-        )
-        return CurationViewHolder(binding)
+    ): RecyclerView.ViewHolder {
+        return when (viewType) {
+            CURATION_INFO_TYPE -> {
+                val binding = ItemCurationFirstBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent, false
+                )
+                CurationInfoViewHolder(binding)
+            }
+            else -> {
+                val binding = ItemCurationBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent, false
+                )
+                CurationImageViewHolder(binding)
+            }
+        }
     }
 
-    override fun onBindViewHolder(holder: CurationViewHolder, position: Int) {
-        holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if(getItemViewType(position) == CURATION_INFO_TYPE) {
+            (holder as CurationInfoViewHolder).bind(currentList[position])
+        } else {
+            (holder as CurationImageViewHolder).bind(currentList[position])
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return currentList[position].type
     }
 
     private class CurationDiffUtil : DiffUtil.ItemCallback<CurationInfo>() {

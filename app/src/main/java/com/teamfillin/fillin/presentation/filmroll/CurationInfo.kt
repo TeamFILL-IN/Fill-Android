@@ -1,5 +1,6 @@
 package com.teamfillin.fillin.presentation.filmroll
 
 data class CurationInfo(
-    val image: Int
+    val image: Int,
+    val type: Int
 )

@@ -17,8 +17,7 @@
 
         <activity
             android:name=".presentation.home.HomeActivity"
-            android:exported="true"
-            />
+            android:exported="true" />
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
@@ -64,7 +63,19 @@
         <activity
             android:name=".presentation.map.MapSearchActivity"
             android:exported="true" />
-        
+        <activity
+            android:name=".presentation.MyPageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.filmroll.FilmCategoryImageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.filmroll.FilmRollActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.category.FilmRollCategoryActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="5nlfu3idz8" />

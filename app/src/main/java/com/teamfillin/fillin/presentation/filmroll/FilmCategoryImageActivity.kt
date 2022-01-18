@@ -1,5 +1,6 @@
 package com.teamfillin.fillin.presentation.filmroll
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,7 @@ import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.CategoryInfo
 import com.teamfillin.fillin.databinding.ActivityCategoryImageBinding
 import com.teamfillin.fillin.databinding.ActivityFilmRollCategoryBinding
+import com.teamfillin.fillin.presentation.AddPhotoActivity
 import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter
 import com.teamfillin.fillin.presentation.map.CustomDecoration
 
@@ -33,10 +35,14 @@ class FilmCategoryImageActivity :
     private fun click() {
         filmImageAdapter.setItemClickListener(object : FilmImageAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
-                // 데이터 넘겨주기
+                // Todo 아이템 클릭 시 이미지 상세보기 창 띄우기
 
             }
         })
+        binding.fabAddPhoto.setOnSingleClickListener {
+            val intent = Intent(this, AddPhotoActivity::class.java)
+            startActivity(intent)
+        }
         binding.btnBack.setOnSingleClickListener {
             finish()
         }
