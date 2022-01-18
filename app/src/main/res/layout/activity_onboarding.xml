@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,6 +11,67 @@
         android:layout_height="match_parent"
         android:background="@color/fillin_black">
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager_onboaring"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/txt_onbarding_skip"
+            style="@style/Subhead3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:paddingStart="32dp"
+            android:text="@string/onboarding_skip"
+            android:textColor="@color/grey_3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewpager_onboaring" />
+
+        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+            android:id="@+id/dot_onboarding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:dotsColor="@color/dark_grey_1"
+            app:dotsSize="8dp"
+            app:dotsSpacing="10dp"
+            app:dotsWidthFactor="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txt_onbarding_skip"
+            app:layout_constraintTop_toBottomOf="@+id/viewpager_onboaring"
+            app:progressMode="false"
+            app:selectedDotColor="@color/fillin_red" />
+
+        <TextView
+            android:id="@+id/txt_onbarding_next"
+            style="@style/Subhead3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:paddingEnd="32dp"
+            android:text="@string/onboarding_next"
+            android:textColor="@color/fillin_red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewpager_onboaring" />
+
+        <TextView
+            android:id="@+id/txt_onbarding_start"
+            style="@style/Subhead3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:paddingEnd="32dp"
+            android:text="@string/onboarding_start"
+            android:textColor="@color/fillin_red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewpager_onboaring" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

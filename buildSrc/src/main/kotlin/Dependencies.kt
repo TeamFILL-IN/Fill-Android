@@ -60,6 +60,7 @@ object ThirdPartyDependencies {
     const val naverMap = "com.naver.maps:map-sdk:${Versions.naverVersion}"
     const val mapLocation =
         "com.google.android.gms:play-services-location:${Versions.locationVersion}"
+    const val dotsIndicator = "com.tbuonomo:dotsindicator:${Versions.dotsIndicatorVersion}"
 }
 
 object ClassPathPlugins {
