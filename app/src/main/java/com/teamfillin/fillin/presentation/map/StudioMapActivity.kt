@@ -22,6 +22,7 @@ import com.teamfillin.fillin.databinding.ActivityStudioMapBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import retrofit2.await
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -103,17 +104,18 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     }
 
     private fun markerLocationEvent() {
-        val markers = mutableListOf<Marker>()
-
         lifecycleScope.launch {
-            service.getWholeStudio().await()
-                .data.studio.forEach {
-                    markers += Marker().apply {
+            runCatching {
+                service.getWholeStudio().await()
+            }.onSuccess {
+                it.data.studio.forEach {
+                    Marker().apply {
                         position = LatLng(it.lati, it.long)
                         icon = OverlayImage.fromResource(R.drawable.ic_place_big)
                         this.map = activityNaverMap
                     }
                 }
+            }.onFailure(Timber::e)
         }
     }
 
