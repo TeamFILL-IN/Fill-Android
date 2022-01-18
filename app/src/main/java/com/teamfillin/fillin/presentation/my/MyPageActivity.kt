@@ -1,13 +1,11 @@
-package com.teamfillin.fillin.presentation
+package com.teamfillin.fillin.presentation.my
 
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
-import com.teamfillin.fillin.MyPagePhotoRecyclerViewAdapter
-import com.teamfillin.fillin.Photos
+import com.teamfillin.fillin.presentation.add.Photos
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.data.response.BaseResponse

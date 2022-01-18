@@ -1,8 +1,9 @@
-package com.teamfillin.fillin
+package com.teamfillin.fillin.presentation.my
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.teamfillin.fillin.presentation.add.Photos
 import com.teamfillin.fillin.databinding.ItemMyPageBinding
 
 class MyPagePhotoRecyclerViewAdapter :
