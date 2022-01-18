@@ -32,7 +32,6 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
 
         initializelist()
         initPhotoRecyclerView()
-        setProfile()
         showUserInfo()
     }
 
@@ -47,6 +46,12 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
                 if(response.isSuccessful){
                     val userData=response.body()?.data
                     Log.d("유저정보","${userData?.user?.id}")
+                    binding.tvNickname.text=userData?.user?.nickname
+                    Glide.with(this@MyPageActivity)
+                        .load(userData?.user?.imageUrl)
+                        .circleCrop()
+                        .into(binding.ivProfile)
+
                 } else{
                     Toast.makeText(this@MyPageActivity,"유저정보 조회실패",Toast.LENGTH_SHORT).show()
                 }
