@@ -57,5 +57,5 @@ object RetrofitModule {
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 
-    const val BASE_URL = "https://fill-in-13efb.web.app/api/"
+    const val BASE_URL = "https://asia-northeast3-fill-in-13efb.cloudfunctions.net/app/api/"
 }
