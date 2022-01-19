@@ -9,7 +9,7 @@ import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.databinding.ActivityFilmRollBinding
-import com.teamfillin.fillin.presentation.AddPhotoActivity
+import com.teamfillin.fillin.presentation.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
 
 class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activity_film_roll) {

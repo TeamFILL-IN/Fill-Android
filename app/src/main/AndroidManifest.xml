@@ -60,7 +60,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.AddPhotoActivity"
+            android:name=".presentation.add.AddPhotoActivity"
             android:exported="true" />
         <activity
             android:name=".presentation.map.StudioMapActivity"
@@ -69,7 +69,7 @@
             android:name=".presentation.map.MapSearchActivity"
             android:exported="true" />
         <activity
-            android:name=".presentation.MyPageActivity"
+            android:name=".presentation.my.MyPageActivity"
             android:exported="true" />
         <activity
             android:name=".presentation.filmroll.FilmCategoryImageActivity"

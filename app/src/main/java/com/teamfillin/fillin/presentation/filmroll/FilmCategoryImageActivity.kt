@@ -12,7 +12,7 @@ import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.CategoryInfo
 import com.teamfillin.fillin.databinding.ActivityCategoryImageBinding
 import com.teamfillin.fillin.databinding.ActivityFilmRollCategoryBinding
-import com.teamfillin.fillin.presentation.AddPhotoActivity
+import com.teamfillin.fillin.presentation.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter
 import com.teamfillin.fillin.presentation.map.CustomDecoration
 

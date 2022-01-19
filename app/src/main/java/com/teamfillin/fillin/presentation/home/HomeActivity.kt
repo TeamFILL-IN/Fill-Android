@@ -12,8 +12,8 @@ import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.response.ResponseNewPhotoInfo
 import com.teamfillin.fillin.data.service.NewPhotoService
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
-import com.teamfillin.fillin.presentation.AddPhotoActivity
-import com.teamfillin.fillin.presentation.MyPageActivity
+import com.teamfillin.fillin.presentation.add.AddPhotoActivity
+import com.teamfillin.fillin.presentation.my.MyPageActivity
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 import com.teamfillin.fillin.presentation.map.StudioMapActivity

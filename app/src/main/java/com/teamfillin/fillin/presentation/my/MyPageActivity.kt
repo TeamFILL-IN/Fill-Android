@@ -24,7 +24,7 @@ import javax.inject.Inject
 class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_my_page) {
     @Inject
     lateinit var userService: UserService
-    lateinit var myPagePhotoService: MyPagePhotoService //TODO @Inject 한번더 써야되나?
+    lateinit var myPagePhotoService: MyPagePhotoService
 
 
     private lateinit var adapter: MyPagePhotoRecyclerViewAdapter
@@ -33,13 +33,16 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding.btnBackHome.setOnClickListener {
+            finish()
+        }
+
         initializelist()
         initPhotoRecyclerView()
         showUserInfo()
-        showUserPhoto()
     }
 
-    private fun showUserPhoto(){ //TODO 이 함수 안에 바꿔야됨..
+    private fun showUserInfo(){
         val call: Call<BaseResponse<ResponseUserInfo>> = userService.getUserInfo()
 
         call.enqueueUtil(
@@ -51,59 +54,6 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
                     .into(binding.ivProfile)
             }
         )
-
-//        call.enqueue(object: Callback<BaseResponse<ResponseUserInfo>>{
-//            override fun onResponse(
-//                call: Call<BaseResponse<ResponseUserInfo>>,
-//                response: Response<BaseResponse<ResponseUserInfo>>
-//            ) {
-//                if(response.isSuccessful){
-//                    val userData=response.body()?.data
-//                    Log.d("유저정보","${userData?.user?.id}")
-//                    binding.tvNickname.text=userData?.user?.nickname
-//                    Glide.with(this@MyPageActivity)
-//                        .load(userData?.user?.imageUrl)
-//                        .circleCrop()
-//                        .into(binding.ivProfile)
-//
-//                } else{
-//                    Toast.makeText(this@MyPageActivity,"유저정보 조회실패",Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//            override fun onFailure(call: Call<BaseResponse<ResponseUserInfo>>, t: Throwable) {
-//                Log.e("NetworkTest","error:$t")
-//            }
-//
-//        })
-    }
-
-    private fun showUserInfo(){
-        val call: Call<BaseResponse<ResponseUserInfo>> = userService.getUserInfo()
-
-        call.enqueue(object: Callback<BaseResponse<ResponseUserInfo>>{
-            override fun onResponse(
-                call: Call<BaseResponse<ResponseUserInfo>>,
-                response: Response<BaseResponse<ResponseUserInfo>>
-            ) {
-                if(response.isSuccessful){
-                    val userData=response.body()?.data
-                    Log.d("유저정보","${userData?.user?.id}")
-                    binding.tvNickname.text=userData?.user?.nickname
-                    Glide.with(this@MyPageActivity)
-                        .load(userData?.user?.imageUrl)
-                        .circleCrop()
-                        .into(binding.ivProfile)
-
-                } else{
-                    Toast.makeText(this@MyPageActivity,"유저정보 조회실패",Toast.LENGTH_SHORT).show()
-                }
-            }
-            override fun onFailure(call: Call<BaseResponse<ResponseUserInfo>>, t: Throwable) {
-                Log.e("NetworkTest","error:$t")
-            }
-
-        })
-
     }
 
     private fun initializelist() {
@@ -123,14 +73,5 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
         binding.rvMyPage.adapter = adapter
         val gridLayoutManager = GridLayoutManager(this, 3)
         binding.rvMyPage.layoutManager = gridLayoutManager
-    }
-
-
-    private fun setProfile() {
-        Glide.with(this)
-            .load(R.drawable.profile)
-            .circleCrop()
-            .into(binding.ivProfile)
-        //TODO by현지: 확장함수에 CircleCrop등 기능 추가되면 바꿔보기
     }
 }
