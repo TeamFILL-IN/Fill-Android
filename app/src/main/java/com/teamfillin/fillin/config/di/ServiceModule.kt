@@ -1,6 +1,7 @@
 package com.teamfillin.fillin.config.di
 
 import com.teamfillin.fillin.data.service.AuthService
+import com.teamfillin.fillin.data.service.NewPhotoService
 import com.teamfillin.fillin.data.service.StudioService
 import dagger.Module
 import dagger.Provides
@@ -21,4 +22,9 @@ object ServiceModule {
     @Singleton
     fun provideStudioService(retrofit: Retrofit): StudioService =
         retrofit.create(StudioService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideNewPhotoService(retrofit: Retrofit): NewPhotoService =
+        retrofit.create(NewPhotoService::class.java)
 }

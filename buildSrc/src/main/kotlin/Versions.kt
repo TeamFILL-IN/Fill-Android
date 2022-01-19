@@ -27,6 +27,7 @@ object Versions {
     const val kakaoVersion = "2.8.4"
     const val naverVersion = "3.13.0"
     const val locationVersion = "19.0.0"
+    const val dotsIndicatorVersion = "4.2"
 
     const val junitVersion = "4.13.2"
     const val espressoVersion = "3.3.0"

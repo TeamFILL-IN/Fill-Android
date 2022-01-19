@@ -13,12 +13,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
-        android:theme="@style/Theme.FillInAndroid">
+        android:theme="@style/Theme.FillInAndroid"
+        tools:replace="android:supportsRtl">
 
         <activity
             android:name=".presentation.home.HomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.onboarding.OnboardingActivity"
             android:exported="true"
-            />
+            android:theme="@style/Theme.App.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
@@ -34,13 +44,7 @@
 
         <activity
             android:name=".presentation.login.LoginActivity"
-            android:exported="true"
-            android:theme="@style/Theme.App.SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
@@ -64,7 +68,19 @@
         <activity
             android:name=".presentation.map.MapSearchActivity"
             android:exported="true" />
-        
+        <activity
+            android:name=".presentation.MyPageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.filmroll.FilmCategoryImageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.filmroll.FilmRollActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.category.FilmRollCategoryActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="5nlfu3idz8" />
