@@ -1,6 +1,7 @@
 package com.teamfillin.fillin.config.di
 
 import com.teamfillin.fillin.data.service.AuthService
+import com.teamfillin.fillin.data.service.MyPagePhotoService
 import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.data.service.UserService
 import dagger.Module
@@ -27,4 +28,9 @@ object ServiceModule {
     @Singleton
     fun provideUserInfoService(retrofit: Retrofit): UserService=
         retrofit.create(UserService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUserPhotoService(retrofit:Retrofit): MyPagePhotoService=
+        retrofit.create(MyPagePhotoService::class.java)
 }
