@@ -19,9 +19,9 @@ class LoginViewModel @Inject constructor(
         MutableStateFlow(InHouseLoginState.Init)
     val loginResult: StateFlow<InHouseLoginState> = _loginResult.asStateFlow()
 
-    fun login(token: String) {
+    fun login(token: String, id: String) {
         viewModelScope.launch {
-            runCatching { authRepository.login(token) }
+            runCatching { authRepository.login(token, id) }
                 .fold({
                     _loginResult.value = InHouseLoginState.Success
                 }, {
