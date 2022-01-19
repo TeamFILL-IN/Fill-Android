@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teamfillin.fillin.R
+import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.CategoryInfo
 import com.teamfillin.fillin.databinding.ItemCategoryInfoBinding
 import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter
@@ -15,9 +16,7 @@ import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter.Companion
 
 
 class FilmCategoryAdapter :
-    ListAdapter<CategoryInfo, FilmCategoryAdapter.FilmListViewHolder>(
-        DIFFUTIL
-    ) {
+    ListAdapter<CategoryInfo, FilmCategoryAdapter.FilmListViewHolder>(DIFFUTIL) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,18 +24,15 @@ class FilmCategoryAdapter :
     ): FilmListViewHolder {
         val binding =
             ItemCategoryInfoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FilmListViewHolder(binding)
+        return FilmListViewHolder(binding, itemClickListener)
     }
 
     override fun onBindViewHolder(holder: FilmListViewHolder, position: Int) {
         holder.onBind(getItem(position))
-        holder.itemView.setOnClickListener {
-            itemClickListener.onClick(it, position)
-        }
     }
 
     fun interface OnItemClickListener {
-        fun onClick(v: View, position: Int)
+        fun onClick(film: String)
     }
 
     // (3) 외부에서 클릭 시 이벤트 설정
@@ -49,10 +45,15 @@ class FilmCategoryAdapter :
 
 
     class FilmListViewHolder(
-        private val binding: ItemCategoryInfoBinding
+        private val binding: ItemCategoryInfoBinding,
+        private val itemClickListener: OnItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(categoryInfo: CategoryInfo) {
             binding.category = categoryInfo
+            binding.root.setOnSingleClickListener {
+                binding.root.setBackgroundResource(R.color.dark_grey_2)
+                itemClickListener.onClick(binding.tvFilm.text.toString())
+            }
         }
     }
 

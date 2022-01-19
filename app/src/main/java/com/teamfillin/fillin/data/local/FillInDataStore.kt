@@ -35,4 +35,7 @@ class FillInDataStore @Inject constructor(
     var nickname: String
         set(value) = dataStore.edit { putString("NICKNAME", value) }
         get() = dataStore.getString("NICKNAME", "") ?: ""
+    var isOnboardingShown: Boolean
+        set(value) = dataStore.edit { putBoolean("ONBOARDING", value) }
+        get() = dataStore.getBoolean("ONBOARDING", false)
 }
