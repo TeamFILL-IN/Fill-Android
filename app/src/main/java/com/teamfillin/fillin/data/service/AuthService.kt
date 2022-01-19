@@ -11,7 +11,8 @@ interface AuthService {
     @POST("auth")
     fun login(
         @Field("token") token: String,
-        @Field("social") social: String = "kakao"
+        @Field("social") social: String = "kakao",
+        @Field("idKey") id: String
     ): Call<BaseResponse<ResponseAuth>>
 
     @GET("auth/token")
