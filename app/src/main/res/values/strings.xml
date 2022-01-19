@@ -2,6 +2,18 @@
     <string name="app_name">FILL-IN</string>
     <string name="nickname">찰칵찰칵 필린이</string>
     <string name="camera_name">Fuji film X 1200</string>
+    <string name="login_slogan">Fill-in your Feel\nFill-in your film-</string>
+    <string name="login_intro">필린에서 소중한 추억을\nFILL-IN 해보세요</string>
+    <string name="login_kakao">카카오 로그인</string>
+    <string name="onboarding_skip">건너뛰기</string>
+    <string name="onboarding_next">다음</string>
+    <string name="onboarding_start">시작하기</string>
+    <string name="onboarding_title_1">필름을 스캔 할 현상소 정보를 찾고 계신가요?</string>
+    <string name="onboarding_title_2">어떤 필름을 사용 해 볼지 고민 하고 계신가요?</string>
+    <string name="onboarding_title_3">직접 찍은 필름 사진이나 정보를 공유하고 싶나요?</string>
+    <string name="onboarding_content_1">주변 현상소 정보를\n필린에서 찾아보세요!</string>
+    <string name="onboarding_content_2">다양한 필름 사진을\n필린에서 만나보세요!</string>
+    <string name="onboarding_content_3">나만의 필름 사진을\n필린에서 공유해보세요!</string>
     <string name="new_film_tell">나만 아는 필름과 현상소를\n<b>필린에 알려주세요!</b> </string>
     <string name="my_photos">MY PHOTOS</string>
     <string name="film_name">Film</string>
@@ -16,4 +28,6 @@
     <string name="bottom_sheet_photo_review">PHOTO REVIEW</string>
     <string name="home_popup">나만 아는 현상소를 필린에 알려주세요!</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="map_search_no_result">검색 결과가 없습니다.</string>
+    <string name="map_search_no_result_text">검색어를 바르게 입력했는지 확인해보거나,\n주소로 다시 검색해보세요.</string>
 </resources>

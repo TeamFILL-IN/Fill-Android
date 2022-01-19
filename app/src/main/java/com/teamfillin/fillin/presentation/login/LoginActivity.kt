@@ -1,5 +1,7 @@
 package com.teamfillin.fillin.presentation.login
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -9,6 +11,7 @@ import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.databinding.ActivityLoginBinding
+import com.teamfillin.fillin.presentation.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -23,7 +26,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        binding.txtHello.setOnClickListener {
+        binding.containerLoginKakao.setOnClickListener {
             if (kakaoAuthService.isKakaoTalkLoginAvailable) {
                 kakaoAuthService.loginByKakaoTalk()
             } else {
@@ -47,12 +50,22 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             viewModel.loginResult
                 .flowWithLifecycle(lifecycle)
                 .collect {
-                    Timber.d("Nunu inHouseLogin $it")
                     when (it) {
-                        is LoginViewModel.InHouseLoginState.Success -> toast("로그인 성공")
+                        is LoginViewModel.InHouseLoginState.Success -> {
+                            toast("로그인 성공")
+                            startActivity(HomeActivity.getIntent(this@LoginActivity))
+                        }
                         is LoginViewModel.InHouseLoginState.Failure -> toast(it.message)
                     }
                 }
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        fun getIntent(context: Context) = Intent(context, LoginActivity::class.java).apply {
+            flags =
+                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         }
     }
 }
