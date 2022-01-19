@@ -7,7 +7,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface NewPhotoService {
-    @GET("photo")
+    @GET("photo/latest")
     fun getNewPhoto(): Call<BaseResponse<ResponseNewPhotoInfo>>
 
 }
