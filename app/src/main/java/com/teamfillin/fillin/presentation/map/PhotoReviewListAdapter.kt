@@ -3,12 +3,14 @@ package com.teamfillin.fillin.presentation.map
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.teamfillin.fillin.data.response.ResponsePhotoReviewInfo
+import com.bumptech.glide.Glide
+import com.teamfillin.fillin.data.response.ResponseStudioPhoto
 import com.teamfillin.fillin.databinding.ItemPhotoReviewBinding
+import timber.log.Timber
 
 class PhotoReviewListAdapter :
     RecyclerView.Adapter<PhotoReviewListAdapter.PhotoReviewListViewHolder>() {
-    private val photoList = mutableListOf<ResponsePhotoReviewInfo>()
+    private val photoList = mutableListOf<ResponseStudioPhoto.StudioPhoto>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoReviewListViewHolder {
         val binding =
@@ -22,7 +24,7 @@ class PhotoReviewListAdapter :
 
     override fun getItemCount(): Int = photoList.size
 
-    fun setItem(newItems: List<ResponsePhotoReviewInfo>) {
+    fun setItem(newItems: List<ResponseStudioPhoto.StudioPhoto>) {
         photoList.clear()
         photoList.addAll(newItems)
         notifyDataSetChanged()
@@ -31,8 +33,8 @@ class PhotoReviewListAdapter :
     class PhotoReviewListViewHolder(
         private val binding: ItemPhotoReviewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(photoReview: ResponsePhotoReviewInfo) {
-            binding.ivPhoto.setImageResource(photoReview.photo)
+        fun onBind(studioPhoto: ResponseStudioPhoto.StudioPhoto) {
+            Glide.with(itemView.context).load(studioPhoto.imageUrl).into(binding.ivPhoto)
         }
     }
 }
