@@ -1,5 +1,7 @@
 package com.teamfillin.fillin.presentation.login
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -56,6 +58,14 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                         is LoginViewModel.InHouseLoginState.Failure -> toast(it.message)
                     }
                 }
+        }
+    }
+
+    companion object {
+        @JvmStatic
+        fun getIntent(context: Context) = Intent(context, LoginActivity::class.java).apply {
+            flags =
+                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         }
     }
 }

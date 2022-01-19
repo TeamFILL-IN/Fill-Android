@@ -94,6 +94,7 @@ dependencies {
     implementation(ThirdPartyDependencies.kakaoLogin)
     implementation(ThirdPartyDependencies.naverMap)
     implementation(ThirdPartyDependencies.mapLocation)
+    implementation(ThirdPartyDependencies.dotsIndicator)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)

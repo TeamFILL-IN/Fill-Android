@@ -6,6 +6,15 @@
     <string name="login_slogan">Fill-in your Feel\nFill-in your film-</string>
     <string name="login_intro">필린에서 소중한 추억을\nFILL-IN 해보세요</string>
     <string name="login_kakao">카카오 로그인</string>
+    <string name="onboarding_skip">건너뛰기</string>
+    <string name="onboarding_next">다음</string>
+    <string name="onboarding_start">시작하기</string>
+    <string name="onboarding_title_1">필름을 스캔 할 현상소 정보를 찾고 계신가요?</string>
+    <string name="onboarding_title_2">어떤 필름을 사용 해 볼지 고민 하고 계신가요?</string>
+    <string name="onboarding_title_3">직접 찍은 필름 사진이나 정보를 공유하고 싶나요?</string>
+    <string name="onboarding_content_1">주변 현상소 정보를\n필린에서 찾아보세요!</string>
+    <string name="onboarding_content_2">다양한 필름 사진을\n필린에서 만나보세요!</string>
+    <string name="onboarding_content_3">나만의 필름 사진을\n필린에서 공유해보세요!</string>
     <string name="my_photos">MY PHOTOS</string>
     <string name="film_name">Film</string>
     <string name="studio_name">Studio</string>
