@@ -1,7 +1,10 @@
 package com.teamfillin.fillin.presentation.filmroll
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
@@ -12,11 +15,13 @@ import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
 class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activity_film_roll) {
     private var filmrollAdapter = FilmRollAdapter()
     private var curationAdapter = CurationAdapter()
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFilmRollAdapter()
         setCurationAdapter()
+        setResultFilmchoice()
         clickListener()
     }
 
@@ -92,6 +97,15 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
             )
         )
     }
+
+    private fun setResultFilmchoice(){
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+            if (result.resultCode == Activity.RESULT_OK){
+                val film = result.data?.getStringExtra("film") ?: ""
+                binding.tvFilmchoice.text = film
+            }
+        }
+    }
     private fun clickListener(){
         binding.fabAddPhoto.setOnSingleClickListener{
             val intent = Intent(this, AddPhotoActivity::class.java)
@@ -99,7 +113,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
         }
         binding.tvFilmchoice.setOnSingleClickListener {
             val intent = Intent(this, FilmRollCategoryActivity::class.java)
-            startActivity(intent)
+            resultLauncher.launch(intent)
         }
         binding.btnBack.setOnSingleClickListener {
             finish()
