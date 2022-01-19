@@ -3,12 +3,14 @@ package com.teamfillin.fillin.presentation.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.isVisible
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.content.receive
 import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
+import com.teamfillin.fillin.data.response.BaseResponse
 import com.teamfillin.fillin.data.response.ResponseNewPhotoInfo
 import com.teamfillin.fillin.data.service.NewPhotoService
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
@@ -18,6 +20,9 @@ import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 import com.teamfillin.fillin.presentation.map.StudioMapActivity
 import dagger.hilt.android.AndroidEntryPoint
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -42,7 +47,28 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         }, {
             Timber.d("Error $it")
         })
-    }
+//            val call: Call<BaseResponse<ResponseNewPhotoInfo>> = service.getNewPhoto()
+//            call.enqueue(object : Callback<BaseResponse<ResponseNewPhotoInfo>> {
+//                override fun onResponse(
+//                    call: Call<BaseResponse<ResponseNewPhotoInfo>>,
+//                    response: Response<BaseResponse<ResponseNewPhotoInfo>>
+//                ) {
+//                    if (response.isSuccessful) {
+//                        val photodata = response.body()?.data
+//                      Timber.d("데이터 넘어오나?", "${photodata?.data?.nickname}")
+//                    } else {
+//                        Timber.d("Error")
+//                    }
+//                }
+//                override fun onFailure(
+//                    call: Call<BaseResponse<ResponseNewPhotoInfo>>,
+//                    t: Throwable
+//                ) {
+//                    Log.d("NetworkTest", "error: $t")
+//                }
+//            })
+        }
+
 
     private fun clickListener() {
         binding.btnAddphoto.setOnSingleClickListener {
