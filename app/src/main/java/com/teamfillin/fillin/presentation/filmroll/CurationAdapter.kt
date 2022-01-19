@@ -6,13 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEW_PHOTOS_TYPE
-import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NewPhotosAdapter
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.databinding.ItemCurationBinding
 import com.teamfillin.fillin.databinding.ItemCurationFirstBinding
-import com.teamfillin.fillin.databinding.ItemNewPhotosListBinding
-import com.teamfillin.fillin.databinding.ItemNextButtonBinding
 
 class CurationAdapter() :
     ListAdapter<CurationInfo, RecyclerView.ViewHolder>(CurationDiffUtil()) {
