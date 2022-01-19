@@ -76,8 +76,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             }
             tvNotice.setOnClickListener {
                 toast("현상소 제보 Page이동")
-                val dialog = PhotoDialogFragment()
-                dialog.show(supportFragmentManager, "dialogfragmnet")
             }
         }
     }
