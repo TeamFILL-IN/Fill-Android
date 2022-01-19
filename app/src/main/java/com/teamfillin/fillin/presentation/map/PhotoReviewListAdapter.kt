@@ -19,6 +19,7 @@ class PhotoReviewListAdapter :
     }
 
     override fun onBindViewHolder(holder: PhotoReviewListViewHolder, position: Int) {
+        Timber.d("Nunu ${photoList[position]}")
         holder.onBind(photoList[position])
     }
 
