@@ -7,7 +7,7 @@
 
         <variable
             name="location"
-            type="com.teamfillin.fillin.data.response.ResponseLocationInfo" />
+            type="com.teamfillin.fillin.data.response.ResponseSearchInfo.StudioInfo" />
 
     </data>
 
@@ -30,10 +30,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
+            android:fontFamily="@font/noto_sans_kr_bold"
             android:text="@{location.name}"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:fontFamily="@font/noto_sans_kr_bold"
             app:layout_constraintBottom_toBottomOf="@id/iv_place_logo"
             app:layout_constraintStart_toEndOf="@id/iv_place_logo"
             app:layout_constraintTop_toTopOf="@id/iv_place_logo"
@@ -45,8 +45,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="20dp"
+            android:ellipsize="end"
             android:fontFamily="@font/noto_sans_kr_regular"
-            android:text="@{location.location}"
+            android:maxLines="1"
+            android:text="@{location.address}"
             android:textColor="@color/grey_1"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
