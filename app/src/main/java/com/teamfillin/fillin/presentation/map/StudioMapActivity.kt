@@ -31,22 +31,23 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     @Inject
     lateinit var service: StudioService
     private lateinit var behavior: BottomSheetBehavior<NestedScrollView>
-    private lateinit var locationSource: FusedLocationSource
+    private lateinit var fusedLocationSource: FusedLocationSource
     private var activityNaverMap: NaverMap? = null
     private val photoReviewAdapter = PhotoReviewListAdapter()
+    private val hashMap = HashMap<LatLng, Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding.mapMain.onCreate(savedInstanceState)
         behavior = BottomSheetBehavior.from(binding.clBottomSheet)
-        locationSource =
+        fusedLocationSource =
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
         binding.mapMain.getMapAsync(this)
         behavior.state = BottomSheetBehavior.STATE_HIDDEN
         toolbarEvent()
         searchClickEvent()
-        bottomSheetEvent()
+        initAdapter()
     }
 
     private fun toolbarEvent() {
@@ -64,13 +65,23 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         }
     }
 
+    private fun initAdapter() {
+        binding.rvPhotoReview.adapter = photoReviewAdapter
+//        addPhotoReview()
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
         grantResults: IntArray
     ) {
-        if (locationSource.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
-            if (!locationSource.isActivated) {
+        if (fusedLocationSource.onRequestPermissionsResult(
+                requestCode,
+                permissions,
+                grantResults
+            )
+        ) {
+            if (!fusedLocationSource.isActivated) {
                 activityNaverMap?.locationTrackingMode = LocationTrackingMode.None
             } else activityNaverMap?.locationTrackingMode = LocationTrackingMode.Follow
         }
@@ -83,11 +94,12 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
             setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, false)
             setLayerGroupEnabled(NaverMap.LAYER_GROUP_BUILDING, true)
             isNightModeEnabled = true
+            locationSource = fusedLocationSource
             locationTrackingMode = LocationTrackingMode.Follow
-            addOnLocationChangeListener { location ->
-                cameraPosition =
-                    CameraPosition(LatLng(location.latitude, location.longitude), 16.0)
-            }
+//            addOnLocationChangeListener { location ->
+//                cameraPosition =
+//                    CameraPosition(LatLng(location.latitude, location.longitude), 16.0)
+//            }
             minZoom = 6.0
             maxZoom = 18.0
             uiSettings.run {
@@ -104,6 +116,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     }
 
     private fun markerLocationEvent() {
+
         lifecycleScope.launch {
             runCatching {
                 service.getWholeStudio().await()
@@ -113,8 +126,42 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
                         position = LatLng(it.lati, it.long)
                         icon = OverlayImage.fromResource(R.drawable.ic_place_big)
                         this.map = activityNaverMap
+                        hashMap[LatLng(it.lati, it.long)] = it.id
+                        setOnClickListener {
+                            getStudioDetail(hashMap[position])
+                            getStudioPhoto(hashMap[position])
+                            true
+                        }
                     }
                 }
+            }.onFailure(Timber::e)
+        }
+    }
+
+    private fun getStudioDetail(position: Int?) {
+        lifecycleScope.launch {
+            runCatching {
+                service.getStudioDetail(position).await()
+            }.onSuccess {
+                val studio = it.data.studio
+                binding.apply {
+                    tvLocationName.text = studio.name
+                    tvLocationDetail.text = studio.address
+                    tvTimeDetail.text = studio.time
+                    tvCallDetail.text = studio.tel
+                    tvPriceDetail.text = studio.price
+                    behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                }
+            }.onFailure(Timber::e)
+        }
+    }
+
+    private fun getStudioPhoto(position: Int?) {
+        lifecycleScope.launch {
+            runCatching {
+                service.getStudioPhoto(position).await()
+            }.onSuccess {
+                photoReviewAdapter.setItem(it.data.photos)
             }.onFailure(Timber::e)
         }
     }
@@ -125,70 +172,6 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         if (it.resultCode == Activity.RESULT_OK) {
 
         }
-    }
-
-    private fun bottomSheetEvent() {
-        initAdapter()
-    }
-
-    private fun initAdapter() {
-        binding.rvPhotoReview.adapter = photoReviewAdapter
-        addPhotoReview()
-    }
-
-    private fun addPhotoReview() {
-        photoReviewAdapter.setItem(
-            listOf(
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-                ResponsePhotoReviewInfo(
-                    photo = R.drawable.and_photo_rectangle
-                ),
-            )
-        )
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
