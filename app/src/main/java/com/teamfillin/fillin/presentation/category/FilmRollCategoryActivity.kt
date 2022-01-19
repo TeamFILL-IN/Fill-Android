@@ -12,19 +12,14 @@ import androidx.recyclerview.widget.ListAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.teamfillin.fillin.R
-import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEW_PHOTOS_TYPE
-import com.teamfillin.fillin.com.teamfillin.fillin.presentation.home.NEXT_BUTTON_TYPE
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.CategoryInfo
-
 import com.teamfillin.fillin.databinding.ActivityFilmRollCategoryBinding
 import com.teamfillin.fillin.presentation.AddPhotoActivity
 import com.teamfillin.fillin.presentation.filmroll.FilmCategoryImageActivity
 import com.teamfillin.fillin.presentation.map.CustomDecoration
-import com.teamfillin.fillin.presentation.map.LocationListAdapter
-import com.teamfillin.fillin.presentation.map.MapSearchActivity
 
 class FilmRollCategoryActivity :
     BindingActivity<ActivityFilmRollCategoryBinding>(R.layout.activity_film_roll_category) {
