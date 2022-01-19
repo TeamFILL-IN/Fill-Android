@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:background="@color/fillin_black">
 
-        <androidx.appcompat.widget.Toolbar xmlns:tools="http://schemas.android.com/tools"
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
