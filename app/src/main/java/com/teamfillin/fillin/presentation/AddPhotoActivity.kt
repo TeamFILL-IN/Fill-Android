@@ -22,7 +22,7 @@ class AddPhotoActivity : BindingActivity<ActivityAddPhotoBinding>(R.layout.activ
 
     }
     private fun checkPermission() {
-        val cameraPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val cameraPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
         if (cameraPermission == PackageManager.PERMISSION_GRANTED) {
             //프로그램 진행
             startProcess()
@@ -49,8 +49,8 @@ class AddPhotoActivity : BindingActivity<ActivityAddPhotoBinding>(R.layout.activ
 
     private fun startProcess() {
         val intent = Intent().apply {
-            setType("image/*")
-            setAction(Intent.ACTION_GET_CONTENT)
+            type=("image/*")
+            action=(Intent.ACTION_GET_CONTENT)
         }
         getResultText.launch(intent)
     }
