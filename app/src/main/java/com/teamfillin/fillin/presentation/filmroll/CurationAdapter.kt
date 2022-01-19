@@ -24,7 +24,7 @@ class CurationAdapter() :
             Glide.with(binding.root)
                 .load(film.image)
                 .into(binding.ivCurationfirst)
-            binding.tvCuration.text = "따뜻한 사진을 \n 원한다면"
+            binding.tvCuration.text = "따뜻한 사진을\n원한다면"
         }
     }
 

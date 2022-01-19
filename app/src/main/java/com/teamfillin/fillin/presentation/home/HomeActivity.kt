@@ -51,7 +51,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             val intent = Intent(this, AddPhotoActivity::class.java)
             startActivity(intent)
         }
-
         binding.btnFilmroll.setOnSingleClickListener {
             val intent = Intent(this, FilmRollActivity::class.java)
             startActivity(intent)
