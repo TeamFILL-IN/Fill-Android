@@ -40,25 +40,25 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
         curationAdapter.submitList(
             listOf(
                 CurationInfo(
-                    R.drawable.ic_card_curation, CURATION_INFO_TYPE
+                    R.drawable.ic_curation_cover, CURATION_INFO_TYPE,"따뜻한 사진을 \n 원한다면"
                 ),
                 CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE
+                    R.drawable.and_card_img, CURATION_TYPE,""
                 ),
                 CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE
+                    R.drawable.and_card_img, CURATION_TYPE,""
                 ),
                 CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE
+                    R.drawable.and_card_img, CURATION_TYPE,""
                 ),
                 CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE
+                    R.drawable.and_card_img, CURATION_TYPE,""
                 ),
                 CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE
+                    R.drawable.and_card_img, CURATION_TYPE,""
                 ),
                 CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE
+                    R.drawable.and_card_img, CURATION_TYPE,""
                 )
 
             )
