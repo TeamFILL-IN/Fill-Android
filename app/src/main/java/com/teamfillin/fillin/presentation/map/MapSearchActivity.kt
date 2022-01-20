@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
@@ -23,13 +22,20 @@ import javax.inject.Inject
 class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.activity_map_search) {
     @Inject
     lateinit var service: StudioService
-    private val locationAdapter = SearchListAdapter()
+    private val searchListAdapter = SearchListAdapter {
+        val intent = Intent()
+        setResult(Activity.RESULT_OK, intent)
+        intent.putExtra("id", it.id)
+        finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         toolbarEvent()
         editTextIconEvent()
         setLocationListAdapter()
+
     }
 
     private fun toolbarEvent() {
@@ -48,7 +54,7 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
     }
 
     private fun setLocationListAdapter() {
-        binding.rvLocationInfo.adapter = locationAdapter
+        binding.rvLocationInfo.adapter = searchListAdapter
         val customDecoration = CustomDecoration(1f, 10f, Color.GRAY)
         binding.rvLocationInfo.addItemDecoration(customDecoration)
         locationSearchEvent()
@@ -63,7 +69,7 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
                     binding.rvLocationInfo.isVisible = it.data.studio.isNotEmpty()
                     binding.clNoResult.isVisible = it.data.studio.isEmpty()
                     if (it.data.studio.isNotEmpty()) {
-                        locationAdapter.submitList(it.data.studio)
+                        searchListAdapter.submitList(it.data.studio)
                     }
                 }.onFailure(Timber::e)
             }
@@ -81,8 +87,6 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                val intent = Intent()
-                setResult(Activity.RESULT_OK, intent)
                 finish()
                 return true
             }
