@@ -2,7 +2,12 @@ package com.teamfillin.fillin.presentation.map
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
@@ -10,20 +15,24 @@ import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.*
+import com.naver.maps.map.CameraUpdate
+import com.naver.maps.map.LocationTrackingMode
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
-import com.teamfillin.fillin.data.response.ResponsePhotoReviewInfo
 import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.databinding.ActivityStudioMapBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import retrofit2.await
+import retrofit2.awaitResponse
 import timber.log.Timber
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.activity_studio_map),
@@ -34,7 +43,8 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     private lateinit var fusedLocationSource: FusedLocationSource
     private var activityNaverMap: NaverMap? = null
     private val photoReviewAdapter = PhotoReviewListAdapter()
-    private val hashMap = HashMap<LatLng, Int>()
+    private val idHash = HashMap<LatLng, Int>()
+    private val locationHash = HashMap<Int, LatLng>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +77,8 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
 
     private fun initAdapter() {
         binding.rvPhotoReview.adapter = photoReviewAdapter
-//        addPhotoReview()
+        val customDecoration = SpaceDecoration(10)
+        binding.rvPhotoReview.addItemDecoration(customDecoration)
     }
 
     override fun onRequestPermissionsResult(
@@ -96,10 +107,6 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
             isNightModeEnabled = true
             locationSource = fusedLocationSource
             locationTrackingMode = LocationTrackingMode.Follow
-//            addOnLocationChangeListener { location ->
-//                cameraPosition =
-//                    CameraPosition(LatLng(location.latitude, location.longitude), 16.0)
-//            }
             minZoom = 6.0
             maxZoom = 18.0
             uiSettings.run {
@@ -113,6 +120,9 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         binding.clBottomSheet.visibility = View.VISIBLE
         markerLocationEvent()
         binding.btnLocation.map = naverMap
+        activityNaverMap?.setOnMapClickListener { _, _ ->
+            behavior.state = BottomSheetBehavior.STATE_HIDDEN
+        }
     }
 
     private fun markerLocationEvent() {
@@ -126,10 +136,11 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
                         position = LatLng(it.lati, it.long)
                         icon = OverlayImage.fromResource(R.drawable.ic_place_big)
                         this.map = activityNaverMap
-                        hashMap[LatLng(it.lati, it.long)] = it.id
+                        idHash[LatLng(it.lati, it.long)] = it.id
+                        locationHash[it.id] = LatLng(it.lati, it.long)
                         setOnClickListener {
-                            getStudioDetail(hashMap[position])
-                            getStudioPhoto(hashMap[position])
+                            getStudioDetail(idHash[position])
+                            getStudioPhoto(idHash[position])
                             true
                         }
                     }
@@ -152,6 +163,9 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
                     tvPriceDetail.text = studio.price
                     behavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 }
+                val cameraUpdate = CameraUpdate.scrollTo(locationHash[position]!!)
+                activityNaverMap?.moveCamera(cameraUpdate)
+                linkText(studio.site)
             }.onFailure(Timber::e)
         }
     }
@@ -159,18 +173,35 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     private fun getStudioPhoto(position: Int?) {
         lifecycleScope.launch {
             runCatching {
-                service.getStudioPhoto(position).await()
+                Timber.d(position.toString() + "kangmin")
+                service.getStudioPhoto(position).awaitResponse()
             }.onSuccess {
-                photoReviewAdapter.setItem(it.data.photos)
+                if (it.code() == 204)
+                    photoReviewAdapter.submitList(emptyList())
+                else photoReviewAdapter.submitList(it.body()?.data?.photos)
             }.onFailure(Timber::e)
         }
+    }
+
+    private fun linkText(site: String) {
+        val spannable = SpannableStringBuilder("웹 사이트로 이동")
+        spannable.setSpan(object : ClickableSpan() {
+            override fun onClick(p0: View) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(site))
+                startActivity(intent)
+            }
+        }, 0, 9, Spanned.SPAN_EXCLUSIVE_INCLUSIVE)
+        binding.tvLink.text = spannable
+        binding.tvLink.movementMethod = LinkMovementMethod.getInstance()
     }
 
     private val mapSearchActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
         if (it.resultCode == Activity.RESULT_OK) {
-
+            val locationId = it.data?.getIntExtra("id", 0)
+            getStudioDetail(locationId)
+            getStudioPhoto(locationId)
         }
     }
 
