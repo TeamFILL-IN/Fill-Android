@@ -63,8 +63,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="315dp"
         android:layout_marginTop="3dp"
         app:layout_constraintBottom_toTopOf="@+id/ll_bottom"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,13 +73,13 @@
 
         <ImageView
             android:id="@+id/iv_photo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerInside"
+            android:scaleType="fitXY"
             android:src="@drawable/and_photoframe"
+            app:layout_constraintBottom_toBottomOf="@id/cl_image"
             app:layout_constraintEnd_toEndOf="@id/cl_image"
             app:layout_constraintStart_toStartOf="@id/cl_image"
-            app:layout_constraintTop_toBottomOf="@id/cl_image"
             app:layout_constraintTop_toTopOf="@id/cl_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
