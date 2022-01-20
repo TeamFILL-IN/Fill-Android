@@ -49,23 +49,12 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             Timber.d("Error $it")
         })
 
-        service.getUser().enqueue(object : Callback<BaseResponse<ResponseUserInfo>> {
-            override fun onResponse(
-                call: Call<BaseResponse<ResponseUserInfo>>,
-                response: Response<BaseResponse<ResponseUserInfo>>
-            ) {
-                if (response.isSuccessful) {
-                    val userData = response.body()?.data
-                    binding.tvIntro.text = "${userData?.user?.nickname}"
-                    Timber.d("데이터 넘어오나?", "${userData?.user?.nickname}")
-                } else {
-                    Timber.d("Error")
-                }
-            }
-
-            override fun onFailure(call: Call<BaseResponse<ResponseUserInfo>>, t: Throwable) {
-                Log.d("NetworkTest", "error: $t")
-            }
+        service.getUser().receive({
+            val userData = it.data
+            binding.tvIntro.text = "${userData?.user?.nickname}"
+            Timber.d("데이터 넘어오나?", "${userData?.user?.nickname}")
+        }, {
+            Timber.d("Error")
         })
     }
 

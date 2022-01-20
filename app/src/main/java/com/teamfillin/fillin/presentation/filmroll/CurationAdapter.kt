@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
-import com.teamfillin.fillin.data.response.ResponseCurationInfo
+import com.teamfillin.fillin.data.response.ResponseFilmRoll
 import com.teamfillin.fillin.databinding.ItemCurationBinding
 import com.teamfillin.fillin.databinding.ItemCurationFirstBinding
 import timber.log.Timber
@@ -16,7 +16,7 @@ private const val CURATION_INFO_TYPE = 1
 private const val CURATION_TYPE = 2
 
 class CurationAdapter :
-    ListAdapter<ResponseCurationInfo.CurationPhoto, RecyclerView.ViewHolder>(CurationDiffUtil()) {
+    ListAdapter<ResponseFilmRoll.Curation, RecyclerView.ViewHolder>(CurationDiffUtil()) {
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
@@ -34,9 +34,9 @@ class CurationAdapter :
 
     class CurationImageViewHolder(private val binding: ItemCurationBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(film: ResponseCurationInfo.CurationPhoto) {
+        fun bind(film: ResponseFilmRoll.Curation) {
             Glide.with(binding.root)
-                .load(film.imageUrl)
+                .load(film.photolist)
                 .into(binding.ivCuration)
             binding.btnLike.setOnSingleClickListener {
                 binding.btnLike.isSelected = !binding.btnLike.isSelected
@@ -80,15 +80,15 @@ class CurationAdapter :
         }
     }
 
-    private class CurationDiffUtil : DiffUtil.ItemCallback<ResponseCurationInfo.CurationPhoto>() {
+    private class CurationDiffUtil : DiffUtil.ItemCallback<ResponseFilmRoll.Curation>() {
         override fun areItemsTheSame(
-            oldItem: ResponseCurationInfo.CurationPhoto,
-            newItem: ResponseCurationInfo.CurationPhoto
-        ) = oldItem.filmId == newItem.filmId
+            oldItem: ResponseFilmRoll.Curation,
+            newItem: ResponseFilmRoll.Curation
+        ) = oldItem.photolist == newItem.photolist
 
         override fun areContentsTheSame(
-            oldItem: ResponseCurationInfo.CurationPhoto,
-            newItem: ResponseCurationInfo.CurationPhoto
+            oldItem: ResponseFilmRoll.Curation,
+            newItem: ResponseFilmRoll.Curation
         ) = oldItem == newItem
     }
 }

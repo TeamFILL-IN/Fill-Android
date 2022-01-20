@@ -28,16 +28,7 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun provideFilmPhotoService(retrofit: Retrofit): FilmPhotoService =
-        retrofit.create(FilmPhotoService::class.java)
+    fun provideFilmRollService(retrofit: Retrofit): FilmRollService =
+        retrofit.create(FilmRollService::class.java)
 
-    @Provides
-    @Singleton
-    fun provideFilmStyleService(retrofit: Retrofit): FilmStyleService =
-        retrofit.create(FilmStyleService::class.java)
-
-    @Provides
-    @Singleton
-    fun provideCurationService(retrofit: Retrofit): CurationService =
-        retrofit.create(CurationService::class.java)
 }
