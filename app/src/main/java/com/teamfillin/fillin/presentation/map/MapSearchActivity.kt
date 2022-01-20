@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
@@ -35,7 +36,6 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
         toolbarEvent()
         editTextIconEvent()
         setLocationListAdapter()
-
     }
 
     private fun toolbarEvent() {
@@ -50,6 +50,14 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
     private fun editTextIconEvent() {
         binding.editSearch.doAfterTextChanged {
             editTextBlankCheck()
+        }
+        binding.editSearch.setOnEditorActionListener { _, id, _ ->
+            var handled = false
+            if (id == EditorInfo.IME_ACTION_SEARCH) {
+                binding.ivSearch.performClick()
+                handled = true
+            }
+            handled
         }
     }
 
