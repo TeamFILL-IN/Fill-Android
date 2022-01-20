@@ -26,10 +26,10 @@ import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.databinding.ActivityStudioMapBinding
+import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import retrofit2.await
-import retrofit2.awaitResponse
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -42,7 +42,11 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     private lateinit var behavior: BottomSheetBehavior<NestedScrollView>
     private lateinit var fusedLocationSource: FusedLocationSource
     private var activityNaverMap: NaverMap? = null
-    private val photoReviewAdapter = PhotoReviewListAdapter()
+    private val photoReviewAdapter = PhotoReviewListAdapter {
+        photoUrl = it.imageUrl
+        val dialog = PhotoDialogFragment()
+        dialog.show(supportFragmentManager, "dialog")
+    }
     private val studioIdHash = HashMap<LatLng, Int>()
     private val locationHash = HashMap<Int, LatLng>()
 
@@ -167,6 +171,11 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
                 }
                 val cameraUpdate = CameraUpdate.scrollTo(locationHash[position]!!)
                 activityNaverMap?.moveCamera(cameraUpdate)
+                if (studio.site.isNullOrEmpty()) binding.tvLink.visibility = View.GONE
+                else {
+                    binding.tvLink.visibility = View.VISIBLE
+                    linkText(studio.site)
+                }
                 linkText(studio.site)
             }.onFailure(Timber::e)
         }
@@ -203,7 +212,6 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
                 getStudioDetail(it)
                 getStudioPhoto(it)
             }
-
         }
     }
 
@@ -254,5 +262,6 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+        var photoUrl = ""
     }
 }
