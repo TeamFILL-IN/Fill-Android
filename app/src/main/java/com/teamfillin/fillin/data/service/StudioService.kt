@@ -8,17 +8,17 @@ import retrofit2.http.Query
 
 interface StudioService {
     @GET("studio")
-    fun getWholeStudio(): Call<BaseResponse<ResponseStudioInfo>>
+    fun getWholeStudio(): Call<BaseResponse<ResponseStudioLocation>>
 
     @GET("studio/search")
     fun getSearchInfo(
         @Query("keyword") keyword: String
-    ): Call<BaseResponse<ResponseSearchInfo>>
+    ): Call<BaseResponse<ResponseSearch>>
 
     @GET("studio/detail/{studioId}")
     fun getStudioDetail(
         @Path("studioId") studioId: Int?
-    ): Call<BaseResponse<ResponseStudioDetail>>
+    ): Call<BaseResponse<ResponseStudio>>
 
     @GET("photo/studio/{studioId}")
     fun getStudioPhoto(
