@@ -129,9 +129,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/li_deco" />
 
-                <LinearLayout
-                    android:id="@+id/mapview"
-                    android:layout_width="350dp"
+                <com.naver.maps.map.MapView
+                    android:id="@+id/map_main"
+                    android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="12dp"
@@ -142,7 +142,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_aroundyou">
 
-                </LinearLayout>
+                </com.naver.maps.map.MapView>
 
                 <LinearLayout
                     android:id="@+id/li_bottomdeco"
@@ -151,7 +151,7 @@
                     android:layout_marginTop="12dp"
                     android:background="@color/dark_grey_3"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/mapview">
+                    app:layout_constraintTop_toBottomOf="@+id/map_main">
 
                 </LinearLayout>
 
