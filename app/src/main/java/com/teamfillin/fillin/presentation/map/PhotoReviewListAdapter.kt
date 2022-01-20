@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.teamfillin.fillin.data.response.ResponseStudioPhoto
 import com.teamfillin.fillin.databinding.ItemPhotoReviewBinding
 
-class PhotoReviewListAdapter :
+class PhotoReviewListAdapter(private val listener: ItemClickListener) :
     ListAdapter<ResponseStudioPhoto.StudioPhoto, PhotoReviewListAdapter.PhotoReviewListViewHolder>(
         DIFFUTIL
     ) {
@@ -17,18 +17,26 @@ class PhotoReviewListAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoReviewListViewHolder {
         val binding =
             ItemPhotoReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PhotoReviewListViewHolder(binding)
+        return PhotoReviewListViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: PhotoReviewListViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
 
+    fun interface ItemClickListener {
+        fun onClick(data: ResponseStudioPhoto.StudioPhoto)
+    }
+
     class PhotoReviewListViewHolder(
-        private val binding: ItemPhotoReviewBinding
+        private val binding: ItemPhotoReviewBinding,
+        private val listener: ItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(studioPhoto: ResponseStudioPhoto.StudioPhoto) {
             Glide.with(itemView.context).load(studioPhoto.imageUrl).into(binding.ivPhoto)
+            binding.root.setOnClickListener {
+                listener.onClick(studioPhoto)
+            }
         }
     }
 
