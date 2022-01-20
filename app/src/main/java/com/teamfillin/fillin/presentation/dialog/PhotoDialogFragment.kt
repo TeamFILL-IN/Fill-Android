@@ -37,10 +37,7 @@ class PhotoDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val photoUrl = arguments?.getString("photoUrl")
-        photoUrl?.let {
-            binding.ivPhoto.load(-1, it)
-        }
-
+        Glide.with(requireActivity()).load(photoUrl).into(binding.ivPhoto)
     }
 
     //휴대폰 크기 맞춰 자동 조절 다이얼로그
