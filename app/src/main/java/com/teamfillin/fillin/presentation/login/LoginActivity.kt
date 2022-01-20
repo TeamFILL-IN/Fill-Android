@@ -39,7 +39,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 .flowWithLifecycle(lifecycle)
                 .collect {
                     when (it) {
-                        is KakaoAuthService.LoginState.Success -> viewModel.login(it.token)
+                        is KakaoAuthService.LoginState.Success -> viewModel.login(it.token, it.id)
                         is KakaoAuthService.LoginState.Failure -> Timber.d("Kakao Login Failed ${it.error}")
                         else -> Timber.d("Kakao INIT")
                     }
