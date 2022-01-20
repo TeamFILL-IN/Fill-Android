@@ -43,9 +43,12 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     private lateinit var fusedLocationSource: FusedLocationSource
     private var activityNaverMap: NaverMap? = null
     private val photoReviewAdapter = PhotoReviewListAdapter {
-        photoUrl = it.imageUrl
         val dialog = PhotoDialogFragment()
-        dialog.show(supportFragmentManager, "dialog")
+        val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
+        dialog.apply {
+            arguments = bundle
+            show(supportFragmentManager, "dialog")
+        }
     }
     private val studioIdHash = HashMap<LatLng, Int>()
     private val locationHash = HashMap<Int, LatLng>()

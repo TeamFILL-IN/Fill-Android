@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
+import com.teamfillin.fillin.core.view.load
 import com.teamfillin.fillin.databinding.FragmentPhotoDialogBinding
 import com.teamfillin.fillin.presentation.map.StudioMapActivity.Companion.photoUrl
 
@@ -35,7 +36,11 @@ class PhotoDialogFragment : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Glide.with(view.context).load(photoUrl).into(binding.ivPhoto)
+        val photoUrl = arguments?.getString("photoUrl")
+        photoUrl?.let {
+            binding.ivPhoto.load(-1, it)
+        }
+
     }
 
     //휴대폰 크기 맞춰 자동 조절 다이얼로그
