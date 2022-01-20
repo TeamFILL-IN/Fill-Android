@@ -9,7 +9,7 @@ import com.teamfillin.fillin.data.response.ResponseSearch
 import com.teamfillin.fillin.databinding.ItemLocationInfoBinding
 
 class SearchListAdapter(private val listener: ItemClickListener) :
-    ListAdapter<ResponseSearch.Studio, SearchListAdapter.SearchListViewHolder>(
+    ListAdapter<ResponseSearch.StudioResponse, SearchListAdapter.SearchListViewHolder>(
         DIFFUTIL
     ) {
 
@@ -24,14 +24,14 @@ class SearchListAdapter(private val listener: ItemClickListener) :
     }
 
     fun interface ItemClickListener {
-        fun onClick(data: ResponseSearch.Studio)
+        fun onClick(data: ResponseSearch.StudioResponse)
     }
 
     class SearchListViewHolder(
         private val binding: ItemLocationInfoBinding,
         private val listener: ItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(searchInfo: ResponseSearch.Studio) {
+        fun onBind(searchInfo: ResponseSearch.StudioResponse) {
             binding.location = searchInfo
             binding.root.setOnClickListener {
                 listener.onClick(searchInfo)
@@ -40,17 +40,17 @@ class SearchListAdapter(private val listener: ItemClickListener) :
     }
 
     companion object {
-        val DIFFUTIL = object : DiffUtil.ItemCallback<ResponseSearch.Studio>() {
+        val DIFFUTIL = object : DiffUtil.ItemCallback<ResponseSearch.StudioResponse>() {
             override fun areItemsTheSame(
-                oldItem: ResponseSearch.Studio,
-                newItem: ResponseSearch.Studio
+                oldItem: ResponseSearch.StudioResponse,
+                newItem: ResponseSearch.StudioResponse
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: ResponseSearch.Studio,
-                newItem: ResponseSearch.Studio
+                oldItem: ResponseSearch.StudioResponse,
+                newItem: ResponseSearch.StudioResponse
             ): Boolean {
                 return oldItem == newItem
             }

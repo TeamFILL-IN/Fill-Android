@@ -24,9 +24,8 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
     @Inject
     lateinit var service: StudioService
     private val searchListAdapter = SearchListAdapter {
-        val intent = Intent()
+        val intent = Intent().apply { putExtra("id", it.id) }
         setResult(Activity.RESULT_OK, intent)
-        intent.putExtra("id", it.id)
         finish()
     }
 

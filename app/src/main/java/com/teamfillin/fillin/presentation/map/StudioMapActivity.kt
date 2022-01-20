@@ -43,7 +43,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     private lateinit var fusedLocationSource: FusedLocationSource
     private var activityNaverMap: NaverMap? = null
     private val photoReviewAdapter = PhotoReviewListAdapter()
-    private val idHash = HashMap<LatLng, Int>()
+    private val studioIdHash = HashMap<LatLng, Int>()
     private val locationHash = HashMap<Int, LatLng>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,7 +77,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
 
     private fun initAdapter() {
         binding.rvPhotoReview.adapter = photoReviewAdapter
-        val customDecoration = SpaceDecoration(10)
+        val customDecoration = SpaceDecoration(7)
         binding.rvPhotoReview.addItemDecoration(customDecoration)
     }
 
@@ -136,11 +136,13 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
                         position = LatLng(it.lati, it.long)
                         icon = OverlayImage.fromResource(R.drawable.ic_place_big)
                         this.map = activityNaverMap
-                        idHash[LatLng(it.lati, it.long)] = it.id
+                        studioIdHash[LatLng(it.lati, it.long)] = it.id
                         locationHash[it.id] = LatLng(it.lati, it.long)
                         setOnClickListener {
-                            getStudioDetail(idHash[position])
-                            getStudioPhoto(idHash[position])
+                            studioIdHash[position]?.let {
+                                getStudioDetail(it)
+                                getStudioPhoto(it)
+                            }
                             true
                         }
                     }
@@ -149,7 +151,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         }
     }
 
-    private fun getStudioDetail(position: Int?) {
+    private fun getStudioDetail(position: Int) {
         lifecycleScope.launch {
             runCatching {
                 service.getStudioDetail(position).await()
@@ -170,15 +172,12 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         }
     }
 
-    private fun getStudioPhoto(position: Int?) {
+    private fun getStudioPhoto(position: Int) {
         lifecycleScope.launch {
             runCatching {
-                Timber.d(position.toString() + "kangmin")
-                service.getStudioPhoto(position).awaitResponse()
+                service.getStudioPhoto(position).await()
             }.onSuccess {
-                if (it.code() == 204)
-                    photoReviewAdapter.submitList(emptyList())
-                else photoReviewAdapter.submitList(it.body()?.data?.photos)
+                photoReviewAdapter.submitList(it.data.photos)
             }.onFailure(Timber::e)
         }
     }
@@ -200,8 +199,11 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     ) {
         if (it.resultCode == Activity.RESULT_OK) {
             val locationId = it.data?.getIntExtra("id", 0)
-            getStudioDetail(locationId)
-            getStudioPhoto(locationId)
+            locationId?.let {
+                getStudioDetail(it)
+                getStudioPhoto(it)
+            }
+
         }
     }
 

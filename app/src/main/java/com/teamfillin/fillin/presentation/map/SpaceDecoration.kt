@@ -4,6 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
+import com.teamfillin.fillin.design.dp
 
 class SpaceDecoration(private val margin: Int) : ItemDecoration() {
     override fun getItemOffsets(
@@ -13,8 +14,8 @@ class SpaceDecoration(private val margin: Int) : ItemDecoration() {
         state: State
     ) {
         with(outRect) {
-            right = margin
-            bottom = margin
+            right = margin.dp
+            bottom = margin.dp
         }
     }
 }

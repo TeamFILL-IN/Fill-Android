@@ -17,11 +17,11 @@ interface StudioService {
 
     @GET("studio/detail/{studioId}")
     fun getStudioDetail(
-        @Path("studioId") studioId: Int?
+        @Path("studioId") studioId: Int
     ): Call<BaseResponse<ResponseStudio>>
 
     @GET("photo/studio/{studioId}")
     fun getStudioPhoto(
-        @Path("studioId") studioId: Int?
+        @Path("studioId") studioId: Int
     ): Call<BaseResponse<ResponseStudioPhoto>>
 }
