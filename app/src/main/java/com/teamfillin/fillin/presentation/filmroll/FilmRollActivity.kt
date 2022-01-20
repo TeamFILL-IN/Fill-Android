@@ -7,20 +7,31 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
+import com.teamfillin.fillin.core.content.receive
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
+import com.teamfillin.fillin.data.response.ResponseCurationInfo
+import com.teamfillin.fillin.data.response.ResponseNewPhotoInfo
+import com.teamfillin.fillin.data.service.CurationService
 import com.teamfillin.fillin.databinding.ActivityFilmRollBinding
 import com.teamfillin.fillin.presentation.AddPhotoActivity
 import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
+import com.teamfillin.fillin.presentation.home.NewPhotosAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activity_film_roll) {
+    @Inject
+    lateinit var service: CurationService
     private var filmrollAdapter = FilmRollAdapter()
     private var curationAdapter = CurationAdapter()
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setFilmRollAdapter()
         setCurationAdapter()
+        setFilmRollAdapter()
         setResultFilmchoice()
         clickListener()
     }
@@ -31,32 +42,37 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
     }
 
     private fun addCurationList() {
-        curationAdapter.submitList(
-            listOf(
-                CurationInfo(
-                    R.drawable.ic_curation_cover, CURATION_INFO_TYPE,"따뜻한 사진을 \n 원한다면"
-                ),
-                CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE,""
-                ),
-                CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE,""
-                ),
-                CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE,""
-                ),
-                CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE,""
-                ),
-                CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE,""
-                ),
-                CurationInfo(
-                    R.drawable.and_card_img, CURATION_TYPE,""
-                )
-
-            )
-        )
+        service.getCuration().receive({
+            curationAdapter.submitList(it.data.photo)
+        }, {
+            Timber.d("Error $it")
+        })
+//        curationAdapter.submitList(
+//            listOf(
+//                CurationInfo(
+//                    R.drawable.ic_curation_cover, CURATION_INFO_TYPE,"따뜻한 사진을 \n 원한다면"
+//                ),
+//                CurationInfo(
+//                    R.drawable.and_card_img, CURATION_TYPE,""
+//                ),
+//                CurationInfo(
+//                    R.drawable.and_card_img, CURATION_TYPE,""
+//                ),
+//                CurationInfo(
+//                    R.drawable.and_card_img, CURATION_TYPE,""
+//                ),
+//                CurationInfo(
+//                    R.drawable.and_card_img, CURATION_TYPE,""
+//                ),
+//                CurationInfo(
+//                    R.drawable.and_card_img, CURATION_TYPE,""
+//                ),
+//                CurationInfo(
+//                    R.drawable.and_card_img, CURATION_TYPE,""
+//                )
+//
+//            )
+//        )
     }
 
     private fun setFilmRollAdapter() {
@@ -98,16 +114,18 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
         )
     }
 
-    private fun setResultFilmchoice(){
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-            if (result.resultCode == Activity.RESULT_OK){
-                val film = result.data?.getStringExtra("film") ?: ""
-                binding.tvFilmchoice.text = film
+    private fun setResultFilmchoice() {
+        resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val film = result.data?.getStringExtra("film") ?: ""
+                    binding.tvFilmchoice.text = film
+                }
             }
-        }
     }
-    private fun clickListener(){
-        binding.fabAddPhoto.setOnSingleClickListener{
+
+    private fun clickListener() {
+        binding.fabAddPhoto.setOnSingleClickListener {
             val intent = Intent(this, AddPhotoActivity::class.java)
             startActivity(intent)
         }

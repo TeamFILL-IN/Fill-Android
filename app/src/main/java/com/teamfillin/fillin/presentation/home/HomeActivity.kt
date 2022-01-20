@@ -12,7 +12,8 @@ import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.response.BaseResponse
 import com.teamfillin.fillin.data.response.ResponseNewPhotoInfo
-import com.teamfillin.fillin.data.service.NewPhotoService
+import com.teamfillin.fillin.data.response.ResponseUserInfo
+import com.teamfillin.fillin.data.service.HomeService
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
 import com.teamfillin.fillin.presentation.AddPhotoActivity
 import com.teamfillin.fillin.presentation.MyPageActivity
@@ -29,7 +30,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home) {
     @Inject
-    lateinit var service: NewPhotoService
+    lateinit var service: HomeService
     private lateinit var newPhotosAdapter: NewPhotosAdapter
     var newPhotosData = listOf<ResponseNewPhotoInfo.Photo>()
 
@@ -47,27 +48,26 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         }, {
             Timber.d("Error $it")
         })
-//            val call: Call<BaseResponse<ResponseNewPhotoInfo>> = service.getNewPhoto()
-//            call.enqueue(object : Callback<BaseResponse<ResponseNewPhotoInfo>> {
-//                override fun onResponse(
-//                    call: Call<BaseResponse<ResponseNewPhotoInfo>>,
-//                    response: Response<BaseResponse<ResponseNewPhotoInfo>>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        val photodata = response.body()?.data
-//                      Timber.d("데이터 넘어오나?", "${photodata?.data?.nickname}")
-//                    } else {
-//                        Timber.d("Error")
-//                    }
-//                }
-//                override fun onFailure(
-//                    call: Call<BaseResponse<ResponseNewPhotoInfo>>,
-//                    t: Throwable
-//                ) {
-//                    Log.d("NetworkTest", "error: $t")
-//                }
-//            })
-        }
+
+        service.getUser().enqueue(object : Callback<BaseResponse<ResponseUserInfo>> {
+            override fun onResponse(
+                call: Call<BaseResponse<ResponseUserInfo>>,
+                response: Response<BaseResponse<ResponseUserInfo>>
+            ) {
+                if (response.isSuccessful) {
+                    val userData = response.body()?.data
+                    binding.tvIntro.text = "${userData?.user?.nickname}"
+                    Timber.d("데이터 넘어오나?", "${userData?.user?.nickname}")
+                } else {
+                    Timber.d("Error")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<ResponseUserInfo>>, t: Throwable) {
+                Log.d("NetworkTest", "error: $t")
+            }
+        })
+    }
 
 
     private fun clickListener() {

@@ -1,7 +1,7 @@
 package com.teamfillin.fillin.data.response
 
 data class ResponseCurationInfo(
-    val curation: List<Curation>,
+    val curation: Curation,
     val photo: List<CurationPhoto>
 ) {
     data class Curation(
