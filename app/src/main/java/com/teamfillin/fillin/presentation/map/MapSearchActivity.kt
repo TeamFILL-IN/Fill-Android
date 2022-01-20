@@ -66,10 +66,10 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
                 runCatching {
                     service.getSearchInfo(binding.editSearch.text.toString()).await()
                 }.onSuccess {
-                    binding.rvLocationInfo.isVisible = it.data.studio.isNotEmpty()
-                    binding.clNoResult.isVisible = it.data.studio.isEmpty()
-                    if (it.data.studio.isNotEmpty()) {
-                        searchListAdapter.submitList(it.data.studio)
+                    binding.rvLocationInfo.isVisible = it.data.studios.isNotEmpty()
+                    binding.clNoResult.isVisible = it.data.studios.isEmpty()
+                    if (it.data.studios.isNotEmpty()) {
+                        searchListAdapter.submitList(it.data.studios)
                     }
                 }.onFailure(Timber::e)
             }

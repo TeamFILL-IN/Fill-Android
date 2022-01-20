@@ -131,7 +131,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
             runCatching {
                 service.getWholeStudio().await()
             }.onSuccess {
-                it.data.studio.forEach {
+                it.data.studios.forEach {
                     Marker().apply {
                         position = LatLng(it.lati, it.long)
                         icon = OverlayImage.fromResource(R.drawable.ic_place_big)
