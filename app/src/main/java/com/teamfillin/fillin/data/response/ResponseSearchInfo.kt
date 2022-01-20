@@ -1,7 +1,7 @@
 package com.teamfillin.fillin.data.response
 
 data class ResponseSearchInfo(
-    val studioㄴ: List<StudioInfo>
+    val studios: List<StudioInfo>
 ) {
     data class StudioInfo(
         val id: Int,
