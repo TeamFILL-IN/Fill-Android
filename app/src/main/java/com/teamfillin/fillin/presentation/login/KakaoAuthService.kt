@@ -37,7 +37,9 @@ class KakaoAuthService @Inject constructor(
     }
 
     private fun handleLoginSuccess(oAuthToken: OAuthToken) {
-        _loginState.value = LoginState.Success(oAuthToken.accessToken)
+        client.me { user, _ ->
+            _loginState.value = LoginState.Success(oAuthToken.accessToken, user?.id.toString())
+        }
     }
 
     fun logout() {
@@ -46,7 +48,7 @@ class KakaoAuthService @Inject constructor(
 
     sealed class LoginState {
         object Init : LoginState()
-        data class Success(val token: String) : LoginState()
+        data class Success(val token: String, val id: String) : LoginState()
         data class Failure(val error: Throwable) : LoginState()
     }
 }
