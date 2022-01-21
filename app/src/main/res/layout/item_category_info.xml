@@ -7,7 +7,7 @@
 
         <variable
             name="category"
-            type="com.teamfillin.fillin.data.CategoryInfo" />
+            type="com.teamfillin.fillin.data.response.ResponseFilmType.Films" />
 
     </data>
 
@@ -20,10 +20,10 @@
             style="@style/EngDisplay2Book"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="13dp"
+            android:layout_marginVertical="18dp"
             android:layout_marginStart="18dp"
             android:padding="5dp"
-            android:text="@{category.film}"
+            android:text="@{category.name}"
             android:textColor="@color/fillin_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
