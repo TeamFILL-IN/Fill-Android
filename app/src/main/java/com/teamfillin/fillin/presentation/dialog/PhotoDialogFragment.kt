@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
+import com.teamfillin.fillin.core.view.load
 import com.teamfillin.fillin.databinding.FragmentPhotoDialogBinding
+import com.teamfillin.fillin.presentation.map.StudioMapActivity.Companion.photoUrl
 
 class PhotoDialogFragment : DialogFragment() {
     private var _binding: FragmentPhotoDialogBinding? = null

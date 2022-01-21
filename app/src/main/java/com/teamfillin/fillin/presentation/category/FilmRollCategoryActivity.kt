@@ -1,76 +1,78 @@
 package com.teamfillin.fillin.presentation.category
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import androidx.core.view.get
+import androidx.lifecycle.lifecycleScope
+import com.google.android.material.tabs.TabLayout
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
-import com.teamfillin.fillin.core.view.setOnSingleClickListener
-import com.teamfillin.fillin.data.CategoryInfo
+import com.teamfillin.fillin.data.service.FilmStyleService
 import com.teamfillin.fillin.databinding.ActivityFilmRollCategoryBinding
-import com.teamfillin.fillin.presentation.filmroll.FilmCategoryImageActivity
-import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 import com.teamfillin.fillin.presentation.map.CustomDecoration
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import retrofit2.await
+import timber.log.Timber
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FilmRollCategoryActivity :
     BindingActivity<ActivityFilmRollCategoryBinding>(R.layout.activity_film_roll_category) {
-    private val filmCategoryAdapter = FilmCategoryAdapter()
+
+    @Inject
+    lateinit var service: FilmStyleService
+    private val filmCategoryAdapter = FilmCategoryAdapter {
+        val intent = Intent().apply {
+            putExtra("film", it.name)
+            putExtra("StyleId", it.styleId)
+        }
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        click()
         setFilmCategoryAdapter()
+        tabSelectEvent()
     }
 
     private fun setFilmCategoryAdapter() {
         binding.rvCategory.adapter = filmCategoryAdapter
-        val customDecoration = CustomDecoration(2f, 10f, Color.GRAY)
+        val customDecoration = CustomDecoration(2f, 10f, Color.DKGRAY)
         binding.rvCategory.addItemDecoration(customDecoration)
-        addFilmCategoryList()
+        getFilmCategoryList(1)
     }
 
+    private fun tabSelectEvent() {
+        binding.filmtab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                Timber.d("kangmin")
+                when (tab!!.position) {
+                    0 -> getFilmCategoryList(1)
+                    1 -> getFilmCategoryList(2)
+                    2 -> getFilmCategoryList(3)
+                    else -> getFilmCategoryList(4)
+                }
+            }
 
-    private fun click() {
-        filmCategoryAdapter.setItemClickListener { film ->
-            val intent = Intent(this, FilmRollActivity::class.java)
-            intent.putExtra("id", film)
-            setResult(RESULT_OK, intent)
-            finish()
-        }
-        binding.btnBack.setOnSingleClickListener {
-            finish()
-        }
-    }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
 
-    private fun addFilmCategoryList() {
-        filmCategoryAdapter.submitList(
-            listOf(
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                ),
-                CategoryInfo(
-                    film = "Kodak color plus 200 abcdefg1234567"
-                )
-            )
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+        }
         )
+    }
+
+    private fun getFilmCategoryList(styleId: Int) {
+        lifecycleScope.launch {
+            runCatching {
+                service.getFilmType(styleId).await()
+            }.onSuccess {
+                filmCategoryAdapter.submitList(it.data.films)
+            }.onFailure(Timber::e)
+        }
     }
 }

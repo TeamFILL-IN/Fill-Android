@@ -5,7 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
@@ -23,7 +23,12 @@ import javax.inject.Inject
 class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.activity_map_search) {
     @Inject
     lateinit var service: StudioService
-    private val locationAdapter = SearchListAdapter()
+    private val searchListAdapter = SearchListAdapter {
+        val intent = Intent().apply { putExtra("id", it.id) }
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,10 +50,18 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
         binding.editSearch.doAfterTextChanged {
             editTextBlankCheck()
         }
+        binding.editSearch.setOnEditorActionListener { _, id, _ ->
+            var handled = false
+            if (id == EditorInfo.IME_ACTION_SEARCH) {
+                binding.ivSearch.performClick()
+                handled = true
+            }
+            handled
+        }
     }
 
     private fun setLocationListAdapter() {
-        binding.rvLocationInfo.adapter = locationAdapter
+        binding.rvLocationInfo.adapter = searchListAdapter
         val customDecoration = CustomDecoration(1f, 10f, Color.GRAY)
         binding.rvLocationInfo.addItemDecoration(customDecoration)
         locationSearchEvent()
@@ -63,7 +76,7 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
                     binding.rvLocationInfo.isVisible = it.data.studios.isNotEmpty()
                     binding.clNoResult.isVisible = it.data.studios.isEmpty()
                     if (it.data.studios.isNotEmpty()) {
-                        locationAdapter.submitList(it.data.studios)
+                        searchListAdapter.submitList(it.data.studios)
                     }
                 }.onFailure(Timber::e)
             }
@@ -81,8 +94,6 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                val intent = Intent()
-                setResult(Activity.RESULT_OK, intent)
                 finish()
                 return true
             }
