@@ -36,13 +36,12 @@
         android:id="@+id/btn_cancel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:background="@drawable/shape_btn_darkgrey2"
-        android:fontFamily="@font/noto_sans_kr_bold"
         android:lineSpacingExtra="6sp"
         android:text="취소하기"
+        android:textAppearance="@style/Body3"
         android:textColor="@color/grey_3"
-        android:textSize="16sp"
-        android:layout_marginTop="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_continue"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,14 +52,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_btn_fillinred"
-        android:fontFamily="@font/noto_sans_kr_bold"
         android:lineSpacingExtra="6sp"
         android:text="이어서 추가하기"
+        android:textAppearance="@style/Body3"
         android:textColor="@color/fillin_black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_cancel"
-        app:layout_constraintTop_toTopOf="@id/btn_cancel"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/btn_cancel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,9 +12,10 @@ import com.teamfillin.fillin.core.content.receive
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.service.FilmRollService
 import com.teamfillin.fillin.databinding.ActivityFilmRollBinding
-import com.teamfillin.fillin.presentation.add.AddPhotoActivity
+import com.teamfillin.fillin.presentation.filmroll.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
+import com.teamfillin.fillin.presentation.filmroll.add.AddCompleteDialog
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
@@ -24,7 +25,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
     @Inject
     lateinit var service: FilmRollService
     private var filmrollAdapter = FilmRollAdapter()
-    private var curationAdapter = CurationAdapter{
+    private var curationAdapter = CurationAdapter {
         val dialog = PhotoDialogFragment()
         val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
         dialog.apply {
@@ -32,6 +33,12 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
             show(supportFragmentManager, "dialog")
         }
     }
+    private val addPhotoLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                AddCompleteDialog(this).showDialog()
+            }
+        }
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,9 +70,9 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
     private fun addFilmRollList(position: Int) {
         service.getFilmStyle(position).receive({
 //            filmrollAdapter.submitList(it.data.photos)
-            }, {
-                Timber.d("Error $it")
-            })
+        }, {
+            Timber.d("Error $it")
+        })
 
     }
 
@@ -95,7 +102,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
                 if (result.resultCode == Activity.RESULT_OK) {
                     val film = result.data?.getStringExtra("film") ?: ""
                     binding.tvFilmchoice.text = film
-                    val styleId = result.data?.getStringExtra("styleId") ?: ""
+                    val styleId = result.data?.getIntExtra("styleId", 0)
                 }
             }
     }
@@ -103,7 +110,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
     private fun clickListener() {
         binding.fabAddPhoto.setOnSingleClickListener {
             val intent = Intent(this, AddPhotoActivity::class.java)
-            startActivity(intent)
+            addPhotoLauncher.launch(intent)
         }
         binding.tvFilmchoice.setOnSingleClickListener {
             val intent = Intent(this, FilmRollCategoryActivity::class.java)

@@ -12,5 +12,4 @@ interface HomeService {
 
     @GET("user")
     fun getUser(): Call<BaseResponse<ResponseUserInfo>>
-
 }

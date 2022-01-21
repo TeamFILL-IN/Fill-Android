@@ -26,7 +26,8 @@ class FilmRollCategoryActivity :
     private val filmCategoryAdapter = FilmCategoryAdapter {
         val intent = Intent().apply {
             putExtra("film", it.name)
-            putExtra("StyleId", it.styleId)
+            putExtra("id", it.id)
+            putExtra("styleId", it.styleId)
         }
         setResult(Activity.RESULT_OK, intent)
         finish()

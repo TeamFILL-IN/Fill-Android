@@ -20,7 +20,7 @@ import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.service.HomeService
 import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
-import com.teamfillin.fillin.presentation.add.AddPhotoActivity
+import com.teamfillin.fillin.presentation.filmroll.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 import com.teamfillin.fillin.presentation.map.StudioMapActivity

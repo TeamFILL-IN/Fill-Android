@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.content.receive
+import com.teamfillin.fillin.core.context.drawableOf
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.response.ResponseFilmRoll
 import com.teamfillin.fillin.databinding.ItemCurationBinding
@@ -43,6 +45,7 @@ class CurationAdapter(private val listener: ItemClickListener) :
         fun bind(film: ResponseFilmRoll.FilmPhotoInfo) {
             Glide.with(itemView.context)
                 .load(film.imageUrl)
+                .placeholder(itemView.context.drawableOf(R.drawable.ic_launcher_foreground))
                 .into(binding.ivCuration)
             binding.root.setOnClickListener {
                 listener.onClick(film)
@@ -70,7 +73,7 @@ class CurationAdapter(private val listener: ItemClickListener) :
                     LayoutInflater.from(parent.context),
                     parent, false
                 )
-                CurationImageViewHolder(binding,listener)
+                CurationImageViewHolder(binding, listener)
             }
         }
     }
