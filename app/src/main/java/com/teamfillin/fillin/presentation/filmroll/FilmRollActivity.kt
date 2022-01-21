@@ -12,12 +12,11 @@ import com.teamfillin.fillin.core.content.receive
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.service.FilmRollService
 import com.teamfillin.fillin.databinding.ActivityFilmRollBinding
-import com.teamfillin.fillin.presentation.AddPhotoActivity
+import com.teamfillin.fillin.presentation.filmroll.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import java.text.FieldPosition
 import javax.inject.Inject
 
 @AndroidEntryPoint

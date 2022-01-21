@@ -61,7 +61,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.AddPhotoActivity"
+            android:name=".presentation.filmroll.add.AddPhotoActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.map.StudioMapActivity"

@@ -1,4 +1,4 @@
-package com.teamfillin.fillin.presentation
+package com.teamfillin.fillin.presentation.filmroll.add
 
 import android.app.Dialog
 import android.content.Context
@@ -29,8 +29,11 @@ class AddCancelDialog(context: Context) {
         val btnContinue = dialog.findViewById<AppCompatButton>(R.id.btn_continue)
 
         btnCancel.setOnClickListener {
-            //onClickListener.onClicked()
             dialog.dismiss()
+        }
+
+        dialog.setOnDismissListener {
+            onClickListener.onClicked()
         }
 
         btnContinue.setOnClickListener {

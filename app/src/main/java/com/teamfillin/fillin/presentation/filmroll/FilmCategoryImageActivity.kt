@@ -1,20 +1,13 @@
 package com.teamfillin.fillin.presentation.filmroll
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.get
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
-import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
-import com.teamfillin.fillin.data.CategoryInfo
 import com.teamfillin.fillin.databinding.ActivityCategoryImageBinding
-import com.teamfillin.fillin.databinding.ActivityFilmRollCategoryBinding
-import com.teamfillin.fillin.presentation.AddPhotoActivity
-import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter
-import com.teamfillin.fillin.presentation.map.CustomDecoration
+import com.teamfillin.fillin.presentation.filmroll.add.AddPhotoActivity
 
 class FilmCategoryImageActivity :
     BindingActivity<ActivityCategoryImageBinding>(R.layout.activity_category_image) {

@@ -1,4 +1,4 @@
-package com.teamfillin.fillin.presentation
+package com.teamfillin.fillin.presentation.filmroll.add
 
 import android.Manifest
 import android.app.Activity
@@ -15,14 +15,12 @@ import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.content.ContentUriRequestBody
 import com.teamfillin.fillin.core.context.toast
-import com.teamfillin.fillin.data.service.NewPhotoService
+import com.teamfillin.fillin.data.service.FilmRollService
 import com.teamfillin.fillin.databinding.ActivityAddPhotoBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.await
 import timber.log.Timber
@@ -31,7 +29,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class AddPhotoActivity : BindingActivity<ActivityAddPhotoBinding>(R.layout.activity_add_photo) {
     @Inject
-    lateinit var service: NewPhotoService
+    lateinit var service: FilmRollService
     var uri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,13 +79,16 @@ class AddPhotoActivity : BindingActivity<ActivityAddPhotoBinding>(R.layout.activ
 
         binding.btnBack.setOnClickListener {
             val addCancelDialog = AddCancelDialog(this)
-            addCancelDialog.setOnClickListener {
-                //TODO 액티비티 나가기 (develop에 모든 activity merge되면 작업)
-                finish()
-            }
+            addCancelDialog.setOnClickListener { finish() }
             addCancelDialog.showDialog()
-
         }
+    }
+
+    override fun onBackPressed() {
+        AddCancelDialog(this).apply {
+            setOnClickListener { finish() }
+        }.showDialog()
+        super.onBackPressed()
     }
 
     private fun Int.toRequestBody() = toString().toRequestBody("text/plain".toMediaTypeOrNull())
@@ -108,7 +109,6 @@ class AddPhotoActivity : BindingActivity<ActivityAddPhotoBinding>(R.layout.activ
             uri = result.data?.data  //Intent를 반환->Intent에서 Uri로 get하기
             Glide.with(this).load(uri).into(binding.ivAddphoto)
         }
-        //else if (result.resultCode == Activity.RESULT_CANCELED) {} =>Activity.RESULT_CANCELED일때 처리코드가 필요하다면
     }
 
     private fun requestPermission() {
