@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import com.google.android.material.tabs.TabLayout
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
@@ -24,6 +25,7 @@ import javax.inject.Inject
 class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activity_film_roll) {
     @Inject
     lateinit var service: FilmRollService
+    private val viewModel by viewModels<FilmRollViewModel>()
     private var filmrollAdapter = FilmRollAdapter()
     private var curationAdapter = CurationAdapter {
         val dialog = PhotoDialogFragment()

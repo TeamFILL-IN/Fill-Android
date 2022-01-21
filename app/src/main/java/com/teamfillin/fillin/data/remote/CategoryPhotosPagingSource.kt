@@ -2,17 +2,21 @@ package com.teamfillin.fillin.data.remote
 
 import com.teamfillin.fillin.core.base.OffsetPagingSource
 import com.teamfillin.fillin.core.base.START_POSITION_INDEX
-import com.teamfillin.fillin.data.response.experimental.PhotoDto
+import com.teamfillin.fillin.data.response.experimental.CategoryPhotoDto
 import com.teamfillin.fillin.data.service.PagingService
 
-class PhotosPagingSource(
-    private val service: PagingService
-) : OffsetPagingSource<PhotoDto>() {
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PhotoDto> {
+class CategoryPhotosPagingSource(
+    private val service: PagingService,
+    private val styleId: Int,
+    private val filmId: Int
+) : OffsetPagingSource<CategoryPhotoDto>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CategoryPhotoDto> {
         val currentPosition = params.key ?: START_POSITION_INDEX
 
-        val response = runCatching { service.retrievePhotos(currentPosition) }
-            .getOrElse { return LoadResult.Error(it) }
+        val response = runCatching {
+            if (styleId != -1) service.retrievePhotosByStyle(currentPosition, styleId)
+            else service.retrievePhotosByFilm(currentPosition, filmId)
+        }.getOrElse { return LoadResult.Error(it) }
 
         val nextPositon = currentPosition + 1
         val previousPosition =

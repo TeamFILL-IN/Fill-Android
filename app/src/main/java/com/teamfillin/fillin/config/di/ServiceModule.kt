@@ -1,6 +1,7 @@
 package com.teamfillin.fillin.config.di
 
 import com.teamfillin.fillin.data.service.*
+import com.teamfillin.fillin.data.service.PagingService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

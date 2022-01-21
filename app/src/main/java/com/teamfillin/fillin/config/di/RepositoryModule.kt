@@ -2,7 +2,7 @@ package com.teamfillin.fillin.config.di
 
 import com.teamfillin.fillin.data.repository.AuthRepositoryImpl
 import com.teamfillin.fillin.data.repository.PhotoPagingRepository
-import com.teamfillin.fillin.data.service.experimental.PagingService
+import com.teamfillin.fillin.data.service.PagingService
 import com.teamfillin.fillin.domain.repository.AuthRepository
 import com.teamfillin.fillin.presentation.filmroll.add.repository.AddPhotoRepository
 import com.teamfillin.fillin.presentation.filmroll.add.repository.AddPhotoRepositoryImpl
