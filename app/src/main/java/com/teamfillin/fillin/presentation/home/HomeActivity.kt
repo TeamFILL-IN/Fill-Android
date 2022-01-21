@@ -24,10 +24,10 @@ import com.teamfillin.fillin.data.response.ResponseUserInfo
 import com.teamfillin.fillin.data.service.HomeService
 import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
-import com.teamfillin.fillin.presentation.AddPhotoActivity
-import com.teamfillin.fillin.presentation.MyPageActivity
+import com.teamfillin.fillin.presentation.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 import com.teamfillin.fillin.presentation.map.StudioMapActivity
+import com.teamfillin.fillin.presentation.my.MyPageActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -45,7 +45,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     @Inject
     lateinit var studioService: StudioService
     private lateinit var newPhotosAdapter: NewPhotosAdapter
-    var newPhotosData = listOf<ResponseNewPhotoInfo.Photo>()
     private lateinit var fusedLocationSource: FusedLocationSource
     private var activityNaverMap: NaverMap? = null
 
@@ -62,11 +61,19 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     }
 
     private fun initDatas() {
-        service.getNewPhoto().receive({
-            newPhotosAdapter.replaceList(it.data.photos)
-        }, {
-            Timber.d("Error $it")
-        })
+//        service.getNewPhoto().receive({
+//            newPhotosAdapter.replaceList(it.data.photos)
+//        }, {
+//            Timber.d("Error $it")
+//        })
+
+        lifecycleScope.launch {
+            runCatching {
+                service.getNewPhoto().await()
+            }.onSuccess {
+                newPhotosAdapter.replaceList(it.data.photos)
+            }.onFailure(Timber::e)
+        }
 
         service.getUser().enqueue(object : Callback<BaseResponse<ResponseUserInfo>> {
             override fun onResponse(
@@ -165,6 +172,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             startActivity(intent)
         }
     }
+
     private fun markerLocationEvent() {
         lifecycleScope.launch {
             runCatching {
@@ -173,13 +181,14 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
                 it.data.studios.forEach {
                     Marker().apply {
                         position = LatLng(it.lati, it.long)
-                        icon = OverlayImage.fromResource(R.drawable.ic_place_big)
+                        icon = OverlayImage.fromResource(R.drawable.ic_place_select)
                         this.map = activityNaverMap
                     }
                 }
             }.onFailure(Timber::e)
         }
     }
+
     override fun onStart() {
         super.onStart()
         binding.mapMain.onStart()

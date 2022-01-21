@@ -13,7 +13,7 @@ import com.teamfillin.fillin.data.response.ResponseCurationInfo
 import com.teamfillin.fillin.data.response.ResponseNewPhotoInfo
 import com.teamfillin.fillin.data.service.CurationService
 import com.teamfillin.fillin.databinding.ActivityFilmRollBinding
-import com.teamfillin.fillin.presentation.AddPhotoActivity
+import com.teamfillin.fillin.presentation.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
 import com.teamfillin.fillin.presentation.home.NewPhotosAdapter
 import dagger.hilt.android.AndroidEntryPoint

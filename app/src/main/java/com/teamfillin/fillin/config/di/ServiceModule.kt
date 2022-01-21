@@ -40,4 +40,15 @@ object ServiceModule {
     @Singleton
     fun provideCurationService(retrofit: Retrofit): CurationService =
         retrofit.create(CurationService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUserInfoService(retrofit: Retrofit): UserService=
+        retrofit.create(UserService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUserPhotoService(retrofit:Retrofit): MyPagePhotoService=
+        retrofit.create(MyPagePhotoService::class.java)
+
 }
