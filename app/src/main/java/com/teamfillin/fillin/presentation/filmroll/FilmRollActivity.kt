@@ -120,6 +120,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
                 if (result.resultCode == Activity.RESULT_OK) {
                     val film = result.data?.getStringExtra("film") ?: ""
                     binding.tvFilmchoice.text = film
+                    val styleId = result.data?.getStringExtra("styleId") ?: ""
                 }
             }
     }
