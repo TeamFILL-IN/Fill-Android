@@ -4,6 +4,8 @@ import com.teamfillin.fillin.data.repository.AuthRepositoryImpl
 import com.teamfillin.fillin.data.repository.PhotoPagingRepository
 import com.teamfillin.fillin.data.service.experimental.PagingService
 import com.teamfillin.fillin.domain.repository.AuthRepository
+import com.teamfillin.fillin.presentation.filmroll.add.repository.AddPhotoRepository
+import com.teamfillin.fillin.presentation.filmroll.add.repository.AddPhotoRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +16,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
     @Provides
+    @Singleton
     fun provideAuthRepository(authRepository: AuthRepositoryImpl): AuthRepository = authRepository
+
+    @Provides
+    @Singleton
+    fun provideAddPhotoRepository(repository: AddPhotoRepositoryImpl): AddPhotoRepository =
+        repository
 
     @Provides
     @Singleton

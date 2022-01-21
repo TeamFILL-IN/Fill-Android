@@ -8,16 +8,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.teamfillin.fillin.R
+import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.CategoryInfo
+import com.teamfillin.fillin.data.response.ResponseFilmType
+import com.teamfillin.fillin.data.response.ResponseStudioPhoto
 import com.teamfillin.fillin.databinding.ItemCategoryInfoBinding
 import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter
 import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter.Companion.DIFFUTIL
+import com.teamfillin.fillin.presentation.map.PhotoReviewListAdapter
 
 
-class FilmCategoryAdapter :
-    ListAdapter<CategoryInfo, FilmCategoryAdapter.FilmListViewHolder>(
-        DIFFUTIL
-    ) {
+class FilmCategoryAdapter(private val listener: ItemClickListener) :
+    ListAdapter<ResponseFilmType.Films, FilmCategoryAdapter.FilmListViewHolder>(DIFFUTIL) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,49 +27,40 @@ class FilmCategoryAdapter :
     ): FilmListViewHolder {
         val binding =
             ItemCategoryInfoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FilmListViewHolder(binding)
+        return FilmListViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: FilmListViewHolder, position: Int) {
         holder.onBind(getItem(position))
-        holder.itemView.setOnClickListener {
-            itemClickListener.onClick(it, position)
-        }
     }
 
-    fun interface OnItemClickListener {
-        fun onClick(v: View, position: Int)
+    fun interface ItemClickListener {
+        fun onClick(data: ResponseFilmType.Films)
     }
-
-    // (3) 외부에서 클릭 시 이벤트 설정
-    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
-        this.itemClickListener = onItemClickListener
-    }
-
-    // (4) setItemClickListener로 설정한 함수 실행
-    private lateinit var itemClickListener: OnItemClickListener
-
 
     class FilmListViewHolder(
-        private val binding: ItemCategoryInfoBinding
+        private val binding: ItemCategoryInfoBinding,
+        private val listener: ItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(categoryInfo: CategoryInfo) {
-            binding.category = categoryInfo
+        fun onBind(fileType: ResponseFilmType.Films) {
+            binding.category = fileType
+            binding.root.setOnClickListener {
+                listener.onClick(fileType)
+            }
         }
     }
 
     companion object {
-        val DIFFUTIL = object : DiffUtil.ItemCallback<CategoryInfo>() {
+        val DIFFUTIL = object : DiffUtil.ItemCallback<ResponseFilmType.Films>() {
             override fun areItemsTheSame(
-                oldItem: CategoryInfo,
-                newItem: CategoryInfo
+                oldItem: ResponseFilmType.Films,
+                newItem: ResponseFilmType.Films
             ): Boolean {
-                return oldItem.film == newItem.film
+                return oldItem.id == newItem.id
             }
-
             override fun areContentsTheSame(
-                oldItem: CategoryInfo,
-                newItem: CategoryInfo
+                oldItem: ResponseFilmType.Films,
+                newItem: ResponseFilmType.Films
             ): Boolean {
                 return oldItem == newItem
             }

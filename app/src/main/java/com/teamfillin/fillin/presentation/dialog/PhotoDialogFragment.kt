@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
+import com.bumptech.glide.Glide
 import com.teamfillin.fillin.databinding.FragmentPhotoDialogBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PhotoDialogFragment : DialogFragment() {
     private var _binding: FragmentPhotoDialogBinding? = null
     private val binding: FragmentPhotoDialogBinding
@@ -16,7 +19,7 @@ class PhotoDialogFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPhotoDialogBinding.inflate(layoutInflater, container, false)
 
         binding.btnClose.setOnClickListener {
@@ -30,6 +33,11 @@ class PhotoDialogFragment : DialogFragment() {
             binding.heart.isSelected = !binding.heart.isSelected
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val photoUrl = arguments?.getString("photoUrl")
+        Glide.with(requireActivity()).load(photoUrl).into(binding.ivPhoto)
     }
 
     //휴대폰 크기 맞춰 자동 조절 다이얼로그

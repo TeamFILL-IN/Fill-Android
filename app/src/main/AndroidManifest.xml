@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -60,23 +61,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.AddPhotoActivity"
-            android:exported="true" />
+            android:name=".presentation.filmroll.add.AddPhotoActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.map.StudioMapActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".presentation.map.MapSearchActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".presentation.MyPageActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".presentation.filmroll.FilmCategoryImageActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".presentation.filmroll.FilmRollActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".presentation.category.FilmRollCategoryActivity"
             android:exported="true" />

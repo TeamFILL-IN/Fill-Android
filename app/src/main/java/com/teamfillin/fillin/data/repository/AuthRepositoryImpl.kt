@@ -1,7 +1,6 @@
 package com.teamfillin.fillin.data.repository
 
 import com.teamfillin.fillin.data.local.FillInDataStore
-import com.teamfillin.fillin.data.response.ResponseAuth
 import com.teamfillin.fillin.data.response.toEntity
 import com.teamfillin.fillin.data.service.AuthService
 import com.teamfillin.fillin.domain.entity.Auth
@@ -14,9 +13,9 @@ class AuthRepositoryImpl @Inject constructor(
     private val dataStore: FillInDataStore,
     private val service: AuthService
 ) : AuthRepository {
-    override suspend fun login(token: String) {
+    override suspend fun login(token: String, id: String) {
         runCatching {
-            service.login(token).await()
+            service.login(token, id = id).await()
         }.fold({
             val auth = it.data.toEntity()
             with(dataStore) {

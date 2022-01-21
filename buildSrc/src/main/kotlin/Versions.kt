@@ -34,7 +34,7 @@ object Versions {
     const val espressoVersion = "3.3.0"
     const val androidTestVersion = "1.1.2"
 
-    const val flipperVersion = "0.127.0"
+    const val flipperVersion = "0.128.4"
     const val soloaderVersion = "0.10.3"
     const val leakCanaryVersion = "2.6"
 
