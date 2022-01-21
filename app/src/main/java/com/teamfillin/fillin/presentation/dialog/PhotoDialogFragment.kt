@@ -28,7 +28,7 @@ class PhotoDialogFragment : DialogFragment() {
         binding.heart.setOnClickListener {
             binding.number.text = (
                     binding.number.text.toString()
-                        .toInt() + (if (binding.heart.isSelected == false) 1 else -1)
+                        .toInt() + (if (!binding.heart.isSelected) 1 else -1)
                     ).toString()
             binding.heart.isSelected = !binding.heart.isSelected
         }

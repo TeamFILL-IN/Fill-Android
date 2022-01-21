@@ -4,6 +4,7 @@ import com.teamfillin.fillin.core.base.OffsetPagingSource
 import com.teamfillin.fillin.core.base.START_POSITION_INDEX
 import com.teamfillin.fillin.data.response.experimental.CategoryPhotoDto
 import com.teamfillin.fillin.data.service.PagingService
+import timber.log.Timber
 
 class CategoryPhotosPagingSource(
     private val service: PagingService,
@@ -14,9 +15,12 @@ class CategoryPhotosPagingSource(
         val currentPosition = params.key ?: START_POSITION_INDEX
 
         val response = runCatching {
-            if (styleId != -1) service.retrievePhotosByStyle(currentPosition, styleId)
-            else service.retrievePhotosByFilm(currentPosition, filmId)
-        }.getOrElse { return LoadResult.Error(it) }
+            if (styleId != -1) service.retrievePhotosByStyle(styleId, currentPosition)
+            else service.retrievePhotosByFilm(filmId, currentPosition)
+        }.getOrElse {
+            Timber.e(it)
+            return LoadResult.Error(it)
+        }
 
         val nextPositon = currentPosition + 1
         val previousPosition =
@@ -27,6 +31,9 @@ class CategoryPhotosPagingSource(
                 prevKey = previousPosition,
                 nextKey = nextPositon
             )
-        }.getOrElse { LoadResult.Error(it) }
+        }.getOrElse {
+            Timber.e(it)
+            LoadResult.Error(it)
+        }
     }
 }

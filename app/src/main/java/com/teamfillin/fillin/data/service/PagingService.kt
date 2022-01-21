@@ -13,13 +13,13 @@ interface PagingService {
 
     @GET("photopaging/style/{styleId}")
     suspend fun retrievePhotosByStyle(
-        @Query("pageNum") pageNum: Int,
-        @Path("styleId") styleId: Int
+        @Path("styleId") styleId: Int,
+        @Query("pageNum") pageNum: Int
     ): BaseResponse<ResponsePhotoByCategory>
 
     @GET("photopaging/film/{filmId}")
     suspend fun retrievePhotosByFilm(
-        @Query("pageNum") pageNum: Int,
-        @Path("filmId") filmId: Int
+        @Path("filmId") filmId: Int,
+        @Query("pageNum") pageNum: Int
     ): BaseResponse<ResponsePhotoByCategory>
 }
