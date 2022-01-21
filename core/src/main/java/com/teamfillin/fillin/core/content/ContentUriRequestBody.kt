@@ -5,6 +5,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okio.BufferedSink
 import okio.source
@@ -47,4 +48,5 @@ class ContentUriRequestBody(
         }
     }
 
+    fun toFormData() = MultipartBody.Part.createFormData("image", getFileName(), this)
 }

@@ -29,10 +29,6 @@ class AddCancelDialog(context: Context) {
         val btnContinue = dialog.findViewById<AppCompatButton>(R.id.btn_continue)
 
         btnCancel.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialog.setOnDismissListener {
             onClickListener.onClicked()
         }
 
