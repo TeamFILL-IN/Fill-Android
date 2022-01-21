@@ -21,6 +21,7 @@ import com.teamfillin.fillin.data.service.HomeService
 import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
 import com.teamfillin.fillin.presentation.add.AddPhotoActivity
+import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 import com.teamfillin.fillin.presentation.map.StudioMapActivity
 import com.teamfillin.fillin.presentation.my.MyPageActivity
@@ -82,7 +83,14 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     }
 
     private fun initNewPhotoRecyclerView() {
-        newPhotosAdapter = NewPhotosAdapter()
+        newPhotosAdapter = NewPhotosAdapter{
+            val dialog = PhotoDialogFragment()
+            val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
+            dialog.apply {
+                arguments = bundle
+                show(supportFragmentManager, "dialog")
+            }
+        }
         binding.rvNewPhotos.adapter = newPhotosAdapter
         service.getNewPhoto().receive({
             newPhotosAdapter.replaceList(it.data.photos)
