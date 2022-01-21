@@ -33,6 +33,17 @@ object ServiceModule {
 
     @Provides
     @Singleton
+    fun provideUserInfoService(retrofit: Retrofit): UserService=
+        retrofit.create(UserService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUserPhotoService(retrofit:Retrofit): MyPagePhotoService=
+        retrofit.create(MyPagePhotoService::class.java)
+
+    @Provides
+    @Singleton
     fun provideFillRollService(retrofit: Retrofit): FilmRollService =
         retrofit.create(FilmRollService::class.java)
+
 }

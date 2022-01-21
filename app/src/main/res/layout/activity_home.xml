@@ -13,17 +13,6 @@
         android:layout_height="match_parent"
         android:background="@color/fillin_black">
 
-        <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:overScrollMode="never"
-            app:layout_constraintBottom_toTopOf="@id/cl_popup"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_home"
                 android:layout_width="match_parent"
@@ -57,38 +46,47 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_intro" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:id="@+id/li_deco"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/layout_line"
-                    android:gravity="center"
+                    android:orientation="horizontal"
                     app:layout_constraintTop_toBottomOf="@+id/tv_ment">
 
-                    <ImageButton
-                        android:id="@+id/btn_addphoto"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/container_photo_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/fillin_black"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_home_addphoto" />
+                        android:layout_weight="1">
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="96dp"
-                        android:background="@color/dark_grey_2"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btn_filmroll"
-                        app:layout_constraintStart_toEndOf="@id/btn_addphoto"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        <ImageButton
+                            android:id="@+id/btn_addphoto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/fillin_black"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_home_addphoto" />
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:background="@color/dark_grey_2"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/btn_addphoto"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <ImageButton
                         android:id="@+id/btn_filmroll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:layout_weight="1"
                         android:backgroundTint="@color/black"
                         app:layout_constraintStart_toEndOf="@+id/btn_addphoto"
                         app:layout_constraintTop_toTopOf="parent"
@@ -99,6 +97,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:layout_weight="1"
                         android:backgroundTint="@color/black"
                         app:layout_constraintStart_toEndOf="@+id/btn_filmroll"
                         app:layout_constraintTop_toTopOf="parent"
@@ -109,13 +108,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:layout_weight="1"
                         android:backgroundTint="@color/black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/btn_studiomap"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_mypage" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_aroundyou"
@@ -180,7 +180,6 @@
                     tools:itemCount="8"
                     tools:listitem="@layout/item_new_photos_list" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_popup"
@@ -192,8 +191,7 @@
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView">
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/tv_notice"

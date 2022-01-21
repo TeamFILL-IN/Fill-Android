@@ -12,7 +12,8 @@ import com.teamfillin.fillin.databinding.ItemNextButtonBinding
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 import timber.log.Timber
 
-class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NewPhotosAdapter(private val listener: ItemClickListener
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var photolist = listOf<ResponseNewPhotoInfo.Photo>()
 
@@ -34,7 +35,7 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     LayoutInflater.from(parent.context),
                     parent, false
                 )
-                NewPhotosViewHolder(binding)
+                NewPhotosViewHolder(binding, listener)
             }
             else -> {
                 val binding = ItemNextButtonBinding.inflate(
@@ -59,19 +60,26 @@ class NewPhotosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-
     fun replaceList(newList: List<ResponseNewPhotoInfo.Photo>) {
         photolist = newList.toList()
         notifyDataSetChanged()
     }
 
+    fun interface ItemClickListener {
+        fun onClick(data: ResponseNewPhotoInfo.Photo)
+    }
 
-    class NewPhotosViewHolder(private val binding: ItemNewPhotosListBinding) :
+
+    class NewPhotosViewHolder(private val binding: ItemNewPhotosListBinding,
+    private val listener: ItemClickListener) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: ResponseNewPhotoInfo.Photo) {
             Glide.with(itemView.context)
                 .load(data.imageUrl)
                 .into(binding.ivNewPhoto)
+            binding.root.setOnClickListener {
+                listener.onClick(data)
+            }
         }
     }
 

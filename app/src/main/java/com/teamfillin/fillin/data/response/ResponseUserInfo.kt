@@ -5,7 +5,7 @@ data class ResponseUserInfo(
 ) {
     data class User(
         val createdAt: String,
-        val email: Any,
+        val email: String,
         val id: Int,
         val idKey: String,
         val imageUrl: String,

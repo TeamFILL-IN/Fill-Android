@@ -17,14 +17,14 @@ import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.content.receive
 import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
-import com.teamfillin.fillin.data.response.ResponseNewPhotoInfo
 import com.teamfillin.fillin.data.service.HomeService
 import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
 import com.teamfillin.fillin.presentation.filmroll.add.AddPhotoActivity
-import com.teamfillin.fillin.presentation.MyPageActivity
+import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 import com.teamfillin.fillin.presentation.map.StudioMapActivity
+import com.teamfillin.fillin.presentation.my.MyPageActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import retrofit2.await
@@ -39,7 +39,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     @Inject
     lateinit var studioService: StudioService
     private lateinit var newPhotosAdapter: NewPhotosAdapter
-    var newPhotosData = listOf<ResponseNewPhotoInfo.Photo>()
     private lateinit var fusedLocationSource: FusedLocationSource
     private var activityNaverMap: NaverMap? = null
 
@@ -49,18 +48,13 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         fusedLocationSource =
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
         binding.mapMain.getMapAsync(this)
-        initNewPhotoRecyclerView()
         initDatas()
+        initNewPhotoRecyclerView()
         clickListener()
         popup()
     }
 
     private fun initDatas() {
-        service.getNewPhoto().receive({
-            newPhotosAdapter.replaceList(it.data.photos)
-        }, {
-            Timber.d("Error $it")
-        })
         service.getUser().receive({
             val userData = it.data
             binding.tvIntro.text = "${userData?.user?.nickname}"
@@ -89,8 +83,20 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     }
 
     private fun initNewPhotoRecyclerView() {
-        newPhotosAdapter = NewPhotosAdapter()
+        newPhotosAdapter = NewPhotosAdapter{
+            val dialog = PhotoDialogFragment()
+            val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
+            dialog.apply {
+                arguments = bundle
+                show(supportFragmentManager, "dialog")
+            }
+        }
         binding.rvNewPhotos.adapter = newPhotosAdapter
+        service.getNewPhoto().receive({
+            newPhotosAdapter.replaceList(it.data.photos)
+        }, {
+            Timber.d("Error $it")
+        })
     }
 
     private fun popup() {
@@ -145,6 +151,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             startActivity(intent)
         }
     }
+
     private fun markerLocationEvent() {
         lifecycleScope.launch {
             runCatching {
@@ -153,13 +160,14 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
                 it.data.studios.forEach {
                     Marker().apply {
                         position = LatLng(it.lati, it.long)
-                        icon = OverlayImage.fromResource(R.drawable.ic_place_big)
+                        icon = OverlayImage.fromResource(R.drawable.ic_place_select)
                         this.map = activityNaverMap
                     }
                 }
             }.onFailure(Timber::e)
         }
     }
+
     override fun onStart() {
         super.onStart()
         binding.mapMain.onStart()
@@ -201,11 +209,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             flags =
                 Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         }
-
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
 
 }
-
-
-

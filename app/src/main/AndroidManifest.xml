@@ -12,6 +12,7 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:screenOrientation="portrait"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.FillInAndroid"
@@ -70,7 +71,8 @@
             android:name=".presentation.map.MapSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.MyPageActivity"
+            android:name=".presentation.my.MyPageActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".presentation.filmroll.FilmCategoryImageActivity"
