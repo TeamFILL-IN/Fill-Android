@@ -14,6 +14,7 @@ import com.teamfillin.fillin.data.service.FilmRollService
 import com.teamfillin.fillin.databinding.ActivityFilmRollBinding
 import com.teamfillin.fillin.presentation.AddPhotoActivity
 import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
+import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.text.FieldPosition
@@ -24,7 +25,14 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
     @Inject
     lateinit var service: FilmRollService
     private var filmrollAdapter = FilmRollAdapter()
-    private var curationAdapter = CurationAdapter()
+    private var curationAdapter = CurationAdapter{
+        val dialog = PhotoDialogFragment()
+        val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
+        dialog.apply {
+            arguments = bundle
+            show(supportFragmentManager, "dialog")
+        }
+    }
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
