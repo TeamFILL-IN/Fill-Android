@@ -7,13 +7,8 @@ import android.widget.ImageButton
 import com.teamfillin.fillin.R
 
 class AddCompleteDialog(context: Context) {
-
     private val dialog = Dialog(context)
-    private lateinit var onClickListener: OnDialogClickListener
 
-    fun setOnClickListener(listener: OnDialogClickListener) {
-        onClickListener = listener
-    }
 
     fun showDialog() {
         dialog.setContentView(R.layout.dialog_addphoto_complete)
@@ -30,9 +25,5 @@ class AddCompleteDialog(context: Context) {
         btnExit.setOnClickListener {
             dialog.dismiss()
         }
-    }
-
-    fun interface OnDialogClickListener {
-        fun onClicked()
     }
 }

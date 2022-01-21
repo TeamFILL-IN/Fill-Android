@@ -68,13 +68,12 @@ class AddPhotoActivity : BindingActivity<ActivityAddPhotoBinding>(R.layout.activ
                     ).await()
                 }.onSuccess {
                     toast("Nunu Success ${it.message}")
+                    AddCompleteDialog(this@AddPhotoActivity).showDialog()
+                    finish()
                 }.onFailure {
-                    toast("Nunu Failire ${it.message}")
                     Timber.e(it)
                 }
             }
-            val addPhotoDialog = AddCompleteDialog(this)
-            addPhotoDialog.showDialog()
         }
 
         binding.btnBack.setOnClickListener {
