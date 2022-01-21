@@ -5,17 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.google.android.material.tabs.TabLayout
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.content.receive
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
-import com.teamfillin.fillin.data.response.ResponseCurationInfo
-import com.teamfillin.fillin.data.response.ResponseNewPhotoInfo
-import com.teamfillin.fillin.data.service.CurationService
+import com.teamfillin.fillin.data.service.FilmRollService
 import com.teamfillin.fillin.databinding.ActivityFilmRollBinding
 import com.teamfillin.fillin.presentation.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
-import com.teamfillin.fillin.presentation.home.NewPhotosAdapter
+import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
@@ -23,9 +22,16 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activity_film_roll) {
     @Inject
-    lateinit var service: CurationService
+    lateinit var service: FilmRollService
     private var filmrollAdapter = FilmRollAdapter()
-    private var curationAdapter = CurationAdapter()
+    private var curationAdapter = CurationAdapter{
+        val dialog = PhotoDialogFragment()
+        val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
+        dialog.apply {
+            arguments = bundle
+            show(supportFragmentManager, "dialog")
+        }
+    }
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,75 +49,44 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
 
     private fun addCurationList() {
         service.getCuration().receive({
-            curationAdapter.submitList(it.data.photo)
+            curationAdapter.submitList(it.data.photos)
         }, {
             Timber.d("Error $it")
         })
-//        curationAdapter.submitList(
-//            listOf(
-//                CurationInfo(
-//                    R.drawable.ic_curation_cover, CURATION_INFO_TYPE,"따뜻한 사진을 \n 원한다면"
-//                ),
-//                CurationInfo(
-//                    R.drawable.and_card_img, CURATION_TYPE,""
-//                ),
-//                CurationInfo(
-//                    R.drawable.and_card_img, CURATION_TYPE,""
-//                ),
-//                CurationInfo(
-//                    R.drawable.and_card_img, CURATION_TYPE,""
-//                ),
-//                CurationInfo(
-//                    R.drawable.and_card_img, CURATION_TYPE,""
-//                ),
-//                CurationInfo(
-//                    R.drawable.and_card_img, CURATION_TYPE,""
-//                ),
-//                CurationInfo(
-//                    R.drawable.and_card_img, CURATION_TYPE,""
-//                )
-//
-//            )
-//        )
     }
 
     private fun setFilmRollAdapter() {
         binding.rvFilmroll.adapter = filmrollAdapter
-        addFilmRollList()
+        setFilmImage()
     }
 
-    private fun addFilmRollList() {
-        filmrollAdapter.submitList(
-            listOf(
-                FilmrollInfo(
-                    R.drawable.and_photo_rectangle
-                ),
-                FilmrollInfo(
-                    R.drawable.ic_card_curation
-                ),
-                FilmrollInfo(
-                    R.drawable.and_photo_rectangle
-                ),
-                FilmrollInfo(
-                    R.drawable.ic_card_curation
-                ),
-                FilmrollInfo(
-                    R.drawable.ic_card_curation
-                ),
-                FilmrollInfo(
-                    R.drawable.and_photo_rectangle
-                ),
-                FilmrollInfo(
-                    R.drawable.ic_card_curation
-                ),
-                FilmrollInfo(
-                    R.drawable.ic_card_curation
-                ),
-                FilmrollInfo(
-                    R.drawable.and_photo_rectangle
-                )
-            )
-        )
+    private fun addFilmRollList(position: Int) {
+        service.getFilmStyle(position).receive({
+//            filmrollAdapter.submitList(it.data.photos)
+            }, {
+                Timber.d("Error $it")
+            })
+
+    }
+
+    private fun setFilmImage() {
+        binding.filmtab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab!!.position) {
+                    0 -> addFilmRollList(1)
+                    1 -> addFilmRollList(1)
+                    2 -> addFilmRollList(3)
+                    3 -> addFilmRollList(4)
+                }
+            }
+        })
+
     }
 
     private fun setResultFilmchoice() {

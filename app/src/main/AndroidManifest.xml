@@ -62,23 +62,23 @@
         </activity>
         <activity
             android:name=".presentation.add.AddPhotoActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".presentation.map.StudioMapActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".presentation.map.MapSearchActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".presentation.my.MyPageActivity"
             android:screenOrientation="portrait"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".presentation.filmroll.FilmCategoryImageActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".presentation.filmroll.FilmRollActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".presentation.category.FilmRollCategoryActivity"
             android:exported="true" />

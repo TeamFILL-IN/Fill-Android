@@ -3,7 +3,6 @@ package com.teamfillin.fillin.presentation.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.naver.maps.geometry.LatLng
@@ -18,9 +17,6 @@ import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.content.receive
 import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
-import com.teamfillin.fillin.data.response.BaseResponse
-import com.teamfillin.fillin.data.response.ResponseNewPhotoInfo
-import com.teamfillin.fillin.data.response.ResponseUserInfo
 import com.teamfillin.fillin.data.service.HomeService
 import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
@@ -30,9 +26,6 @@ import com.teamfillin.fillin.presentation.map.StudioMapActivity
 import com.teamfillin.fillin.presentation.my.MyPageActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.await
 import timber.log.Timber
 import javax.inject.Inject
@@ -61,37 +54,16 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     }
 
     private fun initDatas() {
-//        service.getNewPhoto().receive({
-//            newPhotosAdapter.replaceList(it.data.photos)
-//        }, {
-//            Timber.d("Error $it")
-//        })
-
-        lifecycleScope.launch {
-            runCatching {
-                service.getNewPhoto().await()
-            }.onSuccess {
-                newPhotosAdapter.replaceList(it.data.photos)
-            }.onFailure(Timber::e)
-        }
-
-        service.getUser().enqueue(object : Callback<BaseResponse<ResponseUserInfo>> {
-            override fun onResponse(
-                call: Call<BaseResponse<ResponseUserInfo>>,
-                response: Response<BaseResponse<ResponseUserInfo>>
-            ) {
-                if (response.isSuccessful) {
-                    val userData = response.body()?.data
-                    binding.tvIntro.text = "${userData?.user?.nickname}"
-                    Timber.d("데이터 넘어오나?", "${userData?.user?.nickname}")
-                } else {
-                    Timber.d("Error")
-                }
-            }
-
-            override fun onFailure(call: Call<BaseResponse<ResponseUserInfo>>, t: Throwable) {
-                Log.d("NetworkTest", "error: $t")
-            }
+        service.getNewPhoto().receive({
+            newPhotosAdapter.replaceList(it.data.photos)
+        }, {
+            Timber.d("Error $it")
+        })
+        service.getUser().receive({
+            val userData = it.data
+            binding.tvIntro.text = "${userData?.user?.nickname}"
+        }, {
+            Timber.d("Error $it")
         })
     }
 
@@ -100,7 +72,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             val intent = Intent(this, AddPhotoActivity::class.java)
             startActivity(intent)
         }
-
         binding.btnFilmroll.setOnSingleClickListener {
             val intent = Intent(this, FilmRollActivity::class.java)
             startActivity(intent)
@@ -230,10 +201,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             flags =
                 Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         }
-
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
 
 }
-
-
