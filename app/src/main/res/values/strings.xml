@@ -2,7 +2,6 @@
     <string name="app_name">FILL-IN</string>
     <string name="nickname">찰칵찰칵 필린이</string>
     <string name="camera_name">Fuji film X 1200</string>
-    <string name="new_film_tell">나만 아는 필름과 현상소를\n필린에 알려주세요! </string>
     <string name="login_slogan">Fill-in your Feel\nFill-in your film-</string>
     <string name="login_intro">필린에서 소중한 추억을\nFILL-IN 해보세요</string>
     <string name="login_kakao">카카오 로그인</string>
@@ -15,6 +14,7 @@
     <string name="onboarding_content_1">주변 현상소 정보를\n필린에서 찾아보세요!</string>
     <string name="onboarding_content_2">다양한 필름 사진을\n필린에서 만나보세요!</string>
     <string name="onboarding_content_3">나만의 필름 사진을\n필린에서 공유해보세요!</string>
+    <string name="new_film_tell">나만 아는 필름과 현상소를\n<b>필린에 알려주세요!</b> </string>
     <string name="my_photos">MY PHOTOS</string>
     <string name="film_name">Film</string>
     <string name="studio_name">Studio</string>

@@ -141,7 +141,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
                 it.data.studios.forEach {
                     Marker().apply {
                         position = LatLng(it.lati, it.long)
-                        icon = OverlayImage.fromResource(R.drawable.ic_place_big)
+                        icon = OverlayImage.fromResource(R.drawable.ic_place_select)
                         this.map = activityNaverMap
                         studioIdHash[LatLng(it.lati, it.long)] = it.id
                         locationHash[it.id] = LatLng(it.lati, it.long)
