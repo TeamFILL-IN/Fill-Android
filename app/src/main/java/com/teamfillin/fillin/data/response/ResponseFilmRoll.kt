@@ -1,15 +1,10 @@
 package com.teamfillin.fillin.data.response
 
-data class ResponseCurationInfo(
-    val curation: Curation,
-    val photo: List<CurationPhoto>
+data class ResponseFilmRoll(
+    val photos: List<FilmPhotoInfo>,
+    val curation: Curation
 ) {
-    data class Curation(
-        val id: Int,
-        val title: String,
-        val photolist: String
-    )
-    data class CurationPhoto(
+    data class FilmPhotoInfo(
         val nickname: String,
         val userImageUrl: String,
         val photoId: Int,
@@ -19,4 +14,11 @@ data class ResponseCurationInfo(
         val likeCount: Int,
         val isLiked: Boolean
     )
+
+    data class Curation(
+        val id: Int,
+        val title: String,
+        val photolist: String
+    )
 }
+

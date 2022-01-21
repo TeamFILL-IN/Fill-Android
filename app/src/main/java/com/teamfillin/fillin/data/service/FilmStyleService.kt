@@ -8,9 +8,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface FilmStyleService {
-    @GET("photo/style/:styleId")
-    fun getFilmStyle(): Call<BaseResponse<ResponseFilmStyleInfo>>
-
     @GET("film/{styleId}")
     fun getFilmType(
         @Path("styleId") styleId: Int
