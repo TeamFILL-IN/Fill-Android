@@ -47,18 +47,13 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         fusedLocationSource =
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
         binding.mapMain.getMapAsync(this)
-        initNewPhotoRecyclerView()
         initDatas()
+        initNewPhotoRecyclerView()
         clickListener()
         popup()
     }
 
     private fun initDatas() {
-        service.getNewPhoto().receive({
-            newPhotosAdapter.replaceList(it.data.photos)
-        }, {
-            Timber.d("Error $it")
-        })
         service.getUser().receive({
             val userData = it.data
             binding.tvIntro.text = "${userData?.user?.nickname}"
@@ -89,6 +84,11 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     private fun initNewPhotoRecyclerView() {
         newPhotosAdapter = NewPhotosAdapter()
         binding.rvNewPhotos.adapter = newPhotosAdapter
+        service.getNewPhoto().receive({
+            newPhotosAdapter.replaceList(it.data.photos)
+        }, {
+            Timber.d("Error $it")
+        })
     }
 
     private fun popup() {
