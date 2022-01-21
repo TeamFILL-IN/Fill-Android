@@ -19,7 +19,7 @@ class PhotoDialogFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPhotoDialogBinding.inflate(layoutInflater, container, false)
 
         binding.btnClose.setOnClickListener {
