@@ -48,13 +48,11 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         }, {
             Timber.d("Error $it")
         })
-
         service.getUser().receive({
             val userData = it.data
             binding.tvIntro.text = "${userData?.user?.nickname}"
-            Timber.d("데이터 넘어오나?", "${userData?.user?.nickname}")
         }, {
-            Timber.d("Error")
+            Timber.d("Error $it")
         })
     }
 
@@ -102,5 +100,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         }
     }
 }
+
 
 

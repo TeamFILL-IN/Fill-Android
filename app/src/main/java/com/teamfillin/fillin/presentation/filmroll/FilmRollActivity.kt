@@ -42,7 +42,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
 
     private fun addCurationList() {
         service.getCuration().receive({
-            //리사이클러뷰 어댑터 연결-서버
+            curationAdapter.submitList(it.data.photos)
         }, {
             Timber.d("Error $it")
         })
@@ -55,7 +55,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
 
     private fun addFilmRollList(position: Int) {
         service.getFilmStyle(position).receive({
-            //리사이클러뷰 어댑터 연결-서버
+//            filmrollAdapter.submitList(it.data.photos)
             }, {
                 Timber.d("Error $it")
             })

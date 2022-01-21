@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.teamfillin.fillin.core.content.receive
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.response.ResponseFilmRoll
 import com.teamfillin.fillin.databinding.ItemCurationBinding
@@ -16,7 +17,7 @@ private const val CURATION_INFO_TYPE = 1
 private const val CURATION_TYPE = 2
 
 class CurationAdapter :
-    ListAdapter<ResponseFilmRoll.Curation, RecyclerView.ViewHolder>(CurationDiffUtil()) {
+    ListAdapter<ResponseFilmRoll.FilmPhotoInfo, RecyclerView.ViewHolder>(CurationDiffUtil()) {
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
@@ -34,9 +35,9 @@ class CurationAdapter :
 
     class CurationImageViewHolder(private val binding: ItemCurationBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(film: ResponseFilmRoll.Curation) {
+        fun bind(film: ResponseFilmRoll.FilmPhotoInfo) {
             Glide.with(binding.root)
-                .load(film.photolist)
+                .load(film.imageUrl)
                 .into(binding.ivCuration)
             binding.btnLike.setOnSingleClickListener {
                 binding.btnLike.isSelected = !binding.btnLike.isSelected
@@ -69,26 +70,26 @@ class CurationAdapter :
     override fun getItemCount(): Int = currentList.size + 1
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
         when (position == 0) {
             true -> {
                 (holder as CurationInfoViewHolder).bind()
             }
             else -> {
-                Timber.d("Data ${currentList[position]}")
-                (holder as CurationImageViewHolder).bind(currentList[position])
+                (holder as CurationImageViewHolder).bind(getItem(position - 1))
             }
         }
     }
 
-    private class CurationDiffUtil : DiffUtil.ItemCallback<ResponseFilmRoll.Curation>() {
+    private class CurationDiffUtil : DiffUtil.ItemCallback<ResponseFilmRoll.FilmPhotoInfo>() {
         override fun areItemsTheSame(
-            oldItem: ResponseFilmRoll.Curation,
-            newItem: ResponseFilmRoll.Curation
-        ) = oldItem.photolist == newItem.photolist
+            oldItem: ResponseFilmRoll.FilmPhotoInfo,
+            newItem: ResponseFilmRoll.FilmPhotoInfo
+        ) = oldItem.imageUrl == newItem.imageUrl
 
         override fun areContentsTheSame(
-            oldItem: ResponseFilmRoll.Curation,
-            newItem: ResponseFilmRoll.Curation
+            oldItem: ResponseFilmRoll.FilmPhotoInfo,
+            newItem: ResponseFilmRoll.FilmPhotoInfo
         ) = oldItem == newItem
     }
 }
