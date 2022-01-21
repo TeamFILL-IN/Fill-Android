@@ -26,6 +26,7 @@ import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 import com.teamfillin.fillin.presentation.map.StudioMapActivity
 import com.teamfillin.fillin.presentation.my.MyPageActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.await
 import timber.log.Timber
@@ -55,12 +56,14 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     }
 
     private fun initDatas() {
-        service.getUser().receive({
-            val userData = it.data
-            binding.tvIntro.text = "${userData?.user?.nickname}"
-        }, {
-            Timber.d("Error $it")
-        })
+        lifecycleScope.launch {
+            delay(300L)
+            runCatching {
+                service.getUser().await()
+            }.onSuccess {
+                binding.tvIntro.text = "${it.data.user.nickname}님, 좋은 아침입니다."
+            }.onFailure(Timber::e)
+        }
     }
 
     private fun clickListener() {
@@ -92,11 +95,14 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             }
         }
         binding.rvNewPhotos.adapter = newPhotosAdapter
-        service.getNewPhoto().receive({
-            newPhotosAdapter.replaceList(it.data.photos)
-        }, {
-            Timber.d("Error $it")
-        })
+        lifecycleScope.launch {
+            delay(400L)
+            runCatching {
+                service.getNewPhoto().await()
+            }.onSuccess {
+                newPhotosAdapter.replaceList(it.data.photos)
+            }.onFailure(Timber::e)
+        }
     }
 
     private fun popup() {
