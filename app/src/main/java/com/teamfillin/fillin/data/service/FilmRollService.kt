@@ -2,9 +2,10 @@ package com.teamfillin.fillin.data.service
 
 import com.teamfillin.fillin.data.response.BaseResponse
 import com.teamfillin.fillin.data.response.ResponseFilmRoll
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface FilmRollService {
     @GET("photo/film/{filmId}")
@@ -18,4 +19,11 @@ interface FilmRollService {
 
     @GET("film/{styleId}")
     fun getFilmCategory(@Path("styleId") styleId: Int): Call<BaseResponse<ResponseFilmRoll>>
+
+    @Multipart
+    @POST("photo")
+    fun postImage(
+        @PartMap body: HashMap<String, RequestBody>,
+        @Part file: MultipartBody.Part?
+    ): Call<BaseResponse<Unit>>
 }
