@@ -12,7 +12,6 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:screenOrientation="portrait"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.FillInAndroid"
@@ -20,10 +19,12 @@
 
         <activity
             android:name=".presentation.home.HomeActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".presentation.onboarding.OnboardingActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.App.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,6 +47,7 @@
 
         <activity
             android:name=".presentation.login.LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
@@ -63,12 +65,15 @@
         </activity>
         <activity
             android:name=".presentation.filmroll.add.AddPhotoActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".presentation.map.StudioMapActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".presentation.map.MapSearchActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".presentation.my.MyPageActivity"
@@ -76,12 +81,15 @@
             android:exported="false" />
         <activity
             android:name=".presentation.filmroll.FilmCategoryImageActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".presentation.filmroll.FilmRollActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".presentation.category.FilmRollCategoryActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
 
         <meta-data
