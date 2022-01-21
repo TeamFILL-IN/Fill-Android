@@ -73,7 +73,7 @@ class AddPhotoActivity : BindingActivity<ActivityAddPhotoBinding>(R.layout.activ
                     with(binding.btnAddPhoto) {
                         isClickable = it
                         setBackgroundColor(
-                            if (it) colorOf(R.color.fillin_red) else colorOf(R.color.grey_3)
+                            if (it) colorOf(R.color.fillin_red) else Color.parseColor("#474645")
                         )
                         setTextColor(
                             if (it) colorOf(R.color.fillin_black) else Color.parseColor("#6F6F6F")
