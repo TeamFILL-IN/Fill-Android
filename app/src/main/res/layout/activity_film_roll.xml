@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.MaterialToolbar xmlns:tools="http://schemas.android.com/tools"
+            <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,7 +68,6 @@
                     android:background="@color/fillin_black"
                     app:layout_constraintBottom_toTopOf="@+id/filmtab">
 
-
                     <TextView
                         android:id="@+id/tv_curation"
                         style="@style/EngHead"
@@ -104,7 +103,6 @@
                         android:orientation="horizontal"
                         app:layout_constraintTop_toBottomOf="@+id/rv_curation" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/filmtab"
@@ -182,11 +180,12 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_filmroll"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="18dp"
-                    android:layout_marginTop="18dp"
+                    android:orientation="vertical"
                     android:overScrollMode="never"
-                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cl_category"

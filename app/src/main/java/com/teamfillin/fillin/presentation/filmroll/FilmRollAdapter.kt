@@ -1,6 +1,5 @@
 package com.teamfillin.fillin.presentation.filmroll
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.databinding.ItemFilmRollBinding
 
-class FilmRollAdapter() :
+class FilmRollAdapter :
     ListAdapter<FilmrollInfo, FilmRollAdapter.FilmRollViewHolder>(FilmRollDiffUtil()) {
 
     class FilmRollViewHolder(private val binding: ItemFilmRollBinding) :

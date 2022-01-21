@@ -1,6 +1,7 @@
 package com.teamfillin.fillin.config.di
 
 import com.teamfillin.fillin.data.service.*
+import com.teamfillin.fillin.data.service.PagingService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,4 +47,8 @@ object ServiceModule {
     fun provideFillRollService(retrofit: Retrofit): FilmRollService =
         retrofit.create(FilmRollService::class.java)
 
+    @Provides
+    @Singleton
+    fun providePagingService(retrofit: Retrofit): PagingService =
+        retrofit.create(PagingService::class.java)
 }
