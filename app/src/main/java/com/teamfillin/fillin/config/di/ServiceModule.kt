@@ -1,7 +1,6 @@
-import com.teamfillin.fillin.data.service.AuthService
-import com.teamfillin.fillin.data.service.FilmStyleService
-import com.teamfillin.fillin.data.service.HomeService
-import com.teamfillin.fillin.data.service.StudioService
+package com.teamfillin.fillin.config.di
+
+import com.teamfillin.fillin.data.service.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,4 +31,8 @@ object ServiceModule {
     fun provideFilmStyleService(retrofit: Retrofit): FilmStyleService =
         retrofit.create(FilmStyleService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideFillRollService(retrofit: Retrofit): FilmRollService =
+        retrofit.create(FilmRollService::class.java)
 }

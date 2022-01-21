@@ -2,7 +2,6 @@ package com.teamfillin.fillin.data.service
 
 import com.teamfillin.fillin.data.response.BaseResponse
 import com.teamfillin.fillin.data.response.ResponseFilmRoll
-import com.teamfillin.fillin.data.response.ResponseFilmStyle
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
