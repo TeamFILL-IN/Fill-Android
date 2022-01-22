@@ -1,25 +1,31 @@
 # Fill-Android
-> SOPT 29th APPJAM - TEAM FILL-IN 📸✨ 2022.01.02 ~ 2021.01.22   
 
 필름 현상소, 필름 정보제공 서비스   
 당신의 추억으로 FILL-IN</br></br>
 <img width="90%" src="https://user-images.githubusercontent.com/56147398/148933940-1c02f148-6d3b-45c8-a3de-cfd9213ac6db.jpeg"/>
 
 ## 기술 스택 💻
-- Hilt(Dependency Injection)
-- Coroutines + Flow
-- Flipper
-- Github Action
-- Timber
-- App Startup
-- Kakao SDK
-- DataBinding/ViewBinding
+- Architecture: MVC + MVVM
+- Android Jetpack
+    - Lifecycle
+    - AAC
+    - Dagger-Hilt
+    - App Startup
+    - DataBinding/ViewBinding
+    - Security(EncryptedSharedPreference)
+    - Paging3
+    - SplashScreen Core
+- Modern Kotlin
+    - Coroutines + Flow
+- CI/CD
+    - Github Action
+    - Slack
 - Glide
 - Retrofit/Okhttp
+- Kakao SDK
 - NaverMap SDK
-- EncryptedSharedPreference
-- MVC + MVVM
-- Kotlin
+- Timber
+- Flipper
 
 ## 역할 📸
 - 이강민 : 지도 뷰, 지도 검색, 지도 상세정보
@@ -28,7 +34,8 @@
 - 이현우 : 소셜 로그인, 프로젝트 설정, 유틸, 그 외 작업
 
 ## 폴더링 구조 📂
-<img width="50%" src="https://user-images.githubusercontent.com/56147398/148934525-e813fadd-d285-43b7-bb3b-e7d8b593b626.gif"/></br>
+<img width="50%" src="https://user-images.githubusercontent.com/54518925/150623426-7f574390-9858-4603-af58-37c52be1e943.png"/></br>
+<img width="50%" src="https://user-images.githubusercontent.com/54518925/150623430-4f8a1b6d-3719-4bc4-a57c-76ea3245fc69.png"/></br>
 ### package name은 반드시 소문자로 작성
 - presentation -> 뷰 관련 작업
 - di -> 의존성 주입 관련 모듈
