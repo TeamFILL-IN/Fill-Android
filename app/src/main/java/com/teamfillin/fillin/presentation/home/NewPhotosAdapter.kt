@@ -80,7 +80,7 @@ class NewPhotosAdapter(
             Glide.with(itemView.context)
                 .load(data.imageUrl)
                 .into(binding.ivNewPhoto)
-            binding.root.setOnClickListener {
+            binding.root.setOnSingleClickListener {
                 listener.onClick(data)
             }
         }
