@@ -138,8 +138,8 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
                 if (result.resultCode == Activity.RESULT_OK) {
                     val film = result.data?.getStringExtra("film") ?: ""
                     binding.tvFilmchoice.text = film
-                    val styleId = result.data?.getIntExtra("styleId", -1) ?: -1
-                    retrieveCategoryPhotoList(-1, styleId)
+                    val id = result.data?.getIntExtra("id", -1) ?: -1
+                    retrieveCategoryPhotoList(-1, id)
                 }
             }
     }
