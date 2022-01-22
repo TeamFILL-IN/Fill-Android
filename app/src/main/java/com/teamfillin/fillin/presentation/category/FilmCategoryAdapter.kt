@@ -1,21 +1,12 @@
 package com.teamfillin.fillin.presentation.category
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.teamfillin.fillin.R
-import com.teamfillin.fillin.core.view.setOnSingleClickListener
-import com.teamfillin.fillin.data.CategoryInfo
 import com.teamfillin.fillin.data.response.ResponseFilmType
-import com.teamfillin.fillin.data.response.ResponseStudioPhoto
 import com.teamfillin.fillin.databinding.ItemCategoryInfoBinding
-import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter
-import com.teamfillin.fillin.presentation.category.FilmCategoryAdapter.Companion.DIFFUTIL
-import com.teamfillin.fillin.presentation.map.PhotoReviewListAdapter
 
 
 class FilmCategoryAdapter(private val listener: ItemClickListener) :
