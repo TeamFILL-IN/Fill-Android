@@ -22,7 +22,7 @@ class CategoryPhotosPagingSource(
             return LoadResult.Error(it)
         }
 
-        val nextPositon = currentPosition + 1
+        val nextPositon = if (response.data.photos.isEmpty()) null else currentPosition + 1
         val previousPosition =
             if (currentPosition != START_POSITION_INDEX) null else currentPosition - 1
         return runCatching {

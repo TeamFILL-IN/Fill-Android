@@ -23,6 +23,7 @@ import com.teamfillin.fillin.databinding.ActivityHomeBinding
 import com.teamfillin.fillin.presentation.filmroll.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
+import com.teamfillin.fillin.presentation.map.SpaceDecoration
 import com.teamfillin.fillin.presentation.map.StudioMapActivity
 import com.teamfillin.fillin.presentation.my.MyPageActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +38,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     OnMapReadyCallback {
     @Inject
     lateinit var service: HomeService
+
     @Inject
     lateinit var studioService: StudioService
     private lateinit var newPhotosAdapter: NewPhotosAdapter
@@ -86,7 +88,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     }
 
     private fun initNewPhotoRecyclerView() {
-        newPhotosAdapter = NewPhotosAdapter{
+        newPhotosAdapter = NewPhotosAdapter {
             val dialog = PhotoDialogFragment()
             val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
             dialog.apply {
@@ -95,6 +97,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             }
         }
         binding.rvNewPhotos.adapter = newPhotosAdapter
+        binding.rvNewPhotos.addItemDecoration(NewPhotosDecoration())
         lifecycleScope.launch {
             delay(400L)
             runCatching {
@@ -215,6 +218,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             flags =
                 Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         }
+
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
 

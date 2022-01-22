@@ -109,6 +109,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
     private fun retrieveCategoryPhotoList(tabPosition: Int, filmId: Int) {
         if (filmId == -1) {
             Timber.d("Nunu tabPosition: $tabPosition")
+            binding.tvFilmchoice.text = "필름 종류를 선택하세요"
             lifecycleScope.launch {
                 filmRollPagingAdapter.submitData(PagingData.empty())
                 viewModel.getCategoryFilm(tabPosition, -1)
@@ -138,8 +139,8 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
                 if (result.resultCode == Activity.RESULT_OK) {
                     val film = result.data?.getStringExtra("film") ?: ""
                     binding.tvFilmchoice.text = film
-                    val styleId = result.data?.getIntExtra("styleId", -1) ?: -1
-                    retrieveCategoryPhotoList(-1, styleId)
+                    val id = result.data?.getIntExtra("id", -1) ?: -1
+                    retrieveCategoryPhotoList(-1, id)
                 }
             }
     }
