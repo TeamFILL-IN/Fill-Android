@@ -109,6 +109,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
     private fun retrieveCategoryPhotoList(tabPosition: Int, filmId: Int) {
         if (filmId == -1) {
             Timber.d("Nunu tabPosition: $tabPosition")
+            binding.tvFilmchoice.text = "필름 종류를 선택하세요"
             lifecycleScope.launch {
                 filmRollPagingAdapter.submitData(PagingData.empty())
                 viewModel.getCategoryFilm(tabPosition, -1)
