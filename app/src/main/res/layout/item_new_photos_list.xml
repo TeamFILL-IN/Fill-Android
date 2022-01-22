@@ -9,7 +9,6 @@
         android:id="@+id/iv_new_photo"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:paddingHorizontal="2dp"
         android:overScrollMode="never"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"

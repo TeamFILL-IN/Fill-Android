@@ -12,7 +12,8 @@ import com.teamfillin.fillin.databinding.ItemNextButtonBinding
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
 import timber.log.Timber
 
-class NewPhotosAdapter(private val listener: ItemClickListener
+class NewPhotosAdapter(
+    private val listener: ItemClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var photolist = listOf<ResponseNewPhotoInfo.Photo>()
@@ -70,8 +71,10 @@ class NewPhotosAdapter(private val listener: ItemClickListener
     }
 
 
-    class NewPhotosViewHolder(private val binding: ItemNewPhotosListBinding,
-    private val listener: ItemClickListener) :
+    class NewPhotosViewHolder(
+        private val binding: ItemNewPhotosListBinding,
+        private val listener: ItemClickListener
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: ResponseNewPhotoInfo.Photo) {
             Glide.with(itemView.context)
