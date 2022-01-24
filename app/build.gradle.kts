@@ -28,6 +28,12 @@ android {
             storeFile = File("${project.rootDir.absolutePath}/keystore/debug.keystore")
             storePassword = "android"
         }
+        create("release") {
+            keyAlias = "fillin"
+            keyPassword = "fillinandroid"
+            storeFile = File("${project.rootDir.absolutePath}/keystore/releasekey.jks")
+            storePassword = "fillinandroid"
+        }
     }
 
     buildTypes {
@@ -36,8 +42,8 @@ android {
         }
 
         getByName("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

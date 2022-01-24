@@ -113,9 +113,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             btnClose.setOnClickListener {
                 clPopup.isVisible = !clPopup.isVisible
             }
-            tvNotice.setOnClickListener {
-                toast("현상소 제보 Page이동")
-            }
         }
     }
 
