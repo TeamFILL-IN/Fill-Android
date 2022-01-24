@@ -28,6 +28,12 @@ android {
             storeFile = File("${project.rootDir.absolutePath}/keystore/debug.keystore")
             storePassword = "android"
         }
+        create("release") {
+            keyAlias = "fillin"
+            keyPassword = "fillinandroid"
+            storeFile = File("${project.rootDir.absolutePath}/keystore/releasekey.jks")
+            storePassword = "fillinandroid"
+        }
     }
 
     buildTypes {
@@ -36,6 +42,7 @@ android {
         }
 
         getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
