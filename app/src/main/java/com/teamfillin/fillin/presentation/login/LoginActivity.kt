@@ -52,7 +52,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 .collect {
                     when (it) {
                         is LoginViewModel.InHouseLoginState.Success -> {
-                            toast("로그인 성공")
                             startActivity(HomeActivity.getIntent(this@LoginActivity))
                         }
                         is LoginViewModel.InHouseLoginState.Failure -> toast(it.message)
