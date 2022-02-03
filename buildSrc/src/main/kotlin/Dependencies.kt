@@ -7,6 +7,7 @@ object AndroidXDependencies {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
+    const val startup = "androidx.startup:startup-runtime:${Versions.appStartUpVersion}"
     const val hilt = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
     const val fragment = "androidx.fragment:fragment-ktx:${Versions.fragmentKtxVersion}"
     const val legacy = "androidx.legacy:legacy-support-v4:${Versions.legacySupportVersion}"
@@ -16,6 +17,8 @@ object AndroidXDependencies {
     const val lifeCycleKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
     const val lifecycleJava8 =
         "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleVersion}"
+    const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashVersion}"
+    const val pagingRuntime = "androidx.paging:paging-runtime:${Versions.pagingVersion}"
 }
 
 object TestDependencies {
@@ -48,8 +51,17 @@ object ThirdPartyDependencies {
     const val soloader = "com.facebook.soloader:soloader:${Versions.soloaderVersion}"
     const val flipperNetwork =
         "com.facebook.flipper:flipper-network-plugin:${Versions.flipperVersion}"
+    const val flipperLeakCanary =
+        "com.facebook.flipper:flipper-leakcanary2-plugin:${Versions.flipperVersion}"
+    const val leakCanary =
+        "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanaryVersion}"
     const val ossLicense =
         "com.google.android.gms:play-services-oss-licenses:${Versions.ossVersion}"
+    const val kakaoLogin = "com.kakao.sdk:v2-user:${Versions.kakaoVersion}"
+    const val naverMap = "com.naver.maps:map-sdk:${Versions.naverVersion}"
+    const val mapLocation =
+        "com.google.android.gms:play-services-location:${Versions.locationVersion}"
+    const val dotsIndicator = "com.tbuonomo:dotsindicator:${Versions.dotsIndicatorVersion}"
 }
 
 object ClassPathPlugins {

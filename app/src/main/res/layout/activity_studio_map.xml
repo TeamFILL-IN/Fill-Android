@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/dark_grey_2">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/tb_title"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/fillin_black"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_logo" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+            <com.naver.maps.map.MapView
+                android:id="@+id/map_main"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tb_title" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_search"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="18dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/map_search_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tb_title">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:text="@string/map_search"
+                    android:textColor="@color/grey_1"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/image_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:src="@drawable/icn_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.naver.maps.map.widget.LocationButtonView
+                android:id="@+id/btn_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/cl_bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:visibility="gone"
+            app:behavior_hideable="true"
+            app:behavior_peekHeight="210dp"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/dark_grey_2"
+                android:descendantFocusability="blocksDescendants">
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/dark_grey_1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_location_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="36dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="필린 사진관" />
+
+                <ImageView
+                    android:id="@+id/iv_scrap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:src="@drawable/ic_scrap"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_location_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_location_name" />
+
+                <View
+                    android:id="@+id/view_division"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/dark_grey_3"
+                    app:layout_constraintTop_toBottomOf="@id/tv_location_name" />
+
+                <ImageView
+                    android:id="@+id/iv_place_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/ic_place_small"
+                    app:layout_constraintStart_toStartOf="@id/tv_location_name"
+                    app:layout_constraintTop_toBottomOf="@id/view_division" />
+
+                <TextView
+                    android:id="@+id/tv_location_detail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="25dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:textColor="@color/grey_1"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_place_logo"
+                    app:layout_constraintTop_toTopOf="@id/iv_place_logo"
+                    tools:text="서울특별시 영등포구 여의도동 21-3 가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가" />
+
+                <ImageView
+                    android:id="@+id/iv_location_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_time"
+                    app:layout_constraintStart_toStartOf="@id/iv_place_logo"
+                    app:layout_constraintTop_toBottomOf="@id/tv_location_detail" />
+
+                <TextView
+                    android:id="@+id/tv_time_detail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:textColor="@color/grey_1"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@id/tv_location_detail"
+                    app:layout_constraintStart_toStartOf="@id/tv_location_detail"
+                    app:layout_constraintTop_toTopOf="@id/iv_location_time"
+                    tools:text="매일 10:30 ~ 22:00 가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가" />
+
+                <ImageView
+                    android:id="@+id/iv_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_call"
+                    app:layout_constraintStart_toStartOf="@id/iv_place_logo"
+                    app:layout_constraintTop_toBottomOf="@id/tv_time_detail" />
+
+                <TextView
+                    android:id="@+id/tv_call_detail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:textColor="@color/grey_1"
+                    app:layout_constraintEnd_toEndOf="@id/tv_location_detail"
+                    app:layout_constraintStart_toStartOf="@id/tv_location_detail"
+                    app:layout_constraintTop_toTopOf="@id/iv_call"
+                    tools:text="010-2929-2020" />
+
+                <ImageView
+                    android:id="@+id/iv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:src="@drawable/ic_price"
+                    app:layout_constraintStart_toStartOf="@id/iv_place_logo"
+                    app:layout_constraintTop_toBottomOf="@id/tv_call_detail" />
+
+                <TextView
+                    android:id="@+id/tv_price_detail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:textColor="@color/grey_1"
+                    app:layout_constraintEnd_toEndOf="@id/tv_location_detail"
+                    app:layout_constraintStart_toStartOf="@id/tv_location_detail"
+                    app:layout_constraintTop_toTopOf="@id/iv_price"
+                    tools:text="컬러 스캔: 4,000원 가가가가가가가가가가가가가\n흑백 스캔: 5,000원 가가가가가가가가가가가가가\n4롤 스캔 시 10,000원 가가가가가가가가가가가가" />
+
+                <ImageView
+                    android:id="@+id/iv_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:src="@drawable/ic_link"
+                    app:layout_constraintStart_toStartOf="@id/iv_place_logo"
+                    app:layout_constraintTop_toBottomOf="@id/tv_price_detail" />
+
+                <TextView
+                    android:id="@+id/tv_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:bufferType="spannable"
+                    android:text="@string/bottom_sheet_web"
+                    android:textColorLink="@color/fillin_red"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_link"
+                    app:layout_constraintStart_toStartOf="@id/tv_location_detail"
+                    app:layout_constraintTop_toTopOf="@id/iv_link" />
+
+                <View
+                    android:id="@+id/view_division2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/dark_grey_3"
+                    app:layout_constraintTop_toBottomOf="@id/iv_link" />
+
+                <TextView
+                    android:id="@+id/tv_photo_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/futura_std_book"
+                    android:text="@string/bottom_sheet_photo_review"
+                    android:textColor="@color/fillin_white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/iv_place_logo"
+                    app:layout_constraintTop_toBottomOf="@id/view_division2" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_photo_review"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="18dp"
+                    android:layout_marginTop="12dp"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_photo_review"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_my_page" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

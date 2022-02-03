@@ -21,8 +21,28 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        getByName("debug") {
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+            storeFile = File("${project.rootDir.absolutePath}/keystore/debug.keystore")
+            storePassword = "android"
+        }
+        create("release") {
+            keyAlias = "fillin"
+            keyPassword = "fillinandroid"
+            storeFile = File("${project.rootDir.absolutePath}/keystore/releasekey.jks")
+            storePassword = "fillinandroid"
+        }
+    }
+
     buildTypes {
+        getByName("debug") {
+            buildConfigField("String", "KAKAO_AUTH", "\"a7ddbcd24d7fff22320cc13a1e534104\"")
+        }
+
         getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -47,6 +67,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+
     // Kotlin
     implementation(KotlinDependencies.kotlin)
 
@@ -54,6 +76,7 @@ dependencies {
     implementation(AndroidXDependencies.coreKtx)
     implementation(AndroidXDependencies.appCompat)
     implementation(AndroidXDependencies.constraintLayout)
+    implementation(AndroidXDependencies.startup)
     implementation(AndroidXDependencies.hilt)
     kapt(KaptDependencies.hiltCompiler)
     implementation(AndroidXDependencies.fragment)
@@ -62,6 +85,8 @@ dependencies {
     implementation(AndroidXDependencies.coroutines)
     implementation(AndroidXDependencies.lifeCycleKtx)
     implementation(AndroidXDependencies.lifecycleJava8)
+    implementation(AndroidXDependencies.pagingRuntime)
+    implementation(AndroidXDependencies.splashScreen)
 
     // Third-Party
     implementation(ThirdPartyDependencies.glide)
@@ -74,9 +99,22 @@ dependencies {
     implementation(ThirdPartyDependencies.retrofitGsonConverter)
     implementation(ThirdPartyDependencies.timber)
     implementation(ThirdPartyDependencies.ossLicense)
+    implementation(ThirdPartyDependencies.kakaoLogin)
+    implementation(ThirdPartyDependencies.naverMap)
+    implementation(ThirdPartyDependencies.mapLocation)
+    implementation(ThirdPartyDependencies.dotsIndicator)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
+
+    // Flipper
+    debugImplementation(ThirdPartyDependencies.flipper)
+    debugImplementation(ThirdPartyDependencies.flipperNetwork) {
+        exclude("com.squareup.okhttp3", "okhttp")
+    }
+    debugImplementation(ThirdPartyDependencies.flipperLeakCanary)
+    debugImplementation(ThirdPartyDependencies.leakCanary)
+    debugImplementation(ThirdPartyDependencies.soloader)
 
     // Test Dependency
     testImplementation(TestDependencies.jUnit)

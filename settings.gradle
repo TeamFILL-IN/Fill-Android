@@ -3,8 +3,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/'}
+        maven { url 'https://naver.jfrog.io/artifactory/maven/' }
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
 rootProject.name = "FillInAndroid"
 include ':app'
+include ':core'

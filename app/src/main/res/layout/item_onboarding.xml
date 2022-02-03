@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="onboarding"
+            type="com.teamfillin.fillin.presentation.onboarding.OnboardingAdapter.Onboarding" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:background="@color/fillin_black">
+
+        <TextView
+            android:id="@+id/txt_onboarding_title"
+            style="@style/Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:text="@{onboarding.title}"
+            android:textColor="@color/grey_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="누누나나" />
+
+        <TextView
+            android:id="@+id/txt_onboarding_content"
+            style="@style/Display1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{onboarding.content}"
+            android:textColor="@color/fillin_white"
+            app:layout_constraintStart_toStartOf="@+id/txt_onboarding_title"
+            app:layout_constraintTop_toBottomOf="@+id/txt_onboarding_title"
+            tools:text="adsdadadad" />
+
+        <ImageView
+            android:id="@+id/img_onboarding"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:src="@{onboarding.imageResId}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_onboarding_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fillin_black"
+    tools:context=".presentation.dialog.PhotoDialogFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="17dp"
+            android:src="@drawable/ic_basic_profile" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="19dp"
+            android:includeFontPadding="false"
+            android:text="브이하는 곰돌이"
+            android:textColor="@color/grey_2" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/fillin_black"
+            android:src="@drawable/ic_dialog_clear" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/greyline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dark_grey_3"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/ll_up">
+
+    </View>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_image"
+        android:layout_width="match_parent"
+        android:layout_height="315dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_up">
+
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/and_photoframe"
+            app:layout_constraintBottom_toBottomOf="@id/cl_image"
+            app:layout_constraintEnd_toEndOf="@id/cl_image"
+            app:layout_constraintStart_toStartOf="@id/cl_image"
+            app:layout_constraintTop_toTopOf="@id/cl_image" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/greyline2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dark_grey_3"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/ll_bottom">
+
+    </View>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+
+            android:id="@+id/iv_filmroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="17dp"
+            android:src="@drawable/ic_filmroll_small" />
+
+        <TextView
+            android:id="@+id/tv_filmname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="19dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/futura_std_book"
+            android:maxLength="30"
+            android:text="Kodak colorplus 200 36mm"
+            android:textColor="#a5a5a5"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/li_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/linearline"
+            android:src="@drawable/unlike"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/heart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/dark_grey_3"
+                android:src="@drawable/heartbutton" />
+
+            <TextView
+                android:id="@+id/number"
+                style="@style/Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:text="22"
+                android:textColor="@color/grey_2" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
