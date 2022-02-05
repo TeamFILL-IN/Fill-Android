@@ -105,7 +105,7 @@ dependencies {
     implementation(ThirdPartyDependencies.dotsIndicator)
 
     // Material Design
-    implementation(MaterialDesignDependencies.materialDesign)
+        implementation(MaterialDesignDependencies.materialDesign)
 
     // Flipper
     debugImplementation(ThirdPartyDependencies.flipper)
