@@ -3,12 +3,17 @@ package com.teamfillin.fillin.presentation.my
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.kakao.sdk.user.UserApiClient
+import com.teamfillin.fillin.BuildConfig
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
+import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.service.MyPagePhotoService
 import com.teamfillin.fillin.data.service.UserService
 import com.teamfillin.fillin.databinding.ActivityMyPageBinding
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
+import com.teamfillin.fillin.presentation.login.KakaoAuthService
 import com.teamfillin.fillin.presentation.map.SpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -20,9 +25,14 @@ import javax.inject.Inject
 class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_my_page) {
     @Inject
     lateinit var userService: UserService
+
     @Inject
     lateinit var myPhotoService: MyPagePhotoService
-    private val adapter = MyPagePhotoRecyclerViewAdapter{
+
+    @Inject
+    lateinit var client: UserApiClient
+
+    private val adapter = MyPagePhotoRecyclerViewAdapter {
         val dialog = PhotoDialogFragment()
         Timber.d("mypagekangmin")
         val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
@@ -34,9 +44,19 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        binding.isDebug = BuildConfig.DEBUG
         binding.btnBackHome.setOnClickListener {
             finish()
+        }
+        binding.btnSettingDebug.setOnSingleClickListener {
+            client.loginWithKakaoAccount(this, callback = { token, _ ->
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("KAKAO AUTH TOKEN")
+                    .setMessage("${token?.accessToken}")
+                    .setPositiveButton("OK") { dialog, _ ->
+                        dialog.dismiss()
+                    }.show()
+            })
         }
 
         initAdapter()
@@ -49,6 +69,7 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
         val spaceDecoration = SpaceDecoration(7)
         binding.rvMyPage.addItemDecoration(spaceDecoration)
     }
+
     private fun showUserInfo() {
         lifecycleScope.launch {
             runCatching {
