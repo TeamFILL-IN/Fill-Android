@@ -69,24 +69,31 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
 
     private fun initEvent() {
         binding.ivSearch.setOnClickListener {
-            viewModel.locationSearch(binding.editSearch.text.toString())
+            if (binding.editSearch.text.isEmpty()) {
+                toast("장소를 입력해주세요")
+            } else {
+                viewModel.locationSearch(binding.editSearch.text.toString())
+            }
         }
-
         binding.ivClear.setOnClickListener {
             binding.editSearch.text.clear()
         }
     }
 
     private fun observe() {
-        viewModel.studioSearch.observe(this) {
-            binding.rvLocationInfo.isVisible = it.isNotEmpty()
-            binding.clNoResult.isVisible = it.isEmpty()
-            if (it.isNotEmpty()) {
-                searchListAdapter.submitList(it)
+        viewModel.resultSearch.observe(this) {
+            when (it) {
+                is MapSearchViewModel.StudioSearchState.Studios -> {
+                    searchListAdapter.submitList(it.studios)
+                }
+                is MapSearchViewModel.StudioSearchState.Failure -> {
+                    toast("서버 오류")
+                }
             }
-        }
-        viewModel.serverConnect.observe(this) {
-            toast("서버 오류")
+            binding.apply {
+                clNoResult.isVisible = it is MapSearchViewModel.StudioSearchState.Empty
+                rvLocationInfo.isVisible = it is MapSearchViewModel.StudioSearchState.Studios
+            }
         }
     }
 
