@@ -1,8 +1,10 @@
 package com.teamfillin.fillin.presentation.my
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.kakao.sdk.user.UserApiClient
 import com.teamfillin.fillin.BuildConfig
@@ -57,6 +59,9 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
                         dialog.dismiss()
                     }.show()
             })
+        }
+        binding.btnSetting.setOnClickListener {
+            startActivity(Intent(this, OssLicensesMenuActivity::class.java))
         }
 
         initAdapter()
