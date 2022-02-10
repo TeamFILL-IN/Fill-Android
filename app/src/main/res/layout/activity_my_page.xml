@@ -53,6 +53,16 @@
                 android:visibility="@{isDebug ? View.VISIBLE : View.GONE}"
                 tools:visibility="gone" />
 
+            <ImageView
+                android:id="@+id/btn_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:padding="12dp"
+                android:src="@drawable/ic_settings"
+                android:visibility="@{isDebug ? View.GONE : View.VISIBLE}" />
+
         </androidx.appcompat.widget.Toolbar>
 
         <ImageView
