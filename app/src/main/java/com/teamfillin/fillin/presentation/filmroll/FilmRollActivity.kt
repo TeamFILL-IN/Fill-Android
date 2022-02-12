@@ -40,14 +40,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
             show(supportFragmentManager, "dialog")
         }
     }
-    private var curationAdapter = CurationAdapter {
-        val dialog = PhotoDialogFragment()
-        val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
-        dialog.apply {
-            arguments = bundle
-            show(supportFragmentManager, "dialog")
-        }
-    }
+    private lateinit var curationAdapter: CurationAdapter
     private val addPhotoLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -73,12 +66,20 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
     }
 
     private fun setCurationAdapter() {
-        binding.rvCuration.adapter = curationAdapter
         addCurationList()
     }
 
     private fun addCurationList() {
         service.getCuration().receive({
+            curationAdapter = CurationAdapter(it.data.curation) {
+                val dialog = PhotoDialogFragment()
+                val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
+                dialog.apply {
+                    arguments = bundle
+                    show(supportFragmentManager, "dialog")
+                }
+            }
+            binding.rvCuration.adapter = curationAdapter
             curationAdapter.submitList(it.data.photos)
         }, {
             Timber.d("Error $it")

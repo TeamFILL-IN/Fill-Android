@@ -19,8 +19,8 @@ private const val CURATION_INFO_TYPE = 1
 private const val CURATION_TYPE = 2
 
 class CurationAdapter(
-    private val listener: ItemClickListener,
-    private val curation: ResponseFilmRoll.Curation
+    private val curation: ResponseFilmRoll.Curation,
+    private val listener: ItemClickListener
 ) :
     ListAdapter<ResponseFilmRoll.FilmPhotoInfo, RecyclerView.ViewHolder>(CurationDiffUtil()) {
 
