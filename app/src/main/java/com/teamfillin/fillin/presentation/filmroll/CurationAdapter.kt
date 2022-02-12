@@ -7,18 +7,21 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.teamfillin.fillin.R
-import com.teamfillin.fillin.core.content.receive
 import com.teamfillin.fillin.core.context.drawableOf
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.response.ResponseFilmRoll
 import com.teamfillin.fillin.databinding.ItemCurationBinding
 import com.teamfillin.fillin.databinding.ItemCurationFirstBinding
+import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import timber.log.Timber
 
 private const val CURATION_INFO_TYPE = 1
 private const val CURATION_TYPE = 2
 
-class CurationAdapter(private val listener: ItemClickListener) :
+class CurationAdapter(
+    private val listener: ItemClickListener,
+    private val curation: ResponseFilmRoll.Curation
+) :
     ListAdapter<ResponseFilmRoll.FilmPhotoInfo, RecyclerView.ViewHolder>(CurationDiffUtil()) {
 
     override fun getItemViewType(position: Int): Int {
@@ -32,8 +35,8 @@ class CurationAdapter(private val listener: ItemClickListener) :
         private val binding: ItemCurationFirstBinding
     ) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind() {
-            binding.tvCuration.text = "따뜻한 사진을 \n원한다면"
+        fun bind(curation: ResponseFilmRoll.Curation) {
+            binding.tvCurationinfo.text = curation.title
         }
     }
 
@@ -88,7 +91,7 @@ class CurationAdapter(private val listener: ItemClickListener) :
 
         when (position == 0) {
             true -> {
-                (holder as CurationInfoViewHolder).bind()
+                (holder as CurationInfoViewHolder).bind(curation)
             }
             else -> {
                 (holder as CurationImageViewHolder).bind(getItem(position - 1))
