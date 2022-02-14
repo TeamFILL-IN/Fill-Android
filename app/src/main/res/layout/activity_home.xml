@@ -28,7 +28,7 @@
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="20dp"
                     android:includeFontPadding="false"
-                    android:text="미나님,좋은 아침입니다."
+                    tools:text="미나님,좋은 아침입니다."
                     android:textColor="@color/grey_2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
