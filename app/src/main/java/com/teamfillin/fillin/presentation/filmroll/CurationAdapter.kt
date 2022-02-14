@@ -89,14 +89,12 @@ class CurationAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        when (position == 0) {
-            true -> {
-                (holder as CurationInfoViewHolder).bind(curation)
-            }
-            else -> {
-                (holder as CurationImageViewHolder).bind(getItem(position - 1))
-            }
+        if (position == 0) {
+            (holder as CurationInfoViewHolder).bind(curation)
+        } else {
+            (holder as CurationImageViewHolder).bind(getItem(position - 1))
         }
+
     }
 
     private class CurationDiffUtil : DiffUtil.ItemCallback<ResponseFilmRoll.FilmPhotoInfo>() {
