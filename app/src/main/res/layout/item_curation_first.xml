@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="120dp"
-    android:padding="5dp">
+    android:layout_width="103dp"
+    android:layout_height="118dp"
+    android:background="@drawable/ic_curation_cover"
+    android:paddingHorizontal="5dp">
 
-    <ImageView
-        android:id="@+id/iv_curationfirst"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:overScrollMode="never"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_curation_cover" />
     <TextView
-        android:id="@+id/tv_curation"
+        android:id="@+id/tv_curationinfo"
+        style="@style/Subhead2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="3dp"
         android:layout_marginBottom="11dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_weight="1"
+        android:ellipsize="none"
+        android:maxLines="100"
+        android:scrollHorizontally="false"
+        android:singleLine="false"
         android:textColor="@color/fillin_white"
-        style="@style/Subhead2" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
