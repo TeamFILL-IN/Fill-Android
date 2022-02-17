@@ -1,6 +1,7 @@
 package com.teamfillin.fillin.presentation.home
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,7 @@ class NewPhotosAdapter(
         }
     }
 
-    override fun getItemCount(): Int = photolist.size + 1
+    override fun getItemCount(): Int = photolist.size
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -52,7 +53,6 @@ class NewPhotosAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (position < photolist.size) {
             true -> {
-                Timber.d("Data ${photolist[position]}")
                 (holder as NewPhotosViewHolder).bind(photolist[position])
             }
             else -> {
@@ -60,16 +60,6 @@ class NewPhotosAdapter(
             }
         }
     }
-
-    fun replaceList(newList: List<ResponseNewPhotoInfo.Photo>) {
-        photolist = newList.toList()
-        notifyDataSetChanged()
-    }
-
-    fun interface ItemClickListener {
-        fun onClick(data: ResponseNewPhotoInfo.Photo)
-    }
-
 
     class NewPhotosViewHolder(
         private val binding: ItemNewPhotosListBinding,
@@ -88,11 +78,23 @@ class NewPhotosAdapter(
 
     class NextButtonViewHolder(private val binding: ItemNextButtonBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind() {
-            binding.root.setOnSingleClickListener {
+        fun bind() { //binding.ivNextButton? 안됨
+            binding.ivNextButton.setOnSingleClickListener {
                 val intent = Intent(itemView.context, FilmRollActivity::class.java)
                 itemView.context.startActivity(intent)
             }
         }
     }
+
+    fun replaceList(newList: List<ResponseNewPhotoInfo.Photo>) {
+        photolist = newList.toList()
+        notifyDataSetChanged()
+    }
+
+    fun interface ItemClickListener {
+        fun onClick(data: ResponseNewPhotoInfo.Photo)
+    }
+
+
+
 }
