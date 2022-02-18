@@ -13,173 +13,173 @@
         android:layout_height="match_parent"
         android:background="@color/fillin_black">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_home"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_home"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/cl_popup"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_intro"
+                style="@style/Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="20dp"
+                android:includeFontPadding="false"
+                android:textColor="@color/grey_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="미나님,좋은 아침입니다." />
+
+            <TextView
+                android:id="@+id/tv_ment"
+                style="@style/Display1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="6dp"
+                android:includeFontPadding="false"
+                android:text="서랍 속, 잠자는 필름을 \n깨워볼까요?"
+                android:textColor="@color/fillin_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_intro" />
+
+            <LinearLayout
+                android:id="@+id/li_deco"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/cl_popup"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/layout_line"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ment">
 
-                <TextView
-                    android:id="@+id/tv_intro"
-                    style="@style/Body2"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/container_photo_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="20dp"
-                    android:includeFontPadding="false"
-                    android:text="미나님,좋은 아침입니다."
-                    android:textColor="@color/grey_2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_ment"
-                    style="@style/Display1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="6dp"
-                    android:includeFontPadding="false"
-                    android:text="서랍 속, 잠자는 필름을 \n깨워볼까요?"
-                    android:textColor="@color/fillin_white"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_intro" />
-
-                <LinearLayout
-                    android:id="@+id/li_deco"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/layout_line"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_ment">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/container_photo_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <ImageButton
-                            android:id="@+id/btn_addphoto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/fillin_black"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_home_addphoto" />
-
-                        <View
-                            android:layout_width="2dp"
-                            android:layout_height="0dp"
-                            android:background="@color/dark_grey_2"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/btn_addphoto"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_weight="1">
 
                     <ImageButton
-                        android:id="@+id/btn_filmroll"
+                        android:id="@+id/btn_addphoto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/black"
-                        app:layout_constraintStart_toEndOf="@+id/btn_addphoto"
+                        android:backgroundTint="@color/fillin_black"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_filmroll" />
+                        app:srcCompat="@drawable/ic_home_addphoto" />
 
-                    <ImageButton
-                        android:id="@+id/btn_studiomap"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/black"
-                        app:layout_constraintStart_toEndOf="@+id/btn_filmroll"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_stduiomap" />
-
-                    <ImageButton
-                        android:id="@+id/btn_mypage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/black"
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:background="@color/dark_grey_2"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/btn_studiomap"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_mypage" />
+                        app:layout_constraintStart_toEndOf="@id/btn_addphoto"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/tv_aroundyou"
-                    style="@style/EngHead"
+                <ImageButton
+                    android:id="@+id/btn_filmroll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="24dp"
-                    android:text="AROUND YOU"
-                    android:textColor="@color/fillin_white"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/li_deco" />
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/black"
+                    app:layout_constraintStart_toEndOf="@+id/btn_addphoto"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_filmroll" />
 
-                <com.naver.maps.map.MapView
-                    android:id="@+id/map_main"
-                    android:layout_width="0dp"
-                    android:layout_height="180dp"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="18dp"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
+                <ImageButton
+                    android:id="@+id/btn_studiomap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/black"
+                    app:layout_constraintStart_toEndOf="@+id/btn_filmroll"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_stduiomap" />
+
+                <ImageButton
+                    android:id="@+id/btn_mypage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_aroundyou">
+                    app:layout_constraintStart_toEndOf="@+id/btn_studiomap"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_mypage" />
 
-                </com.naver.maps.map.MapView>
+            </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/li_bottomdeco"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@color/dark_grey_3"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/map_main">
+            <TextView
+                android:id="@+id/tv_aroundyou"
+                style="@style/EngHead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="24dp"
+                android:text="AROUND YOU"
+                android:textColor="@color/fillin_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/li_deco" />
 
-                </LinearLayout>
+            <com.naver.maps.map.MapView
+                android:id="@+id/map_main"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="18dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_aroundyou">
 
-                <TextView
-                    android:id="@+id/tv_newphotos"
-                    style="@style/EngHead"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="24dp"
-                    android:text="NEW PHOTOS"
-                    android:textColor="@color/fillin_white"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/li_bottomdeco" />
+            </com.naver.maps.map.MapView>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_new_photos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="12dp"
-                    android:orientation="horizontal"
-                    android:overScrollMode="never"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_newphotos"
-                    tools:itemCount="8"
-                    tools:listitem="@layout/item_new_photos_list" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:id="@+id/li_bottomdeco"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/dark_grey_3"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/map_main">
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_newphotos"
+                style="@style/EngHead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="24dp"
+                android:text="NEW PHOTOS"
+                android:textColor="@color/fillin_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/li_bottomdeco" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_new_photos"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_newphotos"
+                tools:itemCount="8"
+                tools:listitem="@layout/item_new_photos_list" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_popup"
