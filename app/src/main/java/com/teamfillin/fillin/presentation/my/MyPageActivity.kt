@@ -84,7 +84,7 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
                 binding.tvNickname.text = it.data.user.nickname
                 Glide.with(this@MyPageActivity)
                     .load(it.data.user.imageUrl)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .circleCrop()
                     .into(binding.ivProfile)
             }.onFailure(Timber::e)

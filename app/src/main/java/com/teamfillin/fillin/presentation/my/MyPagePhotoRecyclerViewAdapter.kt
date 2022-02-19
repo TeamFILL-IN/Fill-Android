@@ -44,7 +44,7 @@ class MyPagePhotoRecyclerViewAdapter(private val listener: ItemClickListener) :
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(photo: ResponseUserPhotoInfo.Photo) {
-            Glide.with(itemView.context).load(photo.imageUrl).diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.ivPhoto)
+            Glide.with(itemView.context).load(photo.imageUrl).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(binding.ivPhoto)
             binding.root.setOnClickListener {
                 listener.onClick(photo)
             }
