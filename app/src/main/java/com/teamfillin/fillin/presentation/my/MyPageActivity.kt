@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.kakao.sdk.user.UserApiClient
@@ -83,6 +84,7 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
                 binding.tvNickname.text = it.data.user.nickname
                 Glide.with(this@MyPageActivity)
                     .load(it.data.user.imageUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .circleCrop()
                     .into(binding.ivProfile)
             }.onFailure(Timber::e)
