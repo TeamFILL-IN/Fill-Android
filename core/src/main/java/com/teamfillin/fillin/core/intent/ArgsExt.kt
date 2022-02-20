@@ -16,7 +16,7 @@ fun boolArgs() = ReadOnlyProperty<Fragment, Boolean> { thisRef, property ->
     thisRef.requireArguments().getBoolean(property.name)
 }
 
-fun stringExtra() = ReadOnlyProperty<Fragment, String> { thisRef, property ->
+fun stringArgs() = ReadOnlyProperty<Fragment, String> { thisRef, property ->
     thisRef.requireArguments().getString(property.name, "")
 }
 

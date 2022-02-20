@@ -33,9 +33,10 @@ class FilmRollPagingAdapter(
             binding.root.setOnSingleClickListener {
                 itemClickListener.onClick(film)
             }
-            binding.btnLike.setOnSingleClickListener {
-                binding.btnLike.isSelected = !binding.btnLike.isSelected
-            }
+            // TODO by Nunu 좋아요 기능 복원
+//            binding.btnLike.setOnSingleClickListener {
+//                binding.btnLike.isSelected = !binding.btnLike.isSelected
+//            }
         }
     }
 

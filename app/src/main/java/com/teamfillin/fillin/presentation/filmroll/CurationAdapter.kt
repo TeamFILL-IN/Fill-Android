@@ -62,9 +62,10 @@ class CurationAdapter(
                     binding.root.setOnClickListener {
                         listener.onClick(input.data)
                     }
-                    binding.btnLike.setOnSingleClickListener {
-                        binding.btnLike.isSelected = !binding.btnLike.isSelected
-                    }
+                    // TODO by Nunu 좋아요 기능 원복
+//                    binding.btnLike.setOnSingleClickListener {
+//                        binding.btnLike.isSelected = !binding.btnLike.isSelected
+//                    }
                 }
             }
         }
