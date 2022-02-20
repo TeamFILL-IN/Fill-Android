@@ -60,7 +60,6 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:scaleType="center"
-            android:src="@drawable/and_photoframe"
             app:layout_constraintLeft_toLeftOf="@id/cl_image"
             app:layout_constraintRight_toRightOf="@id/cl_image"
             app:layout_constraintTop_toBottomOf="@id/cl_image"
@@ -107,7 +106,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/fillin_black"
-            android:src="@drawable/unlike"
             android:layout_gravity="center"/>
 
     </LinearLayout>

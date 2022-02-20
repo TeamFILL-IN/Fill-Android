@@ -75,7 +75,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scaleType="fitXY"
-            android:src="@drawable/and_photoframe"
             app:layout_constraintBottom_toBottomOf="@id/cl_image"
             app:layout_constraintEnd_toEndOf="@id/cl_image"
             app:layout_constraintStart_toStartOf="@id/cl_image"
