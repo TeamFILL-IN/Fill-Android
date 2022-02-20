@@ -18,9 +18,10 @@ class FilmRollAdapter :
             Glide.with(binding.root)
                 .load(film.image)
                 .into(binding.ivItemFilmroll)
-            binding.btnLike.setOnSingleClickListener {
-                binding.btnLike.isSelected = !binding.btnLike.isSelected
-            }
+            // TODO 좋아요 기능 복원
+//            binding.btnLike.setOnSingleClickListener {
+//                binding.btnLike.isSelected = !binding.btnLike.isSelected
+//            }
         }
     }
 

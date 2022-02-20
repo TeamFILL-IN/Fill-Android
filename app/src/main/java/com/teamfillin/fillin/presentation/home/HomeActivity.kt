@@ -152,7 +152,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             }
         }
         markerLocationEvent()
-        activityNaverMap?.setOnMapClickListener { pointF, latLng ->
+        activityNaverMap?.setOnMapClickListener { _, _ ->
             val intent = Intent(this, StudioMapActivity::class.java)
             startActivity(intent)
         }

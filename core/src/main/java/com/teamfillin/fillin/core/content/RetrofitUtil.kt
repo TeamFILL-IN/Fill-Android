@@ -1,9 +1,9 @@
 package com.teamfillin.fillin.core.content
 
-import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 fun <T> Call<T>.receive(
     onSuccess: (T) -> Unit,
@@ -19,7 +19,7 @@ fun <T> Call<T>.receive(
         }
 
         override fun onFailure(call: Call<T>, t: Throwable) {
-            Log.d("NetworkTest", "error: $t")
+            Timber.d("RetrofitUtil: Error $t")
         }
     })
 }

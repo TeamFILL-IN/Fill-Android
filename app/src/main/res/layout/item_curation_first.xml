@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="103dp"
-        android:layout_height="118dp"
+        android:layout_height="match_parent"
         android:background="@drawable/ic_curation_cover"
         android:paddingHorizontal="5dp">
 
