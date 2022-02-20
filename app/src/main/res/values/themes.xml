@@ -27,4 +27,10 @@
         <item name="windowSplashScreenAnimationDuration">3000</item>
         <item name="postSplashScreenTheme">@style/Theme.FillInAndroid</item>
     </style>
+
+    <style name="LicenseTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimaryDark">@color/fillin_black</item>
+        <item name="android:textColorPrimary">@color/fillin_white</item>
+        <item name="android:windowBackground">@color/fillin_black</item>
+    </style>
 </resources>

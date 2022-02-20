@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -76,7 +75,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scaleType="fitXY"
-            android:src="@drawable/and_photoframe"
             app:layout_constraintBottom_toBottomOf="@id/cl_image"
             app:layout_constraintEnd_toEndOf="@id/cl_image"
             app:layout_constraintStart_toStartOf="@id/cl_image"
@@ -132,37 +130,37 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <LinearLayout
-            android:id="@+id/li_like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/linearline"
-            android:src="@drawable/unlike"
-            android:visibility="visible">
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/li_like"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:layout_marginRight="10dp"-->
+        <!--            android:background="@drawable/linearline"-->
+        <!--            android:src="@drawable/unlike"-->
+        <!--            android:visibility="visible">-->
 
-            <ImageView
-                android:id="@+id/heart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:backgroundTint="@color/dark_grey_3"
-                android:src="@drawable/heartbutton" />
+        <!--            <ImageView-->
+        <!--                android:id="@+id/heart"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="center"-->
+        <!--                android:layout_marginLeft="10dp"-->
+        <!--                android:backgroundTint="@color/dark_grey_3"-->
+        <!--                android:src="@drawable/heartbutton" />-->
 
-            <TextView
-                android:id="@+id/number"
-                style="@style/Body2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:text="22"
-                android:textColor="@color/grey_2" />
+        <!--            <TextView-->
+        <!--                android:id="@+id/number"-->
+        <!--                style="@style/Body2"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_gravity="center"-->
+        <!--                android:layout_marginLeft="5dp"-->
+        <!--                android:layout_marginRight="10dp"-->
+        <!--                android:text="22"-->
+        <!--                android:textColor="@color/grey_2" />-->
 
-        </LinearLayout>
+        <!--        </LinearLayout>-->
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

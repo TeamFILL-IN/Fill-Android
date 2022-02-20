@@ -21,4 +21,3 @@ data class ResponseFilmRoll(
         val photolist: String
     )
 }
-

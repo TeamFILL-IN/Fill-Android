@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.teamfillin.fillin.data.response.ResponseUserPhotoInfo
 import com.teamfillin.fillin.databinding.ItemMyPageBinding
 
@@ -43,7 +44,7 @@ class MyPagePhotoRecyclerViewAdapter(private val listener: ItemClickListener) :
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(photo: ResponseUserPhotoInfo.Photo) {
-            Glide.with(itemView.context).load(photo.imageUrl).into(binding.ivPhoto)
+            Glide.with(itemView.context).load(photo.imageUrl).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(binding.ivPhoto)
             binding.root.setOnClickListener {
                 listener.onClick(photo)
             }

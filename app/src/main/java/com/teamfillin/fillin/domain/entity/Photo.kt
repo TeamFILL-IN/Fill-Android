@@ -17,7 +17,7 @@ data class CategoryPhoto(
     val photoId: Int,
     val imageUrl: String,
     val filmId: Int,
-    val fileName: String,
+    val filmName: String,
     val likeCount: Int,
     val isLiked: Boolean,
     val isGaro: Boolean

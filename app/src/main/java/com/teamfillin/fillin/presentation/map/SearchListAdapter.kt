@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.teamfillin.fillin.data.response.ResponseSearch
 import com.teamfillin.fillin.databinding.ItemLocationInfoBinding
+import com.teamfillin.fillin.domain.entity.StudioSearch
 
 class SearchListAdapter(private val listener: ItemClickListener) :
-    ListAdapter<ResponseSearch.StudioResponse, SearchListAdapter.SearchListViewHolder>(
+    ListAdapter<StudioSearch.StudioAddress, SearchListAdapter.SearchListViewHolder>(
         DIFFUTIL
     ) {
 
@@ -24,14 +24,14 @@ class SearchListAdapter(private val listener: ItemClickListener) :
     }
 
     fun interface ItemClickListener {
-        fun onClick(data: ResponseSearch.StudioResponse)
+        fun onClick(data: StudioSearch.StudioAddress)
     }
 
     class SearchListViewHolder(
         private val binding: ItemLocationInfoBinding,
         private val listener: ItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(searchInfo: ResponseSearch.StudioResponse) {
+        fun onBind(searchInfo: StudioSearch.StudioAddress) {
             binding.location = searchInfo
             binding.root.setOnClickListener {
                 listener.onClick(searchInfo)
@@ -40,17 +40,17 @@ class SearchListAdapter(private val listener: ItemClickListener) :
     }
 
     companion object {
-        val DIFFUTIL = object : DiffUtil.ItemCallback<ResponseSearch.StudioResponse>() {
+        val DIFFUTIL = object : DiffUtil.ItemCallback<StudioSearch.StudioAddress>() {
             override fun areItemsTheSame(
-                oldItem: ResponseSearch.StudioResponse,
-                newItem: ResponseSearch.StudioResponse
+                oldItem: StudioSearch.StudioAddress,
+                newItem: StudioSearch.StudioAddress
             ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: ResponseSearch.StudioResponse,
-                newItem: ResponseSearch.StudioResponse
+                oldItem: StudioSearch.StudioAddress,
+                newItem: StudioSearch.StudioAddress
             ): Boolean {
                 return oldItem == newItem
             }
