@@ -4,14 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.my.MyPageActivity">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="isDebug"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/fillin_black">
 
-        <androidx.appcompat.widget.Toolbar xmlns:tools="http://schemas.android.com/tools"
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,6 +40,28 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_logo" />
+
+            <TextView
+                android:id="@+id/btn_setting_debug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="12dp"
+                android:text="DEBUG"
+                android:textAppearance="@style/EngBighead"
+                android:textColor="@color/white"
+                android:visibility="@{isDebug ? View.VISIBLE : View.GONE}"
+                tools:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/btn_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:padding="12dp"
+                android:src="@drawable/ic_settings"
+                android:visibility="@{isDebug ? View.GONE : View.VISIBLE}" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -97,13 +126,13 @@
             android:background="@drawable/shape_mypage"
             android:drawableRight="@drawable/icn_arrow"
             android:fontFamily="@font/noto_sans_kr_regular"
-            android:textColor="@color/fillin_black"
-            android:lineSpacingExtra="6sp"
             android:gravity="left"
+            android:lineSpacingExtra="6sp"
             android:paddingVertical="18dp"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
             android:text="@string/new_film_tell"
+            android:textColor="@color/fillin_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_camera" />
@@ -112,10 +141,9 @@
             android:id="@+id/view_division"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/dark_grey_2"
             android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/btn_report"
-            />
+            android:background="@color/dark_grey_2"
+            app:layout_constraintTop_toBottomOf="@id/btn_report" />
 
         <TextView
             android:id="@+id/tv_photos"
@@ -136,13 +164,13 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="18dp"
             android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="12dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_photos"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="12dp"/>
+            app:spanCount="3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,23 +6,19 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.inputmethod.EditorInfo
+import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.lifecycleScope
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
-import com.teamfillin.fillin.data.service.StudioService
+import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.databinding.ActivityMapSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import retrofit2.await
-import timber.log.Timber
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.activity_map_search) {
-    @Inject
-    lateinit var service: StudioService
+
+    private val viewModel by viewModels<MapSearchViewModel>()
     private val searchListAdapter = SearchListAdapter {
         val intent = Intent().apply {
             putExtra("id", it.id)
@@ -36,8 +32,10 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
         super.onCreate(savedInstanceState)
 
         toolbarEvent()
-        editTextIconEvent()
-        setLocationListAdapter()
+        initView()
+        initAdapter()
+        initEvent()
+        observe()
     }
 
     private fun toolbarEvent() {
@@ -49,7 +47,7 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
         }
     }
 
-    private fun editTextIconEvent() {
+    private fun initView() {
         binding.editSearch.doAfterTextChanged {
             editTextBlankCheck()
         }
@@ -63,30 +61,39 @@ class MapSearchActivity : BindingActivity<ActivityMapSearchBinding>(R.layout.act
         }
     }
 
-    private fun setLocationListAdapter() {
+    private fun initAdapter() {
         binding.rvLocationInfo.adapter = searchListAdapter
         val customDecoration = CustomDecoration(1f, 10f, Color.GRAY)
         binding.rvLocationInfo.addItemDecoration(customDecoration)
-        locationSearchEvent()
     }
 
-    private fun locationSearchEvent() {
+    private fun initEvent() {
         binding.ivSearch.setOnClickListener {
-            lifecycleScope.launch {
-                runCatching {
-                    service.getSearchInfo(binding.editSearch.text.toString()).await()
-                }.onSuccess {
-                    binding.rvLocationInfo.isVisible = it.data.studios.isNotEmpty()
-                    binding.clNoResult.isVisible = it.data.studios.isEmpty()
-                    if (it.data.studios.isNotEmpty()) {
-                        searchListAdapter.submitList(it.data.studios)
-                    }
-                }.onFailure(Timber::e)
+            if (binding.editSearch.text.isEmpty()) {
+                toast("장소를 입력해주세요")
+            } else {
+                viewModel.locationSearch(binding.editSearch.text.toString())
             }
         }
-
         binding.ivClear.setOnClickListener {
             binding.editSearch.text.clear()
+        }
+    }
+
+    private fun observe() {
+        viewModel.resultSearch.observe(this) {
+            when (it) {
+                is MapSearchViewModel.StudioSearchState.Studios -> {
+                    searchListAdapter.submitList(it.studios)
+                }
+                is MapSearchViewModel.StudioSearchState.Failure -> {
+                    toast("서버 오류")
+                }
+            }
+            binding.apply {
+                clNoResult.isVisible = it is MapSearchViewModel.StudioSearchState.Empty
+                rvLocationInfo.isVisible = it is MapSearchViewModel.StudioSearchState.Studios
+            }
         }
     }
 

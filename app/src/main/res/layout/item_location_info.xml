@@ -7,7 +7,7 @@
 
         <variable
             name="location"
-            type="com.teamfillin.fillin.data.response.ResponseSearch.StudioResponse" />
+            type="com.teamfillin.fillin.domain.entity.StudioSearch.StudioAddress" />
 
     </data>
 
