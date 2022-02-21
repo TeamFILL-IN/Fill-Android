@@ -2,11 +2,13 @@ package com.teamfillin.fillin.presentation.login
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.teamfillin.fillin.BuildConfig
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.context.toast
@@ -33,6 +35,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 kakaoAuthService.loginByKakaoAccount()
             }
         }
+        binding.txtLoginVersion.text = BuildConfig.VERSION_NAME
 
         lifecycleScope.launch {
             kakaoAuthService.loginState
