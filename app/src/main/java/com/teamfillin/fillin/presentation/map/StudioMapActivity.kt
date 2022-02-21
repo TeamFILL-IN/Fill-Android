@@ -41,14 +41,11 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     lateinit var service: StudioService
     private lateinit var behavior: BottomSheetBehavior<NestedScrollView>
     private lateinit var fusedLocationSource: FusedLocationSource
-    private var activityNaverMap: NaverMap? = null
+    private var naverMap: NaverMap? = null
     private val photoReviewAdapter = PhotoReviewListAdapter {
-        val dialog = PhotoDialogFragment()
-        val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
-        dialog.apply {
-            arguments = bundle
-            show(supportFragmentManager, "dialog")
-        }
+        val dialog =
+            PhotoDialogFragment.newInstance(it.imageUrl, it.userImageUrl, it.filmName, it.nickname)
+        dialog.show(supportFragmentManager, "dialog")
     }
     private val studioIdHash = HashMap<LatLng, Int>()
     private val locationHash = HashMap<Int, LatLng>()
@@ -100,14 +97,14 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
             )
         ) {
             if (!fusedLocationSource.isActivated) {
-                activityNaverMap?.locationTrackingMode = LocationTrackingMode.None
-            } else activityNaverMap?.locationTrackingMode = LocationTrackingMode.Follow
+                naverMap?.locationTrackingMode = LocationTrackingMode.None
+            } else naverMap?.locationTrackingMode = LocationTrackingMode.Follow
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onMapReady(naverMap: NaverMap) {
-        activityNaverMap = naverMap.apply {
+        this.naverMap = naverMap.apply {
             mapType = NaverMap.MapType.Navi
             setLayerGroupEnabled(NaverMap.LAYER_GROUP_TRANSIT, false)
             setLayerGroupEnabled(NaverMap.LAYER_GROUP_BUILDING, true)
@@ -127,7 +124,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         binding.clBottomSheet.visibility = View.VISIBLE
         markerLocationEvent()
         binding.btnLocation.map = naverMap
-        activityNaverMap?.setOnMapClickListener { _, _ ->
+        this.naverMap?.setOnMapClickListener { _, _ ->
             behavior.state = BottomSheetBehavior.STATE_HIDDEN
         }
     }
@@ -142,7 +139,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
                     Marker().apply {
                         position = LatLng(it.lati, it.long)
                         icon = OverlayImage.fromResource(R.drawable.ic_place_select)
-                        this.map = activityNaverMap
+                        this.map = naverMap
                         studioIdHash[LatLng(it.lati, it.long)] = it.id
                         locationHash[it.id] = LatLng(it.lati, it.long)
                         setOnClickListener {
@@ -173,7 +170,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
                     behavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 }
                 val cameraUpdate = CameraUpdate.scrollTo(locationHash[position]!!)
-                activityNaverMap?.moveCamera(cameraUpdate)
+                naverMap?.moveCamera(cameraUpdate)
                 if (studio.site.isNullOrEmpty()) binding.tvLink.visibility = View.GONE
                 else {
                     binding.tvLink.visibility = View.VISIBLE
@@ -265,6 +262,5 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
-        var photoUrl = ""
     }
 }
