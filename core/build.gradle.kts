@@ -61,6 +61,7 @@ dependencies {
     implementation(platform(ThirdPartyDependencies.okHttpBom))
     implementation(ThirdPartyDependencies.okHttp)
     implementation(ThirdPartyDependencies.retrofit)
+    implementation(ThirdPartyDependencies.timber)
 
     // Test Dependency
     testImplementation(TestDependencies.jUnit)

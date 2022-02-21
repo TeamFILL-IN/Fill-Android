@@ -12,8 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/and_photo_rectangle"/>
+        android:layout_height="wrap_content"/>
 
 
 

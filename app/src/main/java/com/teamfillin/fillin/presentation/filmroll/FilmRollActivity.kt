@@ -2,6 +2,7 @@ package com.teamfillin.fillin.presentation.filmroll
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -9,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
@@ -16,10 +18,11 @@ import com.teamfillin.fillin.core.content.receive
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.service.FilmRollService
 import com.teamfillin.fillin.databinding.ActivityFilmRollBinding
-import com.teamfillin.fillin.presentation.filmroll.add.AddPhotoActivity
+import com.teamfillin.fillin.design.dp
 import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.presentation.filmroll.add.AddCompleteDialog
+import com.teamfillin.fillin.presentation.filmroll.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.map.SpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -33,21 +36,11 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
     lateinit var service: FilmRollService
     private val viewModel by viewModels<FilmRollViewModel>()
     private val filmRollPagingAdapter = FilmRollPagingAdapter {
-        val dialog = PhotoDialogFragment()
-        val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
-        dialog.apply {
-            arguments = bundle
-            show(supportFragmentManager, "dialog")
-        }
+        val dialog =
+            PhotoDialogFragment.newInstance(it.imageUrl, it.userImageUrl, it.filmName, it.nickname)
+        dialog.show(supportFragmentManager, "dialog")
     }
-    private var curationAdapter = CurationAdapter {
-        val dialog = PhotoDialogFragment()
-        val bundle = Bundle().apply { putString("photoUrl", it.imageUrl) }
-        dialog.apply {
-            arguments = bundle
-            show(supportFragmentManager, "dialog")
-        }
-    }
+    private lateinit var curationAdapter: CurationAdapter
     private val addPhotoLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -73,12 +66,33 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
     }
 
     private fun setCurationAdapter() {
-        binding.rvCuration.adapter = curationAdapter
         addCurationList()
     }
 
     private fun addCurationList() {
         service.getCuration().receive({
+            curationAdapter = CurationAdapter(it.data.curation) {
+                val dialog = PhotoDialogFragment.newInstance(
+                    photoUrl = it.imageUrl,
+                    profileUrl = it.userImageUrl,
+                    filmName = it.filmName,
+                    userName = it.nickname
+                )
+                dialog.show(supportFragmentManager, "dialog")
+            }
+            binding.rvCuration.adapter = curationAdapter
+            binding.rvCuration.addItemDecoration(object : RecyclerView.ItemDecoration() {
+                override fun getItemOffsets(
+                    outRect: Rect,
+                    itemPosition: Int,
+                    parent: RecyclerView
+                ) {
+                    with(outRect) {
+                        left = if (itemPosition == 0) 16.dp else 8.dp
+                        right = 8.dp
+                    }
+                }
+            })
             curationAdapter.submitList(it.data.photos)
         }, {
             Timber.d("Error $it")
