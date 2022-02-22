@@ -11,6 +11,7 @@ import android.text.style.ClickableSpan
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -24,6 +25,7 @@ import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
+import com.teamfillin.fillin.core.content.EventObserver
 import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.databinding.ActivityStudioMapBinding
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
@@ -37,8 +39,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.activity_studio_map),
     OnMapReadyCallback {
-    @Inject
-    lateinit var service: StudioService
+
+    private val viewModel by viewModels<StudioMapViewModel>()
     private lateinit var behavior: BottomSheetBehavior<NestedScrollView>
     private lateinit var fusedLocationSource: FusedLocationSource
     private var naverMap: NaverMap? = null
@@ -47,8 +49,6 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
             PhotoDialogFragment.newInstance(it.imageUrl, it.userImageUrl, it.filmName, it.nickname)
         dialog.show(supportFragmentManager, "dialog")
     }
-    private val studioIdHash = HashMap<LatLng, Int>()
-    private val locationHash = HashMap<Int, LatLng>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +62,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         toolbarEvent()
         searchClickEvent()
         initAdapter()
+        observe()
     }
 
     private fun toolbarEvent() {
@@ -83,6 +84,50 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         binding.rvPhotoReview.adapter = photoReviewAdapter
         val customDecoration = SpaceDecoration(7)
         binding.rvPhotoReview.addItemDecoration(customDecoration)
+    }
+
+    private fun observe() {
+        viewModel.location.observe(this) { location ->
+            val markers = Marker().apply {
+                position = location
+                icon = OverlayImage.fromResource(R.drawable.ic_place_select)
+                this.map = naverMap
+            }
+            markers.setOnClickListener {
+                viewModel.studioIdHash[location]?.let {
+                    viewModel.studioDetail(it)
+                    viewModel.studioPhoto(it)
+                }
+                true
+            }
+        }
+
+        viewModel.studio.observe(this) {
+            binding.apply {
+                tvLocationName.text = it.name
+                tvLocationDetail.text = it.address
+                tvTimeDetail.text = it.time
+                tvCallDetail.text = it.tel
+                tvPriceDetail.text = it.price
+            }
+            behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+
+            if (it.site.isNullOrEmpty()) binding.tvLink.visibility = View.GONE
+            else {
+                binding.tvLink.visibility = View.VISIBLE
+                linkText(it.site)
+            }
+            linkText(it.site)
+        }
+
+        viewModel.photos.observe(this) {
+            photoReviewAdapter.submitList(it)
+        }
+
+        viewModel.cameraZoom.observe(this, EventObserver {
+            val cameraUpdate = CameraUpdate.scrollTo(viewModel.locationHash[it]!!)
+            naverMap?.moveCamera(cameraUpdate)
+        })
     }
 
     override fun onRequestPermissionsResult(
@@ -122,72 +167,10 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         }
 
         binding.clBottomSheet.visibility = View.VISIBLE
-        markerLocationEvent()
+        viewModel.studioLocation()
         binding.btnLocation.map = naverMap
         this.naverMap?.setOnMapClickListener { _, _ ->
             behavior.state = BottomSheetBehavior.STATE_HIDDEN
-        }
-    }
-
-    private fun markerLocationEvent() {
-
-        lifecycleScope.launch {
-            runCatching {
-                service.getWholeStudio().await()
-            }.onSuccess {
-                it.data.studios.forEach {
-                    Marker().apply {
-                        position = LatLng(it.lati, it.long)
-                        icon = OverlayImage.fromResource(R.drawable.ic_place_select)
-                        this.map = naverMap
-                        studioIdHash[LatLng(it.lati, it.long)] = it.id
-                        locationHash[it.id] = LatLng(it.lati, it.long)
-                        setOnClickListener {
-                            studioIdHash[position]?.let {
-                                getStudioDetail(it)
-                                getStudioPhoto(it)
-                            }
-                            true
-                        }
-                    }
-                }
-            }.onFailure(Timber::e)
-        }
-    }
-
-    private fun getStudioDetail(position: Int) {
-        lifecycleScope.launch {
-            runCatching {
-                service.getStudioDetail(position).await()
-            }.onSuccess {
-                val studio = it.data.studio
-                binding.apply {
-                    tvLocationName.text = studio.name
-                    tvLocationDetail.text = studio.address
-                    tvTimeDetail.text = studio.time
-                    tvCallDetail.text = studio.tel
-                    tvPriceDetail.text = studio.price
-                    behavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                }
-                val cameraUpdate = CameraUpdate.scrollTo(locationHash[position]!!)
-                naverMap?.moveCamera(cameraUpdate)
-                if (studio.site.isNullOrEmpty()) binding.tvLink.visibility = View.GONE
-                else {
-                    binding.tvLink.visibility = View.VISIBLE
-                    linkText(studio.site)
-                }
-                linkText(studio.site)
-            }.onFailure(Timber::e)
-        }
-    }
-
-    private fun getStudioPhoto(position: Int) {
-        lifecycleScope.launch {
-            runCatching {
-                service.getStudioPhoto(position).await()
-            }.onSuccess {
-                photoReviewAdapter.submitList(it.data.photos)
-            }.onFailure(Timber::e)
         }
     }
 
@@ -209,8 +192,8 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         if (it.resultCode == Activity.RESULT_OK) {
             val locationId = it.data?.getIntExtra("id", 0)
             locationId?.let {
-                getStudioDetail(it)
-                getStudioPhoto(it)
+                viewModel.studioDetail(it)
+                viewModel.studioPhoto(it)
             }
         }
     }
