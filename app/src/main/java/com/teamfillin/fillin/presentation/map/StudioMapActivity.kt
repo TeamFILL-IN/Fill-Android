@@ -12,10 +12,9 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.NaverMap
@@ -26,14 +25,9 @@ import com.naver.maps.map.util.FusedLocationSource
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.content.EventObserver
-import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.databinding.ActivityStudioMapBinding
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import retrofit2.await
-import timber.log.Timber
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -87,18 +81,21 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     }
 
     private fun observe() {
-        viewModel.location.observe(this) { location ->
-            val markers = Marker().apply {
-                position = location
-                icon = OverlayImage.fromResource(R.drawable.ic_place_select)
-                this.map = naverMap
-            }
-            markers.setOnClickListener {
-                viewModel.studioIdHash[location]?.let {
-                    viewModel.studioDetail(it)
-                    viewModel.studioPhoto(it)
+        viewModel.location.observe(this) {
+            it.map { location ->
+                Marker().apply {
+                    position = location
+                    icon = OverlayImage.fromResource(R.drawable.ic_place_select)
+                    this.map = naverMap
                 }
-                true
+            }.forEach { marker ->
+                marker.setOnClickListener {
+                    viewModel.studioIdHash[marker.position]?.let { id ->
+                        viewModel.studioDetail(id)
+                        viewModel.studioPhoto(id)
+                    }
+                    true
+                }
             }
         }
 
@@ -112,11 +109,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
             }
             behavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
-            if (it.site.isNullOrEmpty()) binding.tvLink.visibility = View.GONE
-            else {
-                binding.tvLink.visibility = View.VISIBLE
-                linkText(it.site)
-            }
+            binding.tvLink.isVisible = it.site.isNotEmpty()
             linkText(it.site)
         }
 
@@ -219,8 +212,8 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     }
 
     override fun onPause() {
-        super.onPause()
         binding.mapMain.onPause()
+        super.onPause()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -229,18 +222,18 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
     }
 
     override fun onStop() {
-        super.onStop()
         binding.mapMain.onStop()
+        super.onStop()
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         binding.mapMain.onDestroy()
+        super.onDestroy()
     }
 
     override fun onLowMemory() {
-        super.onLowMemory()
         binding.mapMain.onLowMemory()
+        super.onLowMemory()
     }
 
     companion object {
