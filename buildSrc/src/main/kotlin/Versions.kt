@@ -18,7 +18,7 @@ object Versions {
     const val ossVersion = "17.0.0"
     const val splashVersion = "1.0.0-beta01"
 
-    const val gradleVersion = "7.1.1"
+    const val gradleVersion = "7.1.2"
 
     const val glideVersion = "4.12.0"
     const val retrofitVersion = "2.9.0"
