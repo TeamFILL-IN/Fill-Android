@@ -1,7 +1,11 @@
 package com.teamfillin.fillin.presentation.my
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.content.getSystemService
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -57,6 +61,11 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
                     .setTitle("KAKAO AUTH TOKEN")
                     .setMessage("${token?.accessToken}")
                     .setPositiveButton("OK") { dialog, _ ->
+                        getSystemService(ClipboardManager::class.java).apply {
+                            setPrimaryClip(
+                                ClipData.newPlainText("Kakao Token", "${token?.accessToken}")
+                            )
+                        }
                         dialog.dismiss()
                     }.show()
             })
