@@ -6,9 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.naver.maps.geometry.LatLng
 import com.teamfillin.fillin.core.content.Event
+import com.teamfillin.fillin.core.content.SingleLiveEvent
 import com.teamfillin.fillin.data.response.ResponseStudio
 import com.teamfillin.fillin.data.response.ResponseStudioPhoto
 import com.teamfillin.fillin.data.service.StudioService
+import com.teamfillin.fillin.domain.entity.StudioSearch
+import com.teamfillin.fillin.domain.repository.StudioMapRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.await
@@ -22,7 +25,8 @@ import kotlin.collections.set
 
 @HiltViewModel
 class StudioMapViewModel @Inject constructor(
-    private val service: StudioService
+    private val service: StudioService,
+    private val studioMapRepository: StudioMapRepository
 ) : ViewModel() {
 
     private val _location = MutableLiveData<List<LatLng>>()
@@ -38,7 +42,10 @@ class StudioMapViewModel @Inject constructor(
     val cameraZoom: MutableLiveData<Event<Int>> = _cameraZoom
 
     private val _logIn = MutableLiveData<Event<Int>>()
-    val logIn: LiveData<Event<Int>> get() = _logIn
+    val logIn: LiveData<Event<Int>> = _logIn
+
+    private val _serverConnect = SingleLiveEvent<Unit>()
+    val serverConnect : SingleLiveEvent<Unit> = _serverConnect
 
 
     val studioIdHash = HashMap<LatLng, Int>()
@@ -47,12 +54,16 @@ class StudioMapViewModel @Inject constructor(
     fun studioLocation() {
         viewModelScope.launch {
             runCatching {
-                service.getWholeStudio().await()
+                studioMapRepository.studioLocation()
             }.onSuccess {
-                _location.value = it.data.studios.map { LatLng(it.lati, it.long) }
-                it.data.studios.forEach {
-                    studioIdHash[LatLng(it.lati, it.long)] = it.id
-                    locationHash[it.id] = LatLng(it.lati, it.long)
+                if (it == null) {
+                    _serverConnect.call()
+                } else {
+                    _location.value = it.map { LatLng(it.lati, it.long) }
+                    it.forEach {
+                        studioIdHash[LatLng(it.lati, it.long)] = it.id
+                        locationHash[it.id] = LatLng(it.lati, it.long)
+                    }
                 }
             }.onFailure(Timber::e)
         }
@@ -77,6 +88,13 @@ class StudioMapViewModel @Inject constructor(
                 _photos.value = it.data.photos
             }.onFailure(Timber::e)
         }
+    }
+
+    sealed class StudioSearchState {
+        object Init : StudioSearchState()
+        object Empty : StudioSearchState()
+        data class Studios(val studios: List<StudioSearch.StudioAddress>) : StudioSearchState()
+        object Failure : StudioSearchState()
     }
 }
 

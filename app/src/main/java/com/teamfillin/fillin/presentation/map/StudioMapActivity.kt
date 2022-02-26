@@ -25,6 +25,7 @@ import com.naver.maps.map.util.FusedLocationSource
 import com.teamfillin.fillin.R
 import com.teamfillin.fillin.core.base.BindingActivity
 import com.teamfillin.fillin.core.content.EventObserver
+import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.databinding.ActivityStudioMapBinding
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -121,6 +122,10 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
             val cameraUpdate = CameraUpdate.scrollTo(viewModel.locationHash[it]!!)
             naverMap?.moveCamera(cameraUpdate)
         })
+
+        viewModel.serverConnect.observe(this) {
+            toast("서버 통신 오류")
+        }
     }
 
     override fun onRequestPermissionsResult(
