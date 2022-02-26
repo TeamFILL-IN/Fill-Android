@@ -10,6 +10,7 @@ import com.teamfillin.fillin.core.content.SingleLiveEvent
 import com.teamfillin.fillin.data.response.ResponseStudio
 import com.teamfillin.fillin.data.response.ResponseStudioPhoto
 import com.teamfillin.fillin.data.service.StudioService
+import com.teamfillin.fillin.domain.entity.StudioDetail
 import com.teamfillin.fillin.domain.entity.StudioSearch
 import com.teamfillin.fillin.domain.repository.StudioMapRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,8 +33,8 @@ class StudioMapViewModel @Inject constructor(
     private val _location = MutableLiveData<List<LatLng>>()
     val location: LiveData<List<LatLng>> = _location
 
-    private val _studio = MutableLiveData<ResponseStudio.Studio>()
-    val studio: LiveData<ResponseStudio.Studio> = _studio
+    private val _studio = MutableLiveData<StudioDetail.Studio>()
+    val studio: LiveData<StudioDetail.Studio> = _studio
 
     private val _photos = MutableLiveData<List<ResponseStudioPhoto.StudioPhoto>>()
     val photos: LiveData<List<ResponseStudioPhoto.StudioPhoto>> = _photos
@@ -70,12 +71,24 @@ class StudioMapViewModel @Inject constructor(
     }
 
     fun studioDetail(position: Int) {
+//        viewModelScope.launch {
+//            runCatching {
+//                service.getStudioDetail(position).await()
+//            }.onSuccess {
+//                _studio.value = it.data.studio
+//                _cameraZoom.value = Event(position)
+//            }.onFailure(Timber::e)
+//        }}
         viewModelScope.launch {
             runCatching {
-                service.getStudioDetail(position).await()
+                studioMapRepository.studioDetail(position)
             }.onSuccess {
-                _studio.value = it.data.studio
-                _cameraZoom.value = Event(position)
+                if (it == null) {
+                    _serverConnect.call()
+                } else {
+                    _studio.value = it
+                    _cameraZoom.value = Event(position)
+                }
             }.onFailure(Timber::e)
         }
     }
@@ -97,4 +110,3 @@ class StudioMapViewModel @Inject constructor(
         object Failure : StudioSearchState()
     }
 }
-
