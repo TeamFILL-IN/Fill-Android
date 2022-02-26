@@ -1,5 +1,7 @@
 package com.teamfillin.fillin.data.response
 
+import com.teamfillin.fillin.domain.entity.StudioDetail
+
 data class ResponseStudio(
     val studio: Studio
 ) {
@@ -16,6 +18,11 @@ data class ResponseStudio(
         val isDeleted: Boolean,
         val site: String
     )
+    {
+        fun toStudioDetail(): StudioDetail.Studio {
+            return StudioDetail.Studio(id, name, address, price, time, tel, lati, long, etc, isDeleted, site)
+        }
+    }
 }
 
 
