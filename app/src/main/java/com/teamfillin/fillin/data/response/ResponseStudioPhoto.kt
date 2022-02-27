@@ -1,5 +1,7 @@
 package com.teamfillin.fillin.data.response
 
+import com.teamfillin.fillin.domain.entity.StudioImage
+
 data class ResponseStudioPhoto(
     val photos: List<StudioPhoto>
 ) {
@@ -12,5 +14,9 @@ data class ResponseStudioPhoto(
         val filmId: Int,
         val filmName: String,
         val likeCount: Int
-    )
+    ) {
+        fun toStudioImage() : StudioImage {
+            return StudioImage(studioName, nickname, userImageUrl, photoId, imageUrl, filmId, filmName, likeCount)
+        }
+    }
 }
