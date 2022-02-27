@@ -21,5 +21,3 @@ data class ResponseStudio(
         val site: String
     )
 }
-
-
