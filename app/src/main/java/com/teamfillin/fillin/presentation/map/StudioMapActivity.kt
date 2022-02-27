@@ -110,8 +110,8 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
             }
             behavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
-            binding.tvLink.isVisible = it.site.isNotEmpty()
-            linkText(it.site)
+            binding.tvLink.isVisible = it.site?.isNotEmpty() ?: false
+            it.site?.let { site -> linkText(site) }
         }
 
         viewModel.photos.observe(this) {

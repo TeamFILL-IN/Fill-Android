@@ -14,13 +14,13 @@ data class ResponseStudio(
         val tel: String,
         val lati: Double,
         val long: Double,
-        val etc: String,
+        val etc: String?,
         val isDeleted: Boolean,
-        val site: String
+        val site: String?
     )
     {
-        fun toStudioDetail(): StudioDetail.Studio {
-            return StudioDetail.Studio(id, name, address, price, time, tel, lati, long, etc, isDeleted, site)
+        fun toStudioDetail(): StudioDetail {
+            return StudioDetail(id, name, address, price, time, tel, lati, long, etc, isDeleted, site)
         }
     }
 }
