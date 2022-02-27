@@ -2,13 +2,16 @@ package com.teamfillin.fillin.config.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.teamfillin.fillin.FlipperInitializer
 import com.teamfillin.fillin.data.interceptor.AuthInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -50,7 +53,7 @@ object RetrofitModule {
     ): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(client)
-        .addConverterFactory(GsonConverterFactory.create(gson))
+        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
 
     const val BASE_URL = "https://asia-northeast3-fill-in-13efb.cloudfunctions.net/app/api/"

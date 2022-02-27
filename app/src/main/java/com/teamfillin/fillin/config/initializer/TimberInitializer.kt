@@ -10,7 +10,7 @@ class TimberInitializer : Initializer<Unit> {
     }
 
     private class FillInDebugTree : Timber.DebugTree() {
-        override fun createStackElementTag(element: StackTraceElement): String? {
+        override fun createStackElementTag(element: StackTraceElement): String {
             return "${element.className} ${element.methodName} ${element.lineNumber}"
         }
     }

@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    kotlin("plugin.serialization") version Versions.kotlinVersion
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("com.google.android.gms.oss-licenses-plugin")
@@ -71,6 +72,7 @@ dependencies {
 
     // Kotlin
     implementation(KotlinDependencies.kotlin)
+    implementation(KotlinDependencies.serialization)
 
     // AndroidX
     implementation(AndroidXDependencies.coreKtx)
@@ -103,6 +105,7 @@ dependencies {
     implementation(ThirdPartyDependencies.naverMap)
     implementation(ThirdPartyDependencies.mapLocation)
     implementation(ThirdPartyDependencies.dotsIndicator)
+    implementation(ThirdPartyDependencies.kotlinSerializationConverter)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
