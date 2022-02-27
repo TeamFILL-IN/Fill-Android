@@ -15,10 +15,12 @@ class MapSearchRepositoryImpl @Inject constructor(
         runCatching {
             service.getSearchInfo(keyword).await()
         }.fold({
-            Timber.e(it.toString())
             return it.data.studios.map { response ->
                 response.toStudioSearch()
             }
-        }, { return null })
+        }, {
+            it.printStackTrace()
+            return null
+        })
     }
 }

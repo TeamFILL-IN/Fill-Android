@@ -1,5 +1,6 @@
 package com.teamfillin.fillin.data.service
 
+import com.teamfillin.fillin.core.converter.JsonConverter
 import com.teamfillin.fillin.data.response.BaseResponse
 import com.teamfillin.fillin.data.response.ResponseAuth
 import com.teamfillin.fillin.data.response.ResponseRefresh
@@ -7,6 +8,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface AuthService {
+    @JsonConverter
     @FormUrlEncoded
     @POST("auth")
     fun login(
