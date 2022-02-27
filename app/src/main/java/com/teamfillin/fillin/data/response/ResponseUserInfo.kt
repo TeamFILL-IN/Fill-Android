@@ -17,6 +17,7 @@ data class ResponseUserInfo(
         val nickname: String,
         val refreshToken: String,
         val social: String,
-        val updatedAt: String
+        val updatedAt: String,
+        val camera: String?
     )
 }

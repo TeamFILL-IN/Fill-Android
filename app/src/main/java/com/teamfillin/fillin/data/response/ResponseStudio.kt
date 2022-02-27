@@ -1,8 +1,12 @@
 package com.teamfillin.fillin.data.response
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ResponseStudio(
     val studio: Studio
 ) {
+    @Serializable
     data class Studio(
         val id: Int,
         val name: String,
@@ -12,7 +16,7 @@ data class ResponseStudio(
         val tel: String,
         val lati: Double,
         val long: Double,
-        val etc: String,
+        val etc: String?,
         val isDeleted: Boolean,
         val site: String
     )
