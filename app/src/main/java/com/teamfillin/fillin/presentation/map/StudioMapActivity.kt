@@ -92,8 +92,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
             }.forEach { marker ->
                 marker.setOnClickListener {
                     viewModel.studioIdHash[marker.position]?.let { id ->
-                        viewModel.studioDetail(id)
-                        viewModel.studioPhoto(id)
+                        studioBottomSheet(id)
                     }
                     true
                 }
@@ -123,8 +122,15 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
             naverMap?.moveCamera(cameraUpdate)
         })
 
-        viewModel.serverConnect.observe(this) {
+        viewModel.serverErrorMsg.observe(this) {
             toast("서버 통신 오류")
+        }
+    }
+
+    private fun studioBottomSheet(position: Int) {
+        viewModel.apply {
+            studioDetail(position)
+            studioPhoto(position)
         }
     }
 
@@ -139,9 +145,8 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
                 grantResults
             )
         ) {
-            if (!fusedLocationSource.isActivated) {
-                naverMap?.locationTrackingMode = LocationTrackingMode.None
-            } else naverMap?.locationTrackingMode = LocationTrackingMode.Follow
+            naverMap?.locationTrackingMode = if(!fusedLocationSource.isActivated)
+                LocationTrackingMode.None else LocationTrackingMode.Follow
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
@@ -190,8 +195,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         if (it.resultCode == Activity.RESULT_OK) {
             val locationId = it.data?.getIntExtra("id", 0)
             locationId?.let {
-                viewModel.studioDetail(it)
-                viewModel.studioPhoto(it)
+                studioBottomSheet(it)
             }
         }
     }

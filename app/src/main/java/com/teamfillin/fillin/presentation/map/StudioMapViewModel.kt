@@ -7,37 +7,28 @@ import androidx.lifecycle.viewModelScope
 import com.naver.maps.geometry.LatLng
 import com.teamfillin.fillin.core.content.Event
 import com.teamfillin.fillin.core.content.SingleLiveEvent
-import com.teamfillin.fillin.data.response.ResponseStudio
-import com.teamfillin.fillin.data.response.ResponseStudioPhoto
-import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.domain.entity.StudioDetail
-import com.teamfillin.fillin.domain.entity.StudioSearch
+import com.teamfillin.fillin.domain.entity.StudioImage
 import com.teamfillin.fillin.domain.repository.StudioMapRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import retrofit2.await
 import timber.log.Timber
 import javax.inject.Inject
-import kotlin.collections.HashMap
-import kotlin.collections.List
-import kotlin.collections.forEach
-import kotlin.collections.map
 import kotlin.collections.set
 
 @HiltViewModel
 class StudioMapViewModel @Inject constructor(
-    private val service: StudioService,
     private val studioMapRepository: StudioMapRepository
 ) : ViewModel() {
 
     private val _location = MutableLiveData<List<LatLng>>()
     val location: LiveData<List<LatLng>> = _location
 
-    private val _studio = MutableLiveData<StudioDetail.Studio>()
-    val studio: LiveData<StudioDetail.Studio> = _studio
+    private val _studio = MutableLiveData<StudioDetail>()
+    val studio: LiveData<StudioDetail> = _studio
 
-    private val _photos = MutableLiveData<List<ResponseStudioPhoto.StudioPhoto>>()
-    val photos: LiveData<List<ResponseStudioPhoto.StudioPhoto>> = _photos
+    private val _photos = MutableLiveData<List<StudioImage>>()
+    val photos: LiveData<List<StudioImage>> = _photos
 
     private val _cameraZoom = MutableLiveData<Event<Int>>()
     val cameraZoom: MutableLiveData<Event<Int>> = _cameraZoom
@@ -45,8 +36,8 @@ class StudioMapViewModel @Inject constructor(
     private val _logIn = MutableLiveData<Event<Int>>()
     val logIn: LiveData<Event<Int>> = _logIn
 
-    private val _serverConnect = SingleLiveEvent<Unit>()
-    val serverConnect : SingleLiveEvent<Unit> = _serverConnect
+    private val _serverErrorMsg = SingleLiveEvent<Unit>()
+    val serverErrorMsg: SingleLiveEvent<Unit> = _serverErrorMsg
 
 
     val studioIdHash = HashMap<LatLng, Int>()
@@ -57,56 +48,45 @@ class StudioMapViewModel @Inject constructor(
             runCatching {
                 studioMapRepository.studioLocation()
             }.onSuccess {
-                if (it == null) {
-                    _serverConnect.call()
-                } else {
-                    _location.value = it.map { LatLng(it.lati, it.long) }
-                    it.forEach {
-                        studioIdHash[LatLng(it.lati, it.long)] = it.id
-                        locationHash[it.id] = LatLng(it.lati, it.long)
-                    }
+                Timber.d(it.toString())
+                _location.value = it.map { response ->
+                    response.toLatLnt()
                 }
-            }.onFailure(Timber::e)
+                it.forEach { location ->
+                    studioIdHash[location.toLatLnt()] = location.id
+                    locationHash[location.id] = location.toLatLnt()
+                }
+            }.onFailure {
+                _serverErrorMsg.call()
+                Timber.e(it)
+            }
         }
     }
 
     fun studioDetail(position: Int) {
-//        viewModelScope.launch {
-//            runCatching {
-//                service.getStudioDetail(position).await()
-//            }.onSuccess {
-//                _studio.value = it.data.studio
-//                _cameraZoom.value = Event(position)
-//            }.onFailure(Timber::e)
-//        }}
         viewModelScope.launch {
             runCatching {
                 studioMapRepository.studioDetail(position)
             }.onSuccess {
-                if (it == null) {
-                    _serverConnect.call()
-                } else {
-                    _studio.value = it
-                    _cameraZoom.value = Event(position)
-                }
-            }.onFailure(Timber::e)
+                _studio.value = it
+                _cameraZoom.value = Event(position)
+            }.onFailure {
+                _serverErrorMsg.call()
+                Timber.e(it)
+            }
         }
     }
 
     fun studioPhoto(position: Int) {
         viewModelScope.launch {
             runCatching {
-                service.getStudioPhoto(position).await()
+                studioMapRepository.studioPhoto(position)
             }.onSuccess {
-                _photos.value = it.data.photos
-            }.onFailure(Timber::e)
+                _photos.value = it
+            }.onFailure{
+                _serverErrorMsg.call()
+                Timber.e(it)
+            }
         }
-    }
-
-    sealed class StudioSearchState {
-        object Init : StudioSearchState()
-        object Empty : StudioSearchState()
-        data class Studios(val studios: List<StudioSearch.StudioAddress>) : StudioSearchState()
-        object Failure : StudioSearchState()
     }
 }
