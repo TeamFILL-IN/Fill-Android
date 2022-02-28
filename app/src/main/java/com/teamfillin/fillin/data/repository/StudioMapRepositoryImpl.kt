@@ -13,12 +13,9 @@ class StudioMapRepositoryImpl @Inject constructor(
     private val service: StudioService
 ) : StudioMapRepository {
     override suspend fun studioLocation(): List<StudioMap.StudioPosition> {
-        // return service.getWholeStudio().await().data.studios.toEntity()
-        return service.getWholeStudio().await()
-            .data.studios.map { response ->
-                response.toStudioMap()
-            }
+        return service.getWholeStudio().await().data.toStudioMap()
     }
+
 
     override suspend fun studioDetail(position: Int): StudioDetail {
         return service.getStudioDetail(position).await()
@@ -26,9 +23,6 @@ class StudioMapRepositoryImpl @Inject constructor(
     }
 
     override suspend fun studioPhoto(position: Int): List<StudioImage> {
-        return service.getStudioPhoto(position).await()
-            .data.photos.map { response ->
-                response.toStudioImage()
-            }
+        return service.getStudioPhoto(position).await().data.toStudioImage()
     }
 }
