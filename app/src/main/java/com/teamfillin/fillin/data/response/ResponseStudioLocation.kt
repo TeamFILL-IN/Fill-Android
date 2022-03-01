@@ -1,7 +1,6 @@
 package com.teamfillin.fillin.data.response
 
 import com.teamfillin.fillin.domain.entity.StudioMap
-import com.teamfillin.fillin.domain.entity.StudioSearch
 
 data class ResponseStudioLocation(
     val studios: List<StudioLocation>
