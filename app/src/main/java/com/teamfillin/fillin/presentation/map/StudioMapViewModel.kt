@@ -9,6 +9,7 @@ import com.teamfillin.fillin.core.content.Event
 import com.teamfillin.fillin.core.content.SingleLiveEvent
 import com.teamfillin.fillin.domain.entity.StudioDetail
 import com.teamfillin.fillin.domain.entity.StudioImage
+import com.teamfillin.fillin.domain.entity.StudioMap
 import com.teamfillin.fillin.domain.repository.StudioMapRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -40,8 +41,8 @@ class StudioMapViewModel @Inject constructor(
     val serverErrorMsg: SingleLiveEvent<Unit> = _serverErrorMsg
 
 
-    val studioIdHash = HashMap<LatLng, Int>()
-    val locationHash = HashMap<Int, LatLng>()
+    private val studioIdHash = HashMap<LatLng, Int>()
+    private val locationHash = HashMap<Int, LatLng>()
 
     fun studioLocation() {
         viewModelScope.launch {
@@ -50,11 +51,11 @@ class StudioMapViewModel @Inject constructor(
             }.onSuccess {
                 Timber.d(it.toString())
                 _location.value = it.map { response ->
-                    response.toLatLnt()
+                    response.toCoordinate()
                 }
                 it.forEach { location ->
-                    studioIdHash[location.toLatLnt()] = location.id
-                    locationHash[location.id] = location.toLatLnt()
+                    studioIdHash[location.toCoordinate()] = location.id
+                    locationHash[location.id] = location.toCoordinate()
                 }
             }.onFailure {
                 _serverErrorMsg.call()
@@ -89,4 +90,10 @@ class StudioMapViewModel @Inject constructor(
             }
         }
     }
+
+    fun markerId(position: LatLng) = studioIdHash[position]
+
+    fun markerPosition(id: Int) = locationHash[id]
+
+    private fun StudioMap.StudioPosition.toCoordinate() = LatLng(lati, long)
 }

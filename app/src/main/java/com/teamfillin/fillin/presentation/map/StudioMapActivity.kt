@@ -91,7 +91,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
                 }
             }.forEach { marker ->
                 marker.setOnClickListener {
-                    viewModel.studioIdHash[marker.position]?.let { id ->
+                    viewModel.markerId(marker.position)?.let { id ->
                         studioBottomSheet(id)
                     }
                     true
@@ -118,7 +118,7 @@ class StudioMapActivity : BindingActivity<ActivityStudioMapBinding>(R.layout.act
         }
 
         viewModel.cameraZoom.observe(this, EventObserver {
-            val cameraUpdate = CameraUpdate.scrollTo(viewModel.locationHash[it]!!)
+            val cameraUpdate = CameraUpdate.scrollTo(viewModel.markerPosition(it)!!)
             naverMap?.moveCamera(cameraUpdate)
         })
 
