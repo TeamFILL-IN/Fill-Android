@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.teamfillin.fillin.data.response.ResponseStudioPhoto
 import com.teamfillin.fillin.databinding.ItemPhotoReviewBinding
+import com.teamfillin.fillin.domain.entity.StudioImage
 
 class PhotoReviewListAdapter(private val listener: ItemClickListener) :
-    ListAdapter<ResponseStudioPhoto.StudioPhoto, PhotoReviewListAdapter.PhotoReviewListViewHolder>(
+    ListAdapter<StudioImage, PhotoReviewListAdapter.PhotoReviewListViewHolder>(
         DIFFUTIL
     ) {
 
@@ -25,14 +25,14 @@ class PhotoReviewListAdapter(private val listener: ItemClickListener) :
     }
 
     fun interface ItemClickListener {
-        fun onClick(data: ResponseStudioPhoto.StudioPhoto)
+        fun onClick(data: StudioImage)
     }
 
     class PhotoReviewListViewHolder(
         private val binding: ItemPhotoReviewBinding,
         private val listener: ItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(studioPhoto: ResponseStudioPhoto.StudioPhoto) {
+        fun onBind(studioPhoto: StudioImage) {
             Glide.with(itemView.context).load(studioPhoto.imageUrl).into(binding.ivPhoto)
             binding.root.setOnClickListener {
                 listener.onClick(studioPhoto)
@@ -41,17 +41,17 @@ class PhotoReviewListAdapter(private val listener: ItemClickListener) :
     }
 
     companion object {
-        val DIFFUTIL = object : DiffUtil.ItemCallback<ResponseStudioPhoto.StudioPhoto>() {
+        val DIFFUTIL = object : DiffUtil.ItemCallback<StudioImage>() {
             override fun areItemsTheSame(
-                oldItem: ResponseStudioPhoto.StudioPhoto,
-                newItem: ResponseStudioPhoto.StudioPhoto
+                oldItem: StudioImage,
+                newItem: StudioImage
             ): Boolean {
                 return oldItem.photoId == newItem.photoId
             }
 
             override fun areContentsTheSame(
-                oldItem: ResponseStudioPhoto.StudioPhoto,
-                newItem: ResponseStudioPhoto.StudioPhoto
+                oldItem: StudioImage,
+                newItem: StudioImage
             ): Boolean {
                 return oldItem == newItem
             }
