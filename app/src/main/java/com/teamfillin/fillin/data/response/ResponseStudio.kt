@@ -1,5 +1,6 @@
 package com.teamfillin.fillin.data.response
 
+import com.teamfillin.fillin.domain.entity.StudioDetail
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -18,6 +19,22 @@ data class ResponseStudio(
         val long: Double,
         val etc: String?,
         val isDeleted: Boolean,
-        val site: String
-    )
+        val site: String?
+    ) {
+        fun toStudioDetail(): StudioDetail {
+            return StudioDetail(
+                id,
+                name,
+                address,
+                price,
+                time,
+                tel,
+                lati,
+                long,
+                etc,
+                isDeleted,
+                site
+            )
+        }
+    }
 }
