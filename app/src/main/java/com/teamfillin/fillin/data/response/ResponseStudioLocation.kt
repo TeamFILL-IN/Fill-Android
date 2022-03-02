@@ -1,7 +1,9 @@
 package com.teamfillin.fillin.data.response
 
 import com.teamfillin.fillin.domain.entity.StudioMap
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class ResponseStudioLocation(
     val studios: List<StudioLocation>
 ) {
@@ -12,6 +14,7 @@ data class ResponseStudioLocation(
     }
 }
 
+@Serializable
 data class StudioLocation(
     val id: Int,
     val lati: Double,

@@ -1,5 +1,7 @@
 object KotlinDependencies {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"
+    const val serialization =
+        "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerializationVersion}"
 }
 
 object AndroidXDependencies {
@@ -62,6 +64,8 @@ object ThirdPartyDependencies {
     const val mapLocation =
         "com.google.android.gms:play-services-location:${Versions.locationVersion}"
     const val dotsIndicator = "com.tbuonomo:dotsindicator:${Versions.dotsIndicatorVersion}"
+    const val kotlinSerializationConverter =
+        "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
 }
 
 object ClassPathPlugins {

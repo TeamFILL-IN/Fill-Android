@@ -1,7 +1,9 @@
 package com.teamfillin.fillin.data.response
 
 import com.teamfillin.fillin.domain.entity.StudioImage
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class ResponseStudioPhoto(
     val photos: List<StudioPhoto>
 ) {
@@ -21,6 +23,7 @@ data class ResponseStudioPhoto(
     }
 }
 
+@Serializable
 data class StudioPhoto(
     val studioName: String,
     val nickname: String,

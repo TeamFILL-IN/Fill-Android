@@ -1,9 +1,13 @@
 package com.teamfillin.fillin.data.response
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ResponseFilmRoll(
     val photos: List<FilmPhotoInfo>,
     val curation: Curation
 ) {
+    @Serializable
     data class FilmPhotoInfo(
         val nickname: String,
         val userImageUrl: String,
@@ -15,6 +19,7 @@ data class ResponseFilmRoll(
         val isLiked: Boolean
     )
 
+    @Serializable
     data class Curation(
         val id: Int,
         val title: String,

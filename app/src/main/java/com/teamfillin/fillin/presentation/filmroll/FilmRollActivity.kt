@@ -71,6 +71,7 @@ class FilmRollActivity : BindingActivity<ActivityFilmRollBinding>(R.layout.activ
 
     private fun addCurationList() {
         service.getCuration().receive({
+            Timber.d("Nunu $it")
             curationAdapter = CurationAdapter(it.data.curation) {
                 val dialog = PhotoDialogFragment.newInstance(
                     photoUrl = it.imageUrl,

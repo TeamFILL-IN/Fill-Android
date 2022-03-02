@@ -1,11 +1,15 @@
 package com.teamfillin.fillin.data.response
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ResponseUserInfo(
     val user: User
 ) {
+    @Serializable
     data class User(
         val createdAt: String,
-        val email: String,
+        val email: String?,
         val id: Int,
         val idKey: String,
         val imageUrl: String,
@@ -13,6 +17,7 @@ data class ResponseUserInfo(
         val nickname: String,
         val refreshToken: String,
         val social: String,
-        val updatedAt: String
+        val updatedAt: String,
+        val camera: String?
     )
 }

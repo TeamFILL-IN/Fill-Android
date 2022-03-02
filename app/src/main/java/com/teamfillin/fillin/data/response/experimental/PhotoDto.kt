@@ -2,15 +2,19 @@ package com.teamfillin.fillin.data.response.experimental
 
 import com.teamfillin.fillin.domain.entity.CategoryPhoto
 import com.teamfillin.fillin.domain.entity.Photo
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class ResponseAllPhoto(
     val photos: List<PhotoDto>
 )
 
+@Serializable
 data class ResponsePhotoByCategory(
     val photos: List<CategoryPhotoDto>
 )
 
+@Serializable
 data class PhotoDto(
     val nickname: String,
     val userImageUrl: String,
@@ -25,6 +29,7 @@ data class PhotoDto(
         Photo(nickname, userImageUrl, photoId, imageUrl, filmId, filmName, likeCount, isLiked)
 }
 
+@Serializable
 data class CategoryPhotoDto(
     val nickname: String,
     val userImageUrl: String,

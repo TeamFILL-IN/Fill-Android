@@ -2,6 +2,8 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
+    kotlin("plugin.serialization") version Versions.kotlinVersion
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -13,16 +15,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
     }
     compileOptions {
         sourceCompatibility = Versions.javaVersion
@@ -50,6 +42,8 @@ dependencies {
     implementation(AndroidXDependencies.coroutines)
     implementation(AndroidXDependencies.fragment)
     implementation(AndroidXDependencies.pagingRuntime)
+    implementation(AndroidXDependencies.hilt)
+    kapt(KaptDependencies.hiltCompiler)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
@@ -62,6 +56,8 @@ dependencies {
     implementation(ThirdPartyDependencies.okHttp)
     implementation(ThirdPartyDependencies.retrofit)
     implementation(ThirdPartyDependencies.timber)
+    implementation(ThirdPartyDependencies.kotlinSerializationConverter)
+    implementation(ThirdPartyDependencies.retrofitGsonConverter)
 
     // Test Dependency
     testImplementation(TestDependencies.jUnit)

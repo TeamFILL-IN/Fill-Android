@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    kotlin("plugin.serialization") version Versions.kotlinVersion
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("com.google.android.gms.oss-licenses-plugin")
@@ -38,12 +39,12 @@ android {
 
     buildTypes {
         getByName("debug") {
-            buildConfigField("String", "KAKAO_AUTH", "\"a7ddbcd24d7fff22320cc13a1e534104\"")
+            applicationIdSuffix = ".debug"
         }
-
         getByName("release") {
             signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -71,6 +72,7 @@ dependencies {
 
     // Kotlin
     implementation(KotlinDependencies.kotlin)
+    implementation(KotlinDependencies.serialization)
 
     // AndroidX
     implementation(AndroidXDependencies.coreKtx)
@@ -103,6 +105,7 @@ dependencies {
     implementation(ThirdPartyDependencies.naverMap)
     implementation(ThirdPartyDependencies.mapLocation)
     implementation(ThirdPartyDependencies.dotsIndicator)
+    implementation(ThirdPartyDependencies.kotlinSerializationConverter)
 
     // Material Design
     implementation(MaterialDesignDependencies.materialDesign)
