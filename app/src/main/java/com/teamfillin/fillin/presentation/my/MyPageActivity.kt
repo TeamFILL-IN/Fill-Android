@@ -61,10 +61,15 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
                     .setTitle("KAKAO AUTH TOKEN")
                     .setMessage("${token?.accessToken}")
                     .setPositiveButton("OK") { dialog, _ ->
-                        getSystemService(ClipboardManager::class.java).apply {
-                            setPrimaryClip(
-                                ClipData.newPlainText("Kakao Token", "${token?.accessToken}")
-                            )
+                        client.me { user, _ ->
+                            getSystemService(ClipboardManager::class.java).apply {
+                                setPrimaryClip(
+                                    ClipData.newPlainText(
+                                        "Kakao Token",
+                                        "token: ${token?.accessToken} idkey: ${user?.id}"
+                                    )
+                                )
+                            }
                         }
                         dialog.dismiss()
                     }.show()
