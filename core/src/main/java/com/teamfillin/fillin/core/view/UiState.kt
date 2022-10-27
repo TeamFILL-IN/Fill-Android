@@ -24,10 +24,8 @@ sealed interface UiState<out T> {
 }
 
 data class UiStateModel(
-    val isEmpty: Boolean,
-    val isLoading: Boolean,
-    val isSuccess: Boolean,
-    val isFailure: Boolean
-) {
-    constructor() : this(false, true, false, false)
-}
+    val isEmpty: Boolean = false,
+    val isLoading: Boolean = true,
+    val isSuccess: Boolean = false,
+    val isFailure: Boolean = false
+)
