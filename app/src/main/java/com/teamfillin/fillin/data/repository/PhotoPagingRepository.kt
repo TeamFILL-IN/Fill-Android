@@ -2,7 +2,7 @@ package com.teamfillin.fillin.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.teamfillin.fillin.data.remote.PhotosPagingSource
+import com.teamfillin.fillin.data.datasource.PhotosPagingSource
 import com.teamfillin.fillin.data.service.PagingService
 import javax.inject.Inject
 

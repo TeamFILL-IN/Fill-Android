@@ -28,6 +28,7 @@ import com.teamfillin.fillin.core.content.EventObserver
 import com.teamfillin.fillin.core.context.toast
 import com.teamfillin.fillin.databinding.ActivityStudioMapBinding
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
+import com.teamfillin.fillin.presentation.map.search.MapSearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 

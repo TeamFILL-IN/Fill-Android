@@ -21,7 +21,7 @@ import com.teamfillin.fillin.core.context.colorOf
 import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.databinding.ActivityAddPhotoBinding
 import com.teamfillin.fillin.presentation.category.FilmRollCategoryActivity
-import com.teamfillin.fillin.presentation.map.MapSearchActivity
+import com.teamfillin.fillin.presentation.map.search.MapSearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
