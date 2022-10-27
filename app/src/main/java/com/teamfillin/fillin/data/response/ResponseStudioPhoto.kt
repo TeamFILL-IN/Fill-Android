@@ -7,30 +7,21 @@ import kotlinx.serialization.Serializable
 data class ResponseStudioPhoto(
     val photos: List<StudioPhoto>
 ) {
-    fun toStudioImage(): List<StudioImage> {
-        return photos.map {
-            StudioImage(
-                it.studioName,
-                it.nickname,
-                it.userImageUrl,
-                it.photoId,
-                it.imageUrl,
-                it.filmId,
-                it.filmName,
-                it.likeCount
+    @Serializable
+    data class StudioPhoto(
+        val studioName: String,
+        val nickname: String,
+        val userImageUrl: String,
+        val photoId: Int,
+        val imageUrl: String,
+        val filmId: Int,
+        val filmName: String,
+        val likeCount: Int
+    ) {
+        fun toStudioImage(): StudioImage {
+            return StudioImage(
+                studioName, nickname, userImageUrl, photoId, imageUrl, filmId, filmName, likeCount
             )
         }
     }
 }
-
-@Serializable
-data class StudioPhoto(
-    val studioName: String,
-    val nickname: String,
-    val userImageUrl: String,
-    val photoId: Int,
-    val imageUrl: String,
-    val filmId: Int,
-    val filmName: String,
-    val likeCount: Int
-)
