@@ -40,9 +40,9 @@ android {
     }
 
     buildTypes {
-        getByName("debug") {
+       /* getByName("debug") {
             applicationIdSuffix = ".debug"
-        }
+        }*/
         getByName("release") {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
