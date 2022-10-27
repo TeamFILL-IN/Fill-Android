@@ -10,7 +10,7 @@ import com.teamfillin.fillin.core.content.SingleLiveEvent
 import com.teamfillin.fillin.domain.entity.StudioDetail
 import com.teamfillin.fillin.domain.entity.StudioImage
 import com.teamfillin.fillin.domain.entity.StudioMap
-import com.teamfillin.fillin.domain.repository.StudioMapRepository
+import com.teamfillin.fillin.domain.repository.MapRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -19,7 +19,7 @@ import kotlin.collections.set
 
 @HiltViewModel
 class StudioMapViewModel @Inject constructor(
-    private val studioMapRepository: StudioMapRepository
+    private val repository: MapRepository
 ) : ViewModel() {
 
     private val _location = MutableLiveData<List<LatLng>>()
@@ -47,7 +47,7 @@ class StudioMapViewModel @Inject constructor(
     fun studioLocation() {
         viewModelScope.launch {
             runCatching {
-                studioMapRepository.studioLocation()
+                repository.studioLocation()
             }.onSuccess {
                 Timber.d(it.toString())
                 _location.value = it.map { response ->
@@ -67,7 +67,7 @@ class StudioMapViewModel @Inject constructor(
     fun studioDetail(position: Int) {
         viewModelScope.launch {
             runCatching {
-                studioMapRepository.studioDetail(position)
+                repository.studioDetail(position)
             }.onSuccess {
                 _studio.value = it
                 _cameraZoom.value = Event(position)
@@ -81,7 +81,7 @@ class StudioMapViewModel @Inject constructor(
     fun studioPhoto(position: Int) {
         viewModelScope.launch {
             runCatching {
-                studioMapRepository.studioPhoto(position)
+                repository.studioPhoto(position)
             }.onSuccess {
                 _photos.value = it
             }.onFailure{
