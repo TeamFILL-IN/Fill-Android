@@ -6,6 +6,8 @@ plugins {
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("com.google.android.gms.oss-licenses-plugin")
+    //GA
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -70,6 +72,8 @@ android {
 dependencies {
     implementation(project(":core"))
 
+    //GA
+    implementation ("com.google.firebase:firebase-analytics:17.4.1")
     // Kotlin
     implementation(KotlinDependencies.kotlin)
     implementation(KotlinDependencies.serialization)

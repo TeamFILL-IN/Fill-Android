@@ -9,6 +9,8 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}")
         classpath(ClassPathPlugins.hilt)
         classpath(ClassPathPlugins.oss)
+
+        classpath("com.google.gms:google-services:4.3.3")
     }
 }
 
