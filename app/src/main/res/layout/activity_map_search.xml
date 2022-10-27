@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="uiState"
+            type="com.teamfillin.fillin.core.view.UiStateModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,6 +95,7 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             android:overScrollMode="never"
+            app:isVisible="@{uiState.success}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_division"
@@ -102,7 +105,7 @@
             android:id="@+id/cl_no_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            app:isVisible="@{uiState.Empty}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tb_title">
 
