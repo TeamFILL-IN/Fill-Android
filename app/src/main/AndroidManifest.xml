@@ -72,7 +72,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.map.MapSearchActivity"
+            android:name=".presentation.map.search.MapSearchActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
