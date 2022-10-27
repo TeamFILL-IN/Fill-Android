@@ -20,6 +20,7 @@ import com.teamfillin.fillin.core.view.setOnSingleClickListener
 import com.teamfillin.fillin.data.service.HomeService
 import com.teamfillin.fillin.data.service.StudioService
 import com.teamfillin.fillin.databinding.ActivityHomeBinding
+import com.teamfillin.fillin.domain.repository.MapRepository
 import com.teamfillin.fillin.presentation.filmroll.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
@@ -40,7 +41,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     lateinit var service: HomeService
 
     @Inject
-    lateinit var studioService: StudioService
+    lateinit var repository: MapRepository
     private lateinit var newPhotosAdapter: NewPhotosAdapter
     private lateinit var fusedLocationSource: FusedLocationSource
     private var activityNaverMap: NaverMap? = null
@@ -161,9 +162,9 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     private fun markerLocationEvent() {
         lifecycleScope.launch {
             runCatching {
-                studioService.getWholeStudio().await()
+                repository.studioLocation()
             }.onSuccess {
-                it.data.studios.forEach {
+                it.forEach {
                     Marker().apply {
                         position = LatLng(it.lati, it.long)
                         icon = OverlayImage.fromResource(R.drawable.ic_place_select)
