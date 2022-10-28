@@ -1,9 +1,13 @@
 package com.teamfillin.fillin.config.di
 
-import com.teamfillin.fillin.data.repository.*
+import com.teamfillin.fillin.data.repository.AuthRepositoryImpl
+import com.teamfillin.fillin.data.repository.MapRepositoryImpl
+import com.teamfillin.fillin.data.repository.PhotoPagingRepository
+import com.teamfillin.fillin.data.repository.PhotoRepositoryImpl
 import com.teamfillin.fillin.data.service.PagingService
 import com.teamfillin.fillin.domain.repository.AuthRepository
 import com.teamfillin.fillin.domain.repository.MapRepository
+import com.teamfillin.fillin.domain.repository.PhotoRepository
 import com.teamfillin.fillin.presentation.filmroll.add.repository.AddPhotoRepository
 import com.teamfillin.fillin.presentation.filmroll.add.repository.AddPhotoRepositoryImpl
 import dagger.Module
@@ -33,4 +37,9 @@ object RepositoryModule {
     @Singleton
     fun provideMapRepository(mapRepository: MapRepositoryImpl) : MapRepository =
         mapRepository
+
+    @Provides
+    @Singleton
+    fun providePhotoRepository(photoRepository: PhotoRepositoryImpl) : PhotoRepository =
+        photoRepository
 }
