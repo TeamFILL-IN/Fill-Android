@@ -1,5 +1,6 @@
 package com.teamfillin.fillin.data.response
 
+import com.teamfillin.fillin.domain.entity.UserPhoto
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -15,5 +16,9 @@ data class ResponseUserPhotoInfo(
         val nickname: String,
         val photoId: Int,
         val userImageUrl: String
-    )
+    ) {
+        fun toUserPhoto(): UserPhoto {
+            return UserPhoto(filmId, filmName, imageUrl, likeCount, nickname, photoId, userImageUrl)
+        }
+    }
 }
