@@ -18,3 +18,17 @@ sealed class Auth(
         override val refreshToken: String
     ) : Auth(email, accessToken, refreshToken)
 }
+
+data class User(
+    val createdAt: String,
+    val email: String?,
+    val id: Int,
+    val idKey: String,
+    val imageUrl: String,
+    val isDeleted: Boolean,
+    val nickname: String,
+    val refreshToken: String,
+    val social: String,
+    val updatedAt: String,
+    val camera: String?
+)
