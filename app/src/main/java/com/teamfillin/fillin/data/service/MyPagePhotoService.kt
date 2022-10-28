@@ -7,5 +7,5 @@ import retrofit2.http.GET
 
 interface MyPagePhotoService {
     @GET("photo/user")
-    fun getUserPhotos() : Call<BaseResponse<ResponseUserPhotoInfo>>
+    suspend fun getUserPhotos() : BaseResponse<ResponseUserPhotoInfo>
 }
