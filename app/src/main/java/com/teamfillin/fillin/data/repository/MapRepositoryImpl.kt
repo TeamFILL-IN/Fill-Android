@@ -1,23 +1,20 @@
 package com.teamfillin.fillin.data.repository
 
 import com.teamfillin.fillin.data.datasource.MapDataSource
-import com.teamfillin.fillin.domain.entity.StudioDetail
-import com.teamfillin.fillin.domain.entity.StudioImage
-import com.teamfillin.fillin.domain.entity.StudioMap
-import com.teamfillin.fillin.domain.entity.StudioSearch
+import com.teamfillin.fillin.domain.entity.*
 import com.teamfillin.fillin.domain.repository.MapRepository
 import javax.inject.Inject
 
 class MapRepositoryImpl @Inject constructor(
     private val dataSource: MapDataSource
 ) : MapRepository {
-    override suspend fun mapSearch(keyword: String): List<StudioSearch.StudioAddress> {
+    override suspend fun mapSearch(keyword: String): List<StudioAddress> {
         return dataSource.mapSearch(keyword).map {
             it.toStudioSearch()
         }
     }
 
-    override suspend fun studioLocation(): List<StudioMap.StudioPosition> {
+    override suspend fun studioLocation(): List<StudioPosition> {
         return dataSource.studioLocation().map {
             it.toStudioMap()
         }

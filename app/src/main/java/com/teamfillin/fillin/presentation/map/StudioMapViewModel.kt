@@ -9,7 +9,7 @@ import com.teamfillin.fillin.core.content.Event
 import com.teamfillin.fillin.core.content.SingleLiveEvent
 import com.teamfillin.fillin.domain.entity.StudioDetail
 import com.teamfillin.fillin.domain.entity.StudioImage
-import com.teamfillin.fillin.domain.entity.StudioMap
+import com.teamfillin.fillin.domain.entity.StudioPosition
 import com.teamfillin.fillin.domain.repository.MapRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -95,5 +95,5 @@ class StudioMapViewModel @Inject constructor(
 
     fun markerPosition(id: Int) = locationHash[id]
 
-    private fun StudioMap.StudioPosition.toCoordinate() = LatLng(lati, long)
+    private fun StudioPosition.toCoordinate() = LatLng(lati, long)
 }

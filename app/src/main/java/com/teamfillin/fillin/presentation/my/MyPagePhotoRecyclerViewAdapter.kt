@@ -7,10 +7,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.teamfillin.fillin.data.response.ResponseUserPhotoInfo
 import com.teamfillin.fillin.databinding.ItemMyPageBinding
+import com.teamfillin.fillin.domain.entity.UserPhoto
 
 class MyPagePhotoRecyclerViewAdapter(private val listener: ItemClickListener) :
     RecyclerView.Adapter<MyPagePhotoRecyclerViewAdapter.ViewHolder>() {
-    private var photoList = listOf<ResponseUserPhotoInfo.Photo>()
+    private var photoList = listOf<UserPhoto>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,13 +30,13 @@ class MyPagePhotoRecyclerViewAdapter(private val listener: ItemClickListener) :
 
     override fun getItemCount() = photoList.size
 
-    fun replaceList(newList: List<ResponseUserPhotoInfo.Photo>) {
+    fun replaceList(newList: List<UserPhoto>) {
         photoList = newList.toList()
         notifyDataSetChanged()
     }
 
     fun interface ItemClickListener {
-        fun onClick(data: ResponseUserPhotoInfo.Photo)
+        fun onClick(data: UserPhoto)
     }
 
     class ViewHolder(
@@ -43,7 +44,7 @@ class MyPagePhotoRecyclerViewAdapter(private val listener: ItemClickListener) :
         private val listener: ItemClickListener
     ) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(photo: ResponseUserPhotoInfo.Photo) {
+        fun bind(photo: UserPhoto) {
             Glide.with(itemView.context).load(photo.imageUrl).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(binding.ivPhoto)
             binding.root.setOnClickListener {
                 listener.onClick(photo)

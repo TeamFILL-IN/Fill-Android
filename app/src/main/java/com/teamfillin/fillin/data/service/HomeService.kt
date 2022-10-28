@@ -2,7 +2,7 @@ package com.teamfillin.fillin.data.service
 
 import com.teamfillin.fillin.data.response.BaseResponse
 import com.teamfillin.fillin.data.response.ResponseNewPhotoInfo
-import com.teamfillin.fillin.data.response.ResponseUserInfo
+import com.teamfillin.fillin.data.response.ResponseUser
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -11,5 +11,5 @@ interface HomeService {
     fun getNewPhoto(): Call<BaseResponse<ResponseNewPhotoInfo>>
 
     @GET("user")
-    fun getUser(): Call<BaseResponse<ResponseUserInfo>>
+    fun getUser(): Call<BaseResponse<ResponseUser>>
 }

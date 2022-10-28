@@ -1,11 +1,11 @@
 package com.teamfillin.fillin.data.datasource.remote
 
 import com.teamfillin.fillin.data.datasource.MapDataSource
-import com.teamfillin.fillin.data.response.*
+import com.teamfillin.fillin.data.response.ResponseSearch
+import com.teamfillin.fillin.data.response.ResponseStudio
+import com.teamfillin.fillin.data.response.ResponseStudioLocation
+import com.teamfillin.fillin.data.response.ResponseStudioPhoto
 import com.teamfillin.fillin.data.service.StudioService
-import com.teamfillin.fillin.domain.entity.StudioDetail
-import com.teamfillin.fillin.domain.entity.StudioImage
-import retrofit2.await
 import javax.inject.Inject
 
 class MapDataSourceImpl @Inject constructor(

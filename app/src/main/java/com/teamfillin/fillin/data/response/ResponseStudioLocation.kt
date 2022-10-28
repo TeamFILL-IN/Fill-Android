@@ -1,6 +1,6 @@
 package com.teamfillin.fillin.data.response
 
-import com.teamfillin.fillin.domain.entity.StudioMap
+import com.teamfillin.fillin.domain.entity.StudioPosition
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -13,8 +13,8 @@ data class ResponseStudioLocation(
         val lati: Double,
         val long: Double
     ) {
-        fun toStudioMap(): StudioMap.StudioPosition {
-            return  StudioMap.StudioPosition(id, lati, long)
+        fun toStudioMap(): StudioPosition {
+            return  StudioPosition(id, lati, long)
         }
     }
 }
