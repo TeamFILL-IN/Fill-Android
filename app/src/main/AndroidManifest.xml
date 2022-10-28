@@ -95,6 +95,10 @@
             android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
             android:theme="@style/LicenseTheme" />
 
+        <activity android:name=".presentation.my.terms.TermsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="5nlfu3idz8" />
