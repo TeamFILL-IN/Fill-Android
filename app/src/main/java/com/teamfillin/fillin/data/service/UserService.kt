@@ -7,5 +7,5 @@ import retrofit2.http.GET
 
 interface UserService {
     @GET("user")
-    fun getUserInfo() : Call<BaseResponse<ResponseUserInfo>>
+    suspend fun getUserInfo() : BaseResponse<ResponseUserInfo>
 }
