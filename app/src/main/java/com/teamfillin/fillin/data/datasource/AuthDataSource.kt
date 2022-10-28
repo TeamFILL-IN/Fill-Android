@@ -1,8 +1,7 @@
 package com.teamfillin.fillin.data.datasource
 
-import com.teamfillin.fillin.data.response.ResponseUserInfo
-import com.teamfillin.fillin.data.response.ResponseUserPhotoInfo
+import com.teamfillin.fillin.data.response.ResponseUser
 
 interface AuthDataSource {
-    suspend fun getUser(): ResponseUserInfo.UserInfo
+    suspend fun getUser(): ResponseUser.UserResponse
 }

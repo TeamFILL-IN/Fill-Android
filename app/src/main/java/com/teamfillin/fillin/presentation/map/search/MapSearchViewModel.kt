@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.teamfillin.fillin.core.view.UiState
-import com.teamfillin.fillin.domain.entity.StudioSearch
+import com.teamfillin.fillin.domain.entity.StudioAddress
 import com.teamfillin.fillin.domain.repository.MapRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +17,8 @@ class MapSearchViewModel @Inject constructor(
     private val mapSearchRepository: MapRepository
 ) : ViewModel() {
 
-    private val _resultSearch = MutableStateFlow<UiState<List<StudioSearch.StudioAddress>>>(UiState.Loading)
-    val resultSearch: StateFlow<UiState<List<StudioSearch.StudioAddress>>> = _resultSearch
+    private val _resultSearch = MutableStateFlow<UiState<List<StudioAddress>>>(UiState.Loading)
+    val resultSearch: StateFlow<UiState<List<StudioAddress>>> = _resultSearch
 
     fun locationSearch(keyword: String) {
         viewModelScope.launch {

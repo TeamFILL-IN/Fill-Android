@@ -4,11 +4,11 @@ import com.teamfillin.fillin.domain.entity.User
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseUserInfo(
-    val user: UserInfo
+data class ResponseUser(
+    val user: UserResponse
 ) {
     @Serializable
-    data class UserInfo(
+    data class UserResponse(
         val createdAt: String,
         val email: String?,
         val id: Int,

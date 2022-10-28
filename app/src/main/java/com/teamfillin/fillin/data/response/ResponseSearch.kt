@@ -1,6 +1,6 @@
 package com.teamfillin.fillin.data.response
 
-import com.teamfillin.fillin.domain.entity.StudioSearch
+import com.teamfillin.fillin.domain.entity.StudioAddress
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -13,8 +13,8 @@ data class ResponseSearch(
         val name: String,
         val address: String
     ) {
-        fun toStudioSearch(): StudioSearch.StudioAddress {
-            return StudioSearch.StudioAddress(id, name, address)
+        fun toStudioSearch(): StudioAddress {
+            return StudioAddress(id, name, address)
         }
     }
 }
