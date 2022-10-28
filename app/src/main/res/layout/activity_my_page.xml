@@ -16,6 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:background="@color/fillin_black">
 
         <androidx.appcompat.widget.Toolbar
@@ -52,17 +53,6 @@
                 android:textColor="@color/white"
                 android:visibility="@{isDebug ? View.VISIBLE : View.GONE}"
                 tools:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/btn_setting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="8dp"
-                android:padding="12dp"
-                android:src="@drawable/ic_settings"
-                android:visibility="@{isDebug ? View.GONE : View.VISIBLE}" />
-
         </androidx.appcompat.widget.Toolbar>
 
         <ImageView
@@ -71,6 +61,7 @@
             android:layout_height="55dp"
             android:layout_marginStart="18dp"
             android:layout_marginTop="14dp"
+            android:src="@drawable/ic_basic_profile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_title" />
 
@@ -111,46 +102,160 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            android:text="@string/camera_name"
+            android:text="@string/camera_input_text"
             android:textColor="@color/grey_3"
             app:layout_constraintBottom_toBottomOf="@id/iv_camera"
             app:layout_constraintStart_toEndOf="@id/iv_camera"
             app:layout_constraintTop_toTopOf="@id/iv_camera" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_report"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_category"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="18dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@id/tv_camera">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_like"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/cl_bookmark"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_weight="1">
+
+                <ImageView
+                    android:id="@+id/iv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_like"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_like"
+                    style="@style/Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/like"
+                    android:textColor="@color/light_grey_2"
+                    app:layout_constraintEnd_toEndOf="@id/iv_like"
+                    app:layout_constraintStart_toStartOf="@id/iv_like"
+                    app:layout_constraintTop_toBottomOf="@id/iv_like" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:background="@color/dark_grey_2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cl_bookmark"
+                app:layout_constraintStart_toEndOf="@id/cl_like"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_bookmark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/cl_feedback"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/cl_like"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_bookmark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_bookmark"
+                    style="@style/Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/bookmark"
+                    android:textColor="@color/light_grey_2"
+                    app:layout_constraintEnd_toEndOf="@id/iv_bookmark"
+                    app:layout_constraintStart_toStartOf="@id/iv_bookmark"
+                    app:layout_constraintTop_toBottomOf="@id/iv_bookmark" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:background="@color/dark_grey_2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cl_feedback"
+                app:layout_constraintStart_toEndOf="@id/cl_bookmark"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_feedback"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/cl_bookmark"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_feedback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_feedback"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_feedback"
+                    style="@style/Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/feedback"
+                    android:textColor="@color/light_grey_2"
+                    app:layout_constraintEnd_toEndOf="@id/iv_feedback"
+                    app:layout_constraintStart_toStartOf="@id/iv_feedback"
+                    app:layout_constraintTop_toBottomOf="@id/iv_feedback" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/iv_banner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="18dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/shape_mypage"
-            android:drawableRight="@drawable/icn_arrow"
-            android:fontFamily="@font/noto_sans_kr_regular"
-            android:gravity="left"
-            android:lineSpacingExtra="6sp"
-            android:paddingVertical="18dp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:text="@string/new_film_tell"
-            android:textColor="@color/fillin_black"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_camera" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_feedback_banner"
+            android:layout_marginHorizontal="18dp"
+            app:layout_constraintTop_toBottomOf="@id/cl_category"
+            android:layout_marginTop="12dp" />
 
         <View
             android:id="@+id/view_division"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:background="@color/dark_grey_2"
-            app:layout_constraintTop_toBottomOf="@id/btn_report" />
+            app:layout_constraintTop_toBottomOf="@id/iv_banner" />
 
         <TextView
             android:id="@+id/tv_photos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/futura_std_book"
             android:text="@string/my_photos"
             android:textColor="@color/fillin_white"
@@ -158,21 +263,56 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_division" />
 
+        <ImageView
+            android:id="@+id/iv_up"
+            android:layout_width="wrap_content"
+            android:padding="12dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_up"
+            app:layout_constraintTop_toTopOf="@+id/tv_photos"
+            app:layout_constraintBottom_toBottomOf="@id/tv_photos"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="6dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_my_page"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="18dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_photos"
             app:spanCount="3" />
 
+        <View
+            android:id="@+id/view_division2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/dark_grey_2"
+            app:layout_constraintTop_toBottomOf="@id/rv_my_page" />
+
+        <TextView
+            android:id="@+id/tv_terms"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_division2"
+            android:text="@string/policy"
+            android:paddingVertical="18dp"
+            android:paddingStart="18dp"
+            android:textColor="@color/grey_2"
+            style="@style/Body3" />
+
+        <View
+            android:id="@+id/view_division3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_grey_2"
+            app:layout_constraintTop_toBottomOf="@id/tv_terms" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>
