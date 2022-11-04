@@ -1,8 +1,10 @@
 package com.teamfillin.fillin.presentation.home
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.naver.maps.geometry.LatLng
@@ -23,6 +25,7 @@ import com.teamfillin.fillin.databinding.ActivityHomeBinding
 import com.teamfillin.fillin.presentation.filmroll.add.AddPhotoActivity
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.presentation.filmroll.FilmRollActivity
+import com.teamfillin.fillin.presentation.filmroll.add.AddCompleteDialog
 import com.teamfillin.fillin.presentation.map.SpaceDecoration
 import com.teamfillin.fillin.presentation.map.StudioMapActivity
 import com.teamfillin.fillin.presentation.my.MyPageActivity
@@ -44,6 +47,12 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     private lateinit var newPhotosAdapter: NewPhotosAdapter
     private lateinit var fusedLocationSource: FusedLocationSource
     private var activityNaverMap: NaverMap? = null
+    private val addPhotoLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                AddCompleteDialog(this).showDialog()
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,10 +77,11 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         }
     }
 
+
     private fun clickListener() {
         binding.btnAddphoto.setOnSingleClickListener {
             val intent = Intent(this, AddPhotoActivity::class.java)
-            startActivity(intent)
+            addPhotoLauncher.launch(intent)
         }
         binding.btnFilmroll.setOnSingleClickListener {
             val intent = Intent(this, FilmRollActivity::class.java)
