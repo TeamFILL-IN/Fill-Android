@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -47,9 +48,12 @@ class AddPhotoActivity : BindingActivity<ActivityAddPhotoBinding>(R.layout.activ
     private fun initView() {
         binding.btnAddPhoto.setOnClickListener {
             viewModel.registerPhoto()
+            setResult(RESULT_OK, intent)
+            finish()
         }
 
         binding.tvFilm.setOnSingleClickListener {
+            Log.e("addphoto","click22")
             filmSelectLauncher.launch(Intent(this, FilmRollCategoryActivity::class.java))
         }
 
