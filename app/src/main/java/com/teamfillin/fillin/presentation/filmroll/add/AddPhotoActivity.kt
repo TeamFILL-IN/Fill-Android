@@ -53,7 +53,6 @@ class AddPhotoActivity : BindingActivity<ActivityAddPhotoBinding>(R.layout.activ
         }
 
         binding.tvFilm.setOnSingleClickListener {
-            Log.e("addphoto","click22")
             filmSelectLauncher.launch(Intent(this, FilmRollCategoryActivity::class.java))
         }
 
