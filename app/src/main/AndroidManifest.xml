@@ -95,7 +95,13 @@
             android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
             android:theme="@style/LicenseTheme" />
 
-        <activity android:name=".presentation.my.terms.TermsActivity"
+        <activity
+            android:name=".presentation.my.terms.TermsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".presentation.my.update.ProfileUpdateActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
