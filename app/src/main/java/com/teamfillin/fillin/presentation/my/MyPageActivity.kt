@@ -24,6 +24,7 @@ import com.teamfillin.fillin.databinding.ActivityMyPageBinding
 import com.teamfillin.fillin.presentation.dialog.PhotoDialogFragment
 import com.teamfillin.fillin.presentation.map.SpaceDecoration
 import com.teamfillin.fillin.presentation.my.terms.TermsActivity
+import com.teamfillin.fillin.presentation.my.update.ProfileUpdateActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -67,6 +68,12 @@ class MyPageActivity : BindingActivity<ActivityMyPageBinding>(R.layout.activity_
     private fun initEvent() {
         binding.btnBackHome.setOnClickListener {
             finish()
+        }
+
+        binding.ivEdit.setOnSingleClickListener {
+            Intent(this, ProfileUpdateActivity::class.java).apply {
+                startActivity(this)
+            }
         }
 
         binding.ivUp.setOnSingleClickListener {
