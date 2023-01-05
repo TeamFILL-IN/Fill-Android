@@ -89,7 +89,7 @@ class NewPhotosAdapter(
     class NextButtonViewHolder(private val binding: ItemNextButtonBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
-            binding.root.setOnSingleClickListener {
+            binding.btnNext.setOnSingleClickListener {
                 val intent = Intent(itemView.context, FilmRollActivity::class.java)
                 itemView.context.startActivity(intent)
             }
