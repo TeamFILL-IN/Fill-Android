@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">FILL-IN</string>
     <string name="nickname">찰칵찰칵 필린이</string>
+    <string name="nickname_title">닉네임</string>
+    <string name="nickname_hint">닉네임을 입력해주세요. (10자 이하)</string>
+    <string name="profile_image_change">프로필 사진 바꾸기</string>
+    <string name="profile_change">프로필 변경</string>
     <string name="camera_name">Fuji film X 1200</string>
+    <string name="camera">카메라</string>
+    <string name="camera_hint">사용중 카메라 이름을 입력해주세요.</string>
     <string name="camera_input_text">사용중인 카메라를 입력해주세요.</string>
     <string name="like">좋아요</string>
     <string name="bookmark">내 현상소</string>
